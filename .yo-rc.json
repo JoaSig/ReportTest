@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "baseName": "documentManagement",
+    "packageName": "dk.optimize",
+    "packageFolder": "dk/optimize",
+    "authenticationType": "xauth",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "useSass": true,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "enableTranslation": true,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "262565acd432a8ecd5ef06b47772994a2075bc42",
+    "testFrameworks": [
+      "gatling"
+    ]
+  }
+}
