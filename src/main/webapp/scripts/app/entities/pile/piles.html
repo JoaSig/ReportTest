@@ -1,0 +1,93 @@
+<div>
+    <h2 translate="documentmanagementApp.pile.home.title">Piles</h2>
+    <jh-alert></jh-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="pile.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span 
+class="hidden-xs"                        translate="documentmanagementApp.pile.home.createLabel">Create new Pile
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="{{ 'documentmanagementApp.pile.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="search()">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mixDesign"><span translate="documentmanagementApp.pile.mixDesign">MixDesign</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="slumpFlowTest"><span translate="documentmanagementApp.pile.slumpFlowTest">SlumpFlowTest</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pouringRate"><span translate="documentmanagementApp.pile.pouringRate">PouringRate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="totalCastedVolume"><span translate="documentmanagementApp.pile.totalCastedVolume">TotalCastedVolume</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="theoreticalConcreteVolume"><span translate="documentmanagementApp.pile.theoreticalConcreteVolume">TheoreticalConcreteVolume</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="overconsumptionOfConcrete"><span translate="documentmanagementApp.pile.overconsumptionOfConcrete">OverconsumptionOfConcrete</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="comment"><span translate="documentmanagementApp.pile.comment">Comment</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="signatureDate"><span translate="documentmanagementApp.pile.signatureDate">SignatureDate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="subContractor"><span translate="documentmanagementApp.pile.subContractor">SubContractor</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mainContractor"><span translate="documentmanagementApp.pile.mainContractor">MainContractor</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="client"><span translate="documentmanagementApp.pile.client">Client</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.id"><span translate="documentmanagementApp.pile.user">user</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pile in piles track by pile.id">
+                    <td><a ui-sref="pile.detail({id:pile.id})">{{pile.id}}</a></td>
+                    <td>{{pile.mixDesign}}</td>
+                    <td>{{pile.slumpFlowTest}}</td>
+                    <td>{{pile.pouringRate}}</td>
+                    <td>{{pile.totalCastedVolume}}</td>
+                    <td>{{pile.theoreticalConcreteVolume}}</td>
+                    <td>{{pile.overconsumptionOfConcrete}}</td>
+                    <td>{{pile.comment}}</td>
+                    <td>{{pile.signatureDate | date:'medium'}}</td>
+                    <td>{{pile.subContractor}}</td>
+                    <td>{{pile.mainContractor}}</td>
+                    <td>{{pile.client}}</td>
+                    <td>
+                        {{pile.user.id}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="pile.detail({id:pile.id})"
+                                    class="btn btn-info btn-sm"> 
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="pile.edit({id:pile.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="pile.delete({id:pile.id})"
+                                    class="btn btn-danger btn-sm">                                    
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <uib-pager total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pager>
+</div>

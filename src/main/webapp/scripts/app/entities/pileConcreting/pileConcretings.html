@@ -1,0 +1,139 @@
+<div>
+    <h2 translate="documentmanagementApp.pileConcreting.home.title">PileConcretings</h2>
+    <jh-alert></jh-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="pileConcreting.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span 
+class="hidden-xs"                        translate="documentmanagementApp.pileConcreting.home.createLabel">Create new PileConcreting
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="{{ 'documentmanagementApp.pileConcreting.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="search()">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mixDesign"><span translate="documentmanagementApp.pileConcreting.mixDesign">MixDesign</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="slump1"><span translate="documentmanagementApp.pileConcreting.slump1">Slump1</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="slump2"><span translate="documentmanagementApp.pileConcreting.slump2">Slump2</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="slump3"><span translate="documentmanagementApp.pileConcreting.slump3">Slump3</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="slump4"><span translate="documentmanagementApp.pileConcreting.slump4">Slump4</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="slump5"><span translate="documentmanagementApp.pileConcreting.slump5">Slump5</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="truckId1"><span translate="documentmanagementApp.pileConcreting.truckId1">TruckId1</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="truckId2"><span translate="documentmanagementApp.pileConcreting.truckId2">TruckId2</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="truckId3"><span translate="documentmanagementApp.pileConcreting.truckId3">TruckId3</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="truckId4"><span translate="documentmanagementApp.pileConcreting.truckId4">TruckId4</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="truckId5"><span translate="documentmanagementApp.pileConcreting.truckId5">TruckId5</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="casted1"><span translate="documentmanagementApp.pileConcreting.casted1">Casted1</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="casted2"><span translate="documentmanagementApp.pileConcreting.casted2">Casted2</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="casted3"><span translate="documentmanagementApp.pileConcreting.casted3">Casted3</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="casted4"><span translate="documentmanagementApp.pileConcreting.casted4">Casted4</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="casted5"><span translate="documentmanagementApp.pileConcreting.casted5">Casted5</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concretingDateStart"><span translate="documentmanagementApp.pileConcreting.concretingDateStart">ConcretingDateStart</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concretingStartTime"><span translate="documentmanagementApp.pileConcreting.concretingStartTime">ConcretingStartTime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concretingEndTime"><span translate="documentmanagementApp.pileConcreting.concretingEndTime">ConcretingEndTime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concretingOrderTime1"><span translate="documentmanagementApp.pileConcreting.concretingOrderTime1">ConcretingOrderTime1</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concretingArrivalTime1"><span translate="documentmanagementApp.pileConcreting.concretingArrivalTime1">ConcretingArrivalTime1</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concretingOrderTime2"><span translate="documentmanagementApp.pileConcreting.concretingOrderTime2">ConcretingOrderTime2</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concretingArrivalTime2"><span translate="documentmanagementApp.pileConcreting.concretingArrivalTime2">ConcretingArrivalTime2</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concretingOrderTime3"><span translate="documentmanagementApp.pileConcreting.concretingOrderTime3">ConcretingOrderTime3</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concretingArrivalTime3"><span translate="documentmanagementApp.pileConcreting.concretingArrivalTime3">ConcretingArrivalTime3</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concretingOrderTime4"><span translate="documentmanagementApp.pileConcreting.concretingOrderTime4">ConcretingOrderTime4</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concretingArrivalTime4"><span translate="documentmanagementApp.pileConcreting.concretingArrivalTime4">ConcretingArrivalTime4</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concretingOrderTime5"><span translate="documentmanagementApp.pileConcreting.concretingOrderTime5">ConcretingOrderTime5</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concretingArrivalTime5"><span translate="documentmanagementApp.pileConcreting.concretingArrivalTime5">ConcretingArrivalTime5</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="calculatedCumulativeCls"><span translate="documentmanagementApp.pileConcreting.calculatedCumulativeCls">CalculatedCumulativeCls</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="calculatedTheoricCls"><span translate="documentmanagementApp.pileConcreting.calculatedTheoricCls">CalculatedTheoricCls</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="calculatedDifference"><span translate="documentmanagementApp.pileConcreting.calculatedDifference">CalculatedDifference</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="calculatedProcent"><span translate="documentmanagementApp.pileConcreting.calculatedProcent">CalculatedProcent</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="concreteSentBack"><span translate="documentmanagementApp.pileConcreting.concreteSentBack">ConcreteSentBack</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.login"><span translate="documentmanagementApp.pileConcreting.user">user</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pileConcreting in pileConcretings track by pileConcreting.id">
+                    <td><a ui-sref="pileConcreting.detail({id:pileConcreting.id})">{{pileConcreting.id}}</a></td>
+                    <td>{{pileConcreting.mixDesign}}</td>
+                    <td>{{pileConcreting.slump1}}</td>
+                    <td>{{pileConcreting.slump2}}</td>
+                    <td>{{pileConcreting.slump3}}</td>
+                    <td>{{pileConcreting.slump4}}</td>
+                    <td>{{pileConcreting.slump5}}</td>
+                    <td>{{pileConcreting.truckId1}}</td>
+                    <td>{{pileConcreting.truckId2}}</td>
+                    <td>{{pileConcreting.truckId3}}</td>
+                    <td>{{pileConcreting.truckId4}}</td>
+                    <td>{{pileConcreting.truckId5}}</td>
+                    <td>{{pileConcreting.casted1}}</td>
+                    <td>{{pileConcreting.casted2}}</td>
+                    <td>{{pileConcreting.casted3}}</td>
+                    <td>{{pileConcreting.casted4}}</td>
+                    <td>{{pileConcreting.casted5}}</td>
+                        <td>{{pileConcreting.concretingDateStart | date:'mediumDate'}}</td>
+                    <td>{{pileConcreting.concretingStartTime}}</td>
+                    <td>{{pileConcreting.concretingEndTime}}</td>
+                    <td>{{pileConcreting.concretingOrderTime1}}</td>
+                    <td>{{pileConcreting.concretingArrivalTime1}}</td>
+                    <td>{{pileConcreting.concretingOrderTime2}}</td>
+                    <td>{{pileConcreting.concretingArrivalTime2}}</td>
+                    <td>{{pileConcreting.concretingOrderTime3}}</td>
+                    <td>{{pileConcreting.concretingArrivalTime3}}</td>
+                    <td>{{pileConcreting.concretingOrderTime4}}</td>
+                    <td>{{pileConcreting.concretingArrivalTime4}}</td>
+                    <td>{{pileConcreting.concretingOrderTime5}}</td>
+                    <td>{{pileConcreting.concretingArrivalTime5}}</td>
+                    <td>{{pileConcreting.calculatedCumulativeCls}}</td>
+                    <td>{{pileConcreting.calculatedTheoricCls}}</td>
+                    <td>{{pileConcreting.calculatedDifference}}</td>
+                    <td>{{pileConcreting.calculatedProcent}}</td>
+                    <td>{{pileConcreting.concreteSentBack}}</td>
+                    <td>
+                        {{pileConcreting.user.login}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="pileConcreting.detail({id:pileConcreting.id})"
+                                    class="btn btn-info btn-sm"> 
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="pileConcreting.edit({id:pileConcreting.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="pileConcreting.delete({id:pileConcreting.id})"
+                                    class="btn btn-danger btn-sm">                                    
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <uib-pager total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pager>
+</div>

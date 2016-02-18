@@ -1,0 +1,56 @@
+{
+    "documentmanagementApp": {
+        "pileConcreting" : {
+            "home": {
+                "title": "PileConcretings",
+                "createLabel": "Create a new PileConcreting",
+                "createOrEditLabel": "Create or edit a PileConcreting",
+                "search": "Search for PileConcreting"
+            },
+            "created": "A new PileConcreting is created with identifier {{ param }}",
+            "updated": "A PileConcreting is updated with identifier {{ param }}",
+            "deleted": "A PileConcreting is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PileConcreting {{ id }}?"
+            },
+            "detail": {
+                "title": "PileConcreting"
+            },
+            "mixDesign": "MixDesign",
+            "slump1": "Slump1",
+            "slump2": "Slump2",
+            "slump3": "Slump3",
+            "slump4": "Slump4",
+            "slump5": "Slump5",
+            "truckId1": "TruckId1",
+            "truckId2": "TruckId2",
+            "truckId3": "TruckId3",
+            "truckId4": "TruckId4",
+            "truckId5": "TruckId5",
+            "casted1": "Casted1",
+            "casted2": "Casted2",
+            "casted3": "Casted3",
+            "casted4": "Casted4",
+            "casted5": "Casted5",
+            "concretingDateStart": "ConcretingDateStart",
+            "concretingStartTime": "ConcretingStartTime",
+            "concretingEndTime": "ConcretingEndTime",
+            "concretingOrderTime1": "ConcretingOrderTime1",
+            "concretingArrivalTime1": "ConcretingArrivalTime1",
+            "concretingOrderTime2": "ConcretingOrderTime2",
+            "concretingArrivalTime2": "ConcretingArrivalTime2",
+            "concretingOrderTime3": "ConcretingOrderTime3",
+            "concretingArrivalTime3": "ConcretingArrivalTime3",
+            "concretingOrderTime4": "ConcretingOrderTime4",
+            "concretingArrivalTime4": "ConcretingArrivalTime4",
+            "concretingOrderTime5": "ConcretingOrderTime5",
+            "concretingArrivalTime5": "ConcretingArrivalTime5",
+            "calculatedCumulativeCls": "CalculatedCumulativeCls",
+            "calculatedTheoricCls": "CalculatedTheoricCls",
+            "calculatedDifference": "CalculatedDifference",
+            "calculatedProcent": "CalculatedProcent",
+            "concreteSentBack": "ConcreteSentBack",
+            "user": "User"
+        }
+    }
+}

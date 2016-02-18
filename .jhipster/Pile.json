@@ -1,0 +1,73 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "mixDesign",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "slumpFlowTest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "pouringRate",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "totalCastedVolume",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "theoreticalConcreteVolume",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "overconsumptionOfConcrete",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "comment",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "signatureDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "subContractor",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "mainContractor",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 11,
+            "fieldName": "client",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160217211946",
+    "dto": "no",
+    "service": "no",
+    "pagination": "pager"
+}

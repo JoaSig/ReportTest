@@ -1,0 +1,34 @@
+{
+    "documentmanagementApp": {
+        "pile" : {
+            "home": {
+                "title": "Piles",
+                "createLabel": "Créer un nouveau Pile",
+                "createOrEditLabel": "Créer ou éditer un Pile",
+                "search": "Search for Pile"
+            },
+            "created": "Un nouveau Pile a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Pile avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Pile avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Pile {{ id }} ?"
+            },
+            "detail": {
+                "title": "Pile"
+            },
+            "mixDesign": "MixDesign",
+            "slumpFlowTest": "SlumpFlowTest",
+            "pouringRate": "PouringRate",
+            "totalCastedVolume": "TotalCastedVolume",
+            "theoreticalConcreteVolume": "TheoreticalConcreteVolume",
+            "overconsumptionOfConcrete": "OverconsumptionOfConcrete",
+            "comment": "Comment",
+            "signatureDate": "SignatureDate",
+            "subContractor": "SubContractor",
+            "mainContractor": "MainContractor",
+            "client": "Client",
+            "user": "User"
+        }
+    }
+}
+

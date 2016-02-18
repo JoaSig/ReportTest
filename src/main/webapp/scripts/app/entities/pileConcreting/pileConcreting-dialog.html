@@ -1,0 +1,238 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myPileConcretingLabel" translate="documentmanagementApp.pileConcreting.home.createOrEditLabel">Create or edit a PileConcreting</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="pileConcreting.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.mixDesign" for="field_mixDesign">MixDesign</label>
+            <input type="text" class="form-control" name="mixDesign" id="field_mixDesign"
+                    ng-model="pileConcreting.mixDesign"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.slump1" for="field_slump1">Slump1</label>
+            <input type="number" class="form-control" name="slump1" id="field_slump1"
+                    ng-model="pileConcreting.slump1"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.slump2" for="field_slump2">Slump2</label>
+            <input type="number" class="form-control" name="slump2" id="field_slump2"
+                    ng-model="pileConcreting.slump2"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.slump3" for="field_slump3">Slump3</label>
+            <input type="number" class="form-control" name="slump3" id="field_slump3"
+                    ng-model="pileConcreting.slump3"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.slump4" for="field_slump4">Slump4</label>
+            <input type="number" class="form-control" name="slump4" id="field_slump4"
+                    ng-model="pileConcreting.slump4"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.slump5" for="field_slump5">Slump5</label>
+            <input type="number" class="form-control" name="slump5" id="field_slump5"
+                    ng-model="pileConcreting.slump5"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.truckId1" for="field_truckId1">TruckId1</label>
+            <input type="number" class="form-control" name="truckId1" id="field_truckId1"
+                    ng-model="pileConcreting.truckId1"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.truckId2" for="field_truckId2">TruckId2</label>
+            <input type="number" class="form-control" name="truckId2" id="field_truckId2"
+                    ng-model="pileConcreting.truckId2"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.truckId3" for="field_truckId3">TruckId3</label>
+            <input type="number" class="form-control" name="truckId3" id="field_truckId3"
+                    ng-model="pileConcreting.truckId3"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.truckId4" for="field_truckId4">TruckId4</label>
+            <input type="number" class="form-control" name="truckId4" id="field_truckId4"
+                    ng-model="pileConcreting.truckId4"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.truckId5" for="field_truckId5">TruckId5</label>
+            <input type="number" class="form-control" name="truckId5" id="field_truckId5"
+                    ng-model="pileConcreting.truckId5"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.casted1" for="field_casted1">Casted1</label>
+            <input type="number" class="form-control" name="casted1" id="field_casted1"
+                    ng-model="pileConcreting.casted1"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.casted2" for="field_casted2">Casted2</label>
+            <input type="number" class="form-control" name="casted2" id="field_casted2"
+                    ng-model="pileConcreting.casted2"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.casted3" for="field_casted3">Casted3</label>
+            <input type="number" class="form-control" name="casted3" id="field_casted3"
+                    ng-model="pileConcreting.casted3"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.casted4" for="field_casted4">Casted4</label>
+            <input type="number" class="form-control" name="casted4" id="field_casted4"
+                    ng-model="pileConcreting.casted4"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.casted5" for="field_casted5">Casted5</label>
+            <input type="number" class="form-control" name="casted5" id="field_casted5"
+                    ng-model="pileConcreting.casted5"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concretingDateStart" for="field_concretingDateStart">ConcretingDateStart</label>
+            <input id="field_concretingDateStart" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="pileConcreting.concretingDateStart" is-open="datePickerForConcretingDateStart.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForConcretingDateStartOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concretingStartTime" for="field_concretingStartTime">ConcretingStartTime</label>
+            <input type="text" class="form-control" name="concretingStartTime" id="field_concretingStartTime"
+                    ng-model="pileConcreting.concretingStartTime"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concretingEndTime" for="field_concretingEndTime">ConcretingEndTime</label>
+            <input type="text" class="form-control" name="concretingEndTime" id="field_concretingEndTime"
+                    ng-model="pileConcreting.concretingEndTime"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concretingOrderTime1" for="field_concretingOrderTime1">ConcretingOrderTime1</label>
+            <input type="text" class="form-control" name="concretingOrderTime1" id="field_concretingOrderTime1"
+                    ng-model="pileConcreting.concretingOrderTime1"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concretingArrivalTime1" for="field_concretingArrivalTime1">ConcretingArrivalTime1</label>
+            <input type="text" class="form-control" name="concretingArrivalTime1" id="field_concretingArrivalTime1"
+                    ng-model="pileConcreting.concretingArrivalTime1"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concretingOrderTime2" for="field_concretingOrderTime2">ConcretingOrderTime2</label>
+            <input type="text" class="form-control" name="concretingOrderTime2" id="field_concretingOrderTime2"
+                    ng-model="pileConcreting.concretingOrderTime2"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concretingArrivalTime2" for="field_concretingArrivalTime2">ConcretingArrivalTime2</label>
+            <input type="text" class="form-control" name="concretingArrivalTime2" id="field_concretingArrivalTime2"
+                    ng-model="pileConcreting.concretingArrivalTime2"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concretingOrderTime3" for="field_concretingOrderTime3">ConcretingOrderTime3</label>
+            <input type="text" class="form-control" name="concretingOrderTime3" id="field_concretingOrderTime3"
+                    ng-model="pileConcreting.concretingOrderTime3"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concretingArrivalTime3" for="field_concretingArrivalTime3">ConcretingArrivalTime3</label>
+            <input type="text" class="form-control" name="concretingArrivalTime3" id="field_concretingArrivalTime3"
+                    ng-model="pileConcreting.concretingArrivalTime3"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concretingOrderTime4" for="field_concretingOrderTime4">ConcretingOrderTime4</label>
+            <input type="text" class="form-control" name="concretingOrderTime4" id="field_concretingOrderTime4"
+                    ng-model="pileConcreting.concretingOrderTime4"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concretingArrivalTime4" for="field_concretingArrivalTime4">ConcretingArrivalTime4</label>
+            <input type="text" class="form-control" name="concretingArrivalTime4" id="field_concretingArrivalTime4"
+                    ng-model="pileConcreting.concretingArrivalTime4"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concretingOrderTime5" for="field_concretingOrderTime5">ConcretingOrderTime5</label>
+            <input type="text" class="form-control" name="concretingOrderTime5" id="field_concretingOrderTime5"
+                    ng-model="pileConcreting.concretingOrderTime5"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concretingArrivalTime5" for="field_concretingArrivalTime5">ConcretingArrivalTime5</label>
+            <input type="text" class="form-control" name="concretingArrivalTime5" id="field_concretingArrivalTime5"
+                    ng-model="pileConcreting.concretingArrivalTime5"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.calculatedCumulativeCls" for="field_calculatedCumulativeCls">CalculatedCumulativeCls</label>
+            <input type="text" class="form-control" name="calculatedCumulativeCls" id="field_calculatedCumulativeCls"
+                    ng-model="pileConcreting.calculatedCumulativeCls"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.calculatedTheoricCls" for="field_calculatedTheoricCls">CalculatedTheoricCls</label>
+            <input type="text" class="form-control" name="calculatedTheoricCls" id="field_calculatedTheoricCls"
+                    ng-model="pileConcreting.calculatedTheoricCls"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.calculatedDifference" for="field_calculatedDifference">CalculatedDifference</label>
+            <input type="text" class="form-control" name="calculatedDifference" id="field_calculatedDifference"
+                    ng-model="pileConcreting.calculatedDifference"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.calculatedProcent" for="field_calculatedProcent">CalculatedProcent</label>
+            <input type="text" class="form-control" name="calculatedProcent" id="field_calculatedProcent"
+                    ng-model="pileConcreting.calculatedProcent"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileConcreting.concreteSentBack" for="field_concreteSentBack">ConcreteSentBack</label>
+            <input type="number" class="form-control" name="concreteSentBack" id="field_concreteSentBack"
+                    ng-model="pileConcreting.concreteSentBack"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="documentmanagementApp.pileConcreting.user" for="field_user">user</label>
+            <select class="form-control" id="field_user" name="user" ng-model="pileConcreting.user" ng-options="user as user.login for user in users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,118 @@
+
+<div>
+    <h2><span translate="documentmanagementApp.pile.detail.title">Pile</span> {{pile.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.mixDesign">MixDesign</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pile.mixDesign}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.slumpFlowTest">SlumpFlowTest</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pile.slumpFlowTest}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.pouringRate">PouringRate</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pile.pouringRate}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.totalCastedVolume">TotalCastedVolume</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pile.totalCastedVolume}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.theoreticalConcreteVolume">TheoreticalConcreteVolume</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pile.theoreticalConcreteVolume}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.overconsumptionOfConcrete">OverconsumptionOfConcrete</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pile.overconsumptionOfConcrete}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.comment">Comment</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pile.comment}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.signatureDate">SignatureDate</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pile.signatureDate | date:'medium'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.subContractor">SubContractor</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pile.subContractor}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.mainContractor">MainContractor</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pile.mainContractor}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.client">Client</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pile.client}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.user">user</span>
+                </td>
+                <td>
+                    {{pile.user.id}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

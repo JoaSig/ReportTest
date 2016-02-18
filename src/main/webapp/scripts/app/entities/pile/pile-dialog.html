@@ -1,0 +1,100 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myPileLabel" translate="documentmanagementApp.pile.home.createOrEditLabel">Create or edit a Pile</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="pile.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.mixDesign" for="field_mixDesign">MixDesign</label>
+            <input type="text" class="form-control" name="mixDesign" id="field_mixDesign"
+                    ng-model="pile.mixDesign"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.slumpFlowTest" for="field_slumpFlowTest">SlumpFlowTest</label>
+            <input type="number" class="form-control" name="slumpFlowTest" id="field_slumpFlowTest"
+                    ng-model="pile.slumpFlowTest"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.pouringRate" for="field_pouringRate">PouringRate</label>
+            <input type="number" class="form-control" name="pouringRate" id="field_pouringRate"
+                    ng-model="pile.pouringRate"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.totalCastedVolume" for="field_totalCastedVolume">TotalCastedVolume</label>
+            <input type="number" class="form-control" name="totalCastedVolume" id="field_totalCastedVolume"
+                    ng-model="pile.totalCastedVolume"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.theoreticalConcreteVolume" for="field_theoreticalConcreteVolume">TheoreticalConcreteVolume</label>
+            <input type="number" class="form-control" name="theoreticalConcreteVolume" id="field_theoreticalConcreteVolume"
+                    ng-model="pile.theoreticalConcreteVolume"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.overconsumptionOfConcrete" for="field_overconsumptionOfConcrete">OverconsumptionOfConcrete</label>
+            <input type="number" class="form-control" name="overconsumptionOfConcrete" id="field_overconsumptionOfConcrete"
+                    ng-model="pile.overconsumptionOfConcrete"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.comment" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                    ng-model="pile.comment"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.signatureDate" for="field_signatureDate">SignatureDate</label>
+            <input id="field_signatureDate" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="pile.signatureDate" is-open="datePickerForSignatureDate.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForSignatureDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.subContractor" for="field_subContractor">SubContractor</label>
+            <input type="text" class="form-control" name="subContractor" id="field_subContractor"
+                    ng-model="pile.subContractor"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.mainContractor" for="field_mainContractor">MainContractor</label>
+            <input type="text" class="form-control" name="mainContractor" id="field_mainContractor"
+                    ng-model="pile.mainContractor"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.client" for="field_client">Client</label>
+            <input type="text" class="form-control" name="client" id="field_client"
+                    ng-model="pile.client"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="documentmanagementApp.pile.user" for="field_user">user</label>
+            <select class="form-control" id="field_user" name="user" ng-model="pile.user" ng-options="user as user.id for user in users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
