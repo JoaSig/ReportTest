@@ -1,0 +1,78 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myPileDrillingLabel" translate="documentmanagementApp.pileDrilling.home.createOrEditLabel">Create or edit a PileDrilling</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="pileDrilling.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileDrilling.drillingMachine" for="field_drillingMachine">DrillingMachine</label>
+            <input type="text" class="form-control" name="drillingMachine" id="field_drillingMachine"
+                    ng-model="pileDrilling.drillingMachine"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileDrilling.projectDrillingDepth" for="field_projectDrillingDepth">ProjectDrillingDepth</label>
+            <input type="number" class="form-control" name="projectDrillingDepth" id="field_projectDrillingDepth"
+                    ng-model="pileDrilling.projectDrillingDepth"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileDrilling.drillingEffectiveDepth" for="field_drillingEffectiveDepth">DrillingEffectiveDepth</label>
+            <input type="number" class="form-control" name="drillingEffectiveDepth" id="field_drillingEffectiveDepth"
+                    ng-model="pileDrilling.drillingEffectiveDepth"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileDrilling.drillingStartDate" for="field_drillingStartDate">DrillingStartDate</label>
+            <input id="field_drillingStartDate" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="pileDrilling.drillingStartDate" is-open="datePickerForDrillingStartDate.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForDrillingStartDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileDrilling.drillingEndDate" for="field_drillingEndDate">DrillingEndDate</label>
+            <input id="field_drillingEndDate" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="pileDrilling.drillingEndDate" is-open="datePickerForDrillingEndDate.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForDrillingEndDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileDrilling.drillingStartTime" for="field_drillingStartTime">DrillingStartTime</label>
+            <input type="text" class="form-control" name="drillingStartTime" id="field_drillingStartTime"
+                    ng-model="pileDrilling.drillingStartTime"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pileDrilling.drillingEndTime" for="field_drillingEndTime">DrillingEndTime</label>
+            <input type="text" class="form-control" name="drillingEndTime" id="field_drillingEndTime"
+                    ng-model="pileDrilling.drillingEndTime"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="documentmanagementApp.pileDrilling.user" for="field_user">user</label>
+            <select class="form-control" id="field_user" name="user" ng-model="pileDrilling.user" ng-options="user as user.id for user in users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

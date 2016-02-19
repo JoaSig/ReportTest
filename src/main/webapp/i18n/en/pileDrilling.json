@@ -1,0 +1,29 @@
+{
+    "documentmanagementApp": {
+        "pileDrilling" : {
+            "home": {
+                "title": "PileDrillings",
+                "createLabel": "Create a new PileDrilling",
+                "createOrEditLabel": "Create or edit a PileDrilling",
+                "search": "Search for PileDrilling"
+            },
+            "created": "A new PileDrilling is created with identifier {{ param }}",
+            "updated": "A PileDrilling is updated with identifier {{ param }}",
+            "deleted": "A PileDrilling is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PileDrilling {{ id }}?"
+            },
+            "detail": {
+                "title": "PileDrilling"
+            },
+            "drillingMachine": "DrillingMachine",
+            "projectDrillingDepth": "ProjectDrillingDepth",
+            "drillingEffectiveDepth": "DrillingEffectiveDepth",
+            "drillingStartDate": "DrillingStartDate",
+            "drillingEndDate": "DrillingEndDate",
+            "drillingStartTime": "DrillingStartTime",
+            "drillingEndTime": "DrillingEndTime",
+            "user": "User"
+        }
+    }
+}

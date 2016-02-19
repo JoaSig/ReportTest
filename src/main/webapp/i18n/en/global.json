@@ -10,6 +10,7 @@
                 "pile": "Pile",
                 "pileConcreting": "Pile Concreting Report",
                 "pileConcreting": "PileConcreting",
+                "pileDrilling": "PileDrilling",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

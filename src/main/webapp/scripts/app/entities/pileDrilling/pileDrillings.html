@@ -1,0 +1,85 @@
+<div>
+    <h2 translate="documentmanagementApp.pileDrilling.home.title">PileDrillings</h2>
+    <jh-alert></jh-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="pileDrilling.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span 
+class="hidden-xs"                        translate="documentmanagementApp.pileDrilling.home.createLabel">Create new PileDrilling
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="{{ 'documentmanagementApp.pileDrilling.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="search()">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="drillingMachine"><span translate="documentmanagementApp.pileDrilling.drillingMachine">DrillingMachine</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="projectDrillingDepth"><span translate="documentmanagementApp.pileDrilling.projectDrillingDepth">ProjectDrillingDepth</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="drillingEffectiveDepth"><span translate="documentmanagementApp.pileDrilling.drillingEffectiveDepth">DrillingEffectiveDepth</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="drillingStartDate"><span translate="documentmanagementApp.pileDrilling.drillingStartDate">DrillingStartDate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="drillingEndDate"><span translate="documentmanagementApp.pileDrilling.drillingEndDate">DrillingEndDate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="drillingStartTime"><span translate="documentmanagementApp.pileDrilling.drillingStartTime">DrillingStartTime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="drillingEndTime"><span translate="documentmanagementApp.pileDrilling.drillingEndTime">DrillingEndTime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.id"><span translate="documentmanagementApp.pileDrilling.user">user</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pileDrilling in pileDrillings track by pileDrilling.id">
+                    <td><a ui-sref="pileDrilling.detail({id:pileDrilling.id})">{{pileDrilling.id}}</a></td>
+                    <td>{{pileDrilling.drillingMachine}}</td>
+                    <td>{{pileDrilling.projectDrillingDepth}}</td>
+                    <td>{{pileDrilling.drillingEffectiveDepth}}</td>
+                        <td>{{pileDrilling.drillingStartDate | date:'mediumDate'}}</td>
+                        <td>{{pileDrilling.drillingEndDate | date:'mediumDate'}}</td>
+                    <td>{{pileDrilling.drillingStartTime}}</td>
+                    <td>{{pileDrilling.drillingEndTime}}</td>
+                    <td>
+                        {{pileDrilling.user.id}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="pileDrilling.detail({id:pileDrilling.id})"
+                                    class="btn btn-info btn-sm"> 
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="pileDrilling.edit({id:pileDrilling.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="pileDrilling.delete({id:pileDrilling.id})"
+                                    class="btn btn-danger btn-sm">                                    
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <uib-pager total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pager>
+</div>

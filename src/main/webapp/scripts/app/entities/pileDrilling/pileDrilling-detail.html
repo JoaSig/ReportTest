@@ -1,0 +1,86 @@
+
+<div>
+    <h2><span translate="documentmanagementApp.pileDrilling.detail.title">PileDrilling</span> {{pileDrilling.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pileDrilling.drillingMachine">DrillingMachine</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pileDrilling.drillingMachine}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pileDrilling.projectDrillingDepth">ProjectDrillingDepth</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pileDrilling.projectDrillingDepth}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pileDrilling.drillingEffectiveDepth">DrillingEffectiveDepth</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pileDrilling.drillingEffectiveDepth}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pileDrilling.drillingStartDate">DrillingStartDate</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pileDrilling.drillingStartDate | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pileDrilling.drillingEndDate">DrillingEndDate</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pileDrilling.drillingEndDate | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pileDrilling.drillingStartTime">DrillingStartTime</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pileDrilling.drillingStartTime}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pileDrilling.drillingEndTime">DrillingEndTime</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pileDrilling.drillingEndTime}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pileDrilling.user">user</span>
+                </td>
+                <td>
+                    {{pileDrilling.user.id}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>
