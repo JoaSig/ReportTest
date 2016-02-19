@@ -1,14 +1,20 @@
 package dk.optimize.domain.report;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import java.time.LocalDate;
+import org.springframework.data.elasticsearch.annotations.Document;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Date: 19/02/16
  */
+@Entity
+@Table(name = "pile_drilling")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Document(indexName = "pileconcreting")
 public class PileDrilling  implements Serializable {
 
     @Id
