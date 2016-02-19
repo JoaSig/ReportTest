@@ -2,28 +2,27 @@
     "documentmanagementApp": {
         "pileDrilling" : {
             "home": {
-                "title": "PileDrillings",
-                "createLabel": "Create a new PileDrilling",
-                "createOrEditLabel": "Create or edit a PileDrilling",
-                "search": "Search for PileDrilling"
+                "title": "Pile Drilling Reports",
+                "createLabel": "Create a new Pile Drilling Report",
+                "createOrEditLabel": "Create or edit a Pile Drilling Report",
+                "search": "Search for Pile Drilling Report"
             },
-            "created": "A new PileDrilling is created with identifier {{ param }}",
-            "updated": "A PileDrilling is updated with identifier {{ param }}",
-            "deleted": "A PileDrilling is deleted with identifier {{ param }}",
+            "created": "A new Pile Drilling Report is created with identifier {{ param }}",
+            "updated": "A Pile Drilling Report is updated with identifier {{ param }}",
+            "deleted": "Deleted Pile Drilling Report with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete PileDrilling {{ id }}?"
+                "question": "Are you sure you want to delete Pile Drilling Report {{ id }}?"
             },
             "detail": {
-                "title": "PileDrilling"
+                "title": "Pile Drilling Report"
             },
-            "drillingMachine": "DrillingMachine",
-            "projectDrillingDepth": "ProjectDrillingDepth",
-            "drillingEffectiveDepth": "DrillingEffectiveDepth",
-            "drillingStartDate": "DrillingStartDate",
-            "drillingEndDate": "DrillingEndDate",
-            "drillingStartTime": "DrillingStartTime",
-            "drillingEndTime": "DrillingEndTime",
-            "user": "User"
+            "drillingMachine": "Drilling Machine",
+            "projectDrillingDepth": "Project Drilling Depth",
+            "drillingEffectiveDepth": "Drilling Effective Depth",
+            "drillingStartDate": "Drilling Start Date",
+            "drillingEndDate": "Drilling End Date",
+            "drillingStartTime": "Drilling Start Time",
+            "drillingEndTime": "Drilling End Time"
         }
     }
 }
