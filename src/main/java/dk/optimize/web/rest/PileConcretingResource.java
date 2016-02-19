@@ -2,11 +2,12 @@ package dk.optimize.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import dk.optimize.domain.PileConcreting;
+import dk.optimize.domain.User;
 import dk.optimize.repository.PileConcretingRepository;
-import dk.optimize.repository.UserRepository;
 import dk.optimize.repository.search.PileConcretingSearchRepository;
 import dk.optimize.security.AuthoritiesConstants;
 import dk.optimize.security.SecurityUtils;
+import dk.optimize.service.UserService;
 import dk.optimize.web.rest.util.HeaderUtil;
 import dk.optimize.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -46,7 +47,7 @@ public class PileConcretingResource {
     private PileConcretingSearchRepository pileConcretingSearchRepository;
 
     @Inject
-    private UserRepository userRepository;
+    private UserService userService;
 
     /**
      * POST  /pileConcretings -> Create a new pileConcreting.
@@ -62,13 +63,17 @@ public class PileConcretingResource {
         }
         if (!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
             log.debug("No user passed in, using current user: {}", SecurityUtils.getCurrentUserLogin());
-            pileConcreting.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
+            pileConcreting.setUser(getUser(pileConcreting));
         }
         PileConcreting result = pileConcretingRepository.save(pileConcreting);
         pileConcretingSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/pileConcretings/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("pileConcreting", result.getId().toString()))
             .body(result);
+    }
+
+    private User getUser(PileConcreting pileConcreting) {
+        return userService != null ? userService.getUserWithAuthoritiesByLogin(SecurityUtils.getCurrentUserLogin()).get() : pileConcreting.getUser();
     }
 
     /**
@@ -100,11 +105,16 @@ public class PileConcretingResource {
     public ResponseEntity<List<PileConcreting>> getAllPileConcretings(Pageable pageable) throws URISyntaxException {
         log.debug("REST request to get a page of PileConcretings");
         Page<PileConcreting> page;
-        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+        try {
+            if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+                page = pileConcretingRepository.findAll(pageable);
+            } else {
+                List<PileConcreting> pileConcretingList = pileConcretingRepository.findByUserIsCurrentUser();
+                page = new FacetedPageImpl<>(pileConcretingList);
+            }
+        } catch (Exception e) {
+            log.error("Error trying to get current user - returning all instead: " + e.getLocalizedMessage(), e);
             page = pileConcretingRepository.findAll(pageable);
-        } else {
-            List<PileConcreting> pileConcretingList = pileConcretingRepository.findByUserIsCurrentUser();
-            page = new FacetedPageImpl<>(pileConcretingList);
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/pileConcretings");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);

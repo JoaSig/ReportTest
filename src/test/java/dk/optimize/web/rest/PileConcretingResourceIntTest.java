@@ -3,18 +3,17 @@ package dk.optimize.web.rest;
 import dk.optimize.Application;
 import dk.optimize.domain.PileConcreting;
 import dk.optimize.repository.PileConcretingRepository;
+import dk.optimize.repository.UserRepository;
 import dk.optimize.repository.search.PileConcretingSearchRepository;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -24,12 +23,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.math.BigDecimal;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -143,6 +143,9 @@ public class PileConcretingResourceIntTest {
     @Inject
     private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
 
+    @Inject
+    private UserRepository userRepository;
+
     private MockMvc restPileConcretingMockMvc;
 
     private PileConcreting pileConcreting;
@@ -153,6 +156,8 @@ public class PileConcretingResourceIntTest {
         PileConcretingResource pileConcretingResource = new PileConcretingResource();
         ReflectionTestUtils.setField(pileConcretingResource, "pileConcretingSearchRepository", pileConcretingSearchRepository);
         ReflectionTestUtils.setField(pileConcretingResource, "pileConcretingRepository", pileConcretingRepository);
+        UserResource userResource = new UserResource();
+        ReflectionTestUtils.setField(userResource, "userRepository", userRepository);
         this.restPileConcretingMockMvc = MockMvcBuilders.standaloneSetup(pileConcretingResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setMessageConverters(jacksonMessageConverter).build();
@@ -205,9 +210,9 @@ public class PileConcretingResourceIntTest {
         // Create the PileConcreting
 
         restPileConcretingMockMvc.perform(post("/api/pileConcretings")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(pileConcreting)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(pileConcreting)))
+            .andExpect(status().isCreated());
 
         // Validate the PileConcreting in the database
         List<PileConcreting> pileConcretings = pileConcretingRepository.findAll();
@@ -257,43 +262,43 @@ public class PileConcretingResourceIntTest {
 
         // Get all the pileConcretings
         restPileConcretingMockMvc.perform(get("/api/pileConcretings?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(pileConcreting.getId().intValue())))
-                .andExpect(jsonPath("$.[*].mixDesign").value(hasItem(DEFAULT_MIX_DESIGN.toString())))
-                .andExpect(jsonPath("$.[*].slump1").value(hasItem(DEFAULT_SLUMP1)))
-                .andExpect(jsonPath("$.[*].slump2").value(hasItem(DEFAULT_SLUMP2)))
-                .andExpect(jsonPath("$.[*].slump3").value(hasItem(DEFAULT_SLUMP3)))
-                .andExpect(jsonPath("$.[*].slump4").value(hasItem(DEFAULT_SLUMP4)))
-                .andExpect(jsonPath("$.[*].slump5").value(hasItem(DEFAULT_SLUMP5)))
-                .andExpect(jsonPath("$.[*].truckId1").value(hasItem(DEFAULT_TRUCK_ID1)))
-                .andExpect(jsonPath("$.[*].truckId2").value(hasItem(DEFAULT_TRUCK_ID2)))
-                .andExpect(jsonPath("$.[*].truckId3").value(hasItem(DEFAULT_TRUCK_ID3)))
-                .andExpect(jsonPath("$.[*].truckId4").value(hasItem(DEFAULT_TRUCK_ID4)))
-                .andExpect(jsonPath("$.[*].truckId5").value(hasItem(DEFAULT_TRUCK_ID5)))
-                .andExpect(jsonPath("$.[*].casted1").value(hasItem(DEFAULT_CASTED1.intValue())))
-                .andExpect(jsonPath("$.[*].casted2").value(hasItem(DEFAULT_CASTED2.intValue())))
-                .andExpect(jsonPath("$.[*].casted3").value(hasItem(DEFAULT_CASTED3.intValue())))
-                .andExpect(jsonPath("$.[*].casted4").value(hasItem(DEFAULT_CASTED4.intValue())))
-                .andExpect(jsonPath("$.[*].casted5").value(hasItem(DEFAULT_CASTED5.intValue())))
-                .andExpect(jsonPath("$.[*].concretingDateStart").value(hasItem(DEFAULT_CONCRETING_DATE_START.toString())))
-                .andExpect(jsonPath("$.[*].concretingStartTime").value(hasItem(DEFAULT_CONCRETING_START_TIME.toString())))
-                .andExpect(jsonPath("$.[*].concretingEndTime").value(hasItem(DEFAULT_CONCRETING_END_TIME.toString())))
-                .andExpect(jsonPath("$.[*].concretingOrderTime1").value(hasItem(DEFAULT_CONCRETING_ORDER_TIME1.toString())))
-                .andExpect(jsonPath("$.[*].concretingArrivalTime1").value(hasItem(DEFAULT_CONCRETING_ARRIVAL_TIME1.toString())))
-                .andExpect(jsonPath("$.[*].concretingOrderTime2").value(hasItem(DEFAULT_CONCRETING_ORDER_TIME2.toString())))
-                .andExpect(jsonPath("$.[*].concretingArrivalTime2").value(hasItem(DEFAULT_CONCRETING_ARRIVAL_TIME2.toString())))
-                .andExpect(jsonPath("$.[*].concretingOrderTime3").value(hasItem(DEFAULT_CONCRETING_ORDER_TIME3.toString())))
-                .andExpect(jsonPath("$.[*].concretingArrivalTime3").value(hasItem(DEFAULT_CONCRETING_ARRIVAL_TIME3.toString())))
-                .andExpect(jsonPath("$.[*].concretingOrderTime4").value(hasItem(DEFAULT_CONCRETING_ORDER_TIME4.toString())))
-                .andExpect(jsonPath("$.[*].concretingArrivalTime4").value(hasItem(DEFAULT_CONCRETING_ARRIVAL_TIME4.toString())))
-                .andExpect(jsonPath("$.[*].concretingOrderTime5").value(hasItem(DEFAULT_CONCRETING_ORDER_TIME5.toString())))
-                .andExpect(jsonPath("$.[*].concretingArrivalTime5").value(hasItem(DEFAULT_CONCRETING_ARRIVAL_TIME5.toString())))
-                .andExpect(jsonPath("$.[*].calculatedCumulativeCls").value(hasItem(DEFAULT_CALCULATED_CUMULATIVE_CLS.toString())))
-                .andExpect(jsonPath("$.[*].calculatedTheoricCls").value(hasItem(DEFAULT_CALCULATED_THEORIC_CLS.toString())))
-                .andExpect(jsonPath("$.[*].calculatedDifference").value(hasItem(DEFAULT_CALCULATED_DIFFERENCE.toString())))
-                .andExpect(jsonPath("$.[*].calculatedProcent").value(hasItem(DEFAULT_CALCULATED_PROCENT.toString())))
-                .andExpect(jsonPath("$.[*].concreteSentBack").value(hasItem(DEFAULT_CONCRETE_SENT_BACK.intValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(pileConcreting.getId().intValue())))
+            .andExpect(jsonPath("$.[*].mixDesign").value(hasItem(DEFAULT_MIX_DESIGN.toString())))
+            .andExpect(jsonPath("$.[*].slump1").value(hasItem(DEFAULT_SLUMP1)))
+            .andExpect(jsonPath("$.[*].slump2").value(hasItem(DEFAULT_SLUMP2)))
+            .andExpect(jsonPath("$.[*].slump3").value(hasItem(DEFAULT_SLUMP3)))
+            .andExpect(jsonPath("$.[*].slump4").value(hasItem(DEFAULT_SLUMP4)))
+            .andExpect(jsonPath("$.[*].slump5").value(hasItem(DEFAULT_SLUMP5)))
+            .andExpect(jsonPath("$.[*].truckId1").value(hasItem(DEFAULT_TRUCK_ID1)))
+            .andExpect(jsonPath("$.[*].truckId2").value(hasItem(DEFAULT_TRUCK_ID2)))
+            .andExpect(jsonPath("$.[*].truckId3").value(hasItem(DEFAULT_TRUCK_ID3)))
+            .andExpect(jsonPath("$.[*].truckId4").value(hasItem(DEFAULT_TRUCK_ID4)))
+            .andExpect(jsonPath("$.[*].truckId5").value(hasItem(DEFAULT_TRUCK_ID5)))
+            .andExpect(jsonPath("$.[*].casted1").value(hasItem(DEFAULT_CASTED1.intValue())))
+            .andExpect(jsonPath("$.[*].casted2").value(hasItem(DEFAULT_CASTED2.intValue())))
+            .andExpect(jsonPath("$.[*].casted3").value(hasItem(DEFAULT_CASTED3.intValue())))
+            .andExpect(jsonPath("$.[*].casted4").value(hasItem(DEFAULT_CASTED4.intValue())))
+            .andExpect(jsonPath("$.[*].casted5").value(hasItem(DEFAULT_CASTED5.intValue())))
+            .andExpect(jsonPath("$.[*].concretingDateStart").value(hasItem(DEFAULT_CONCRETING_DATE_START.toString())))
+            .andExpect(jsonPath("$.[*].concretingStartTime").value(hasItem(DEFAULT_CONCRETING_START_TIME.toString())))
+            .andExpect(jsonPath("$.[*].concretingEndTime").value(hasItem(DEFAULT_CONCRETING_END_TIME.toString())))
+            .andExpect(jsonPath("$.[*].concretingOrderTime1").value(hasItem(DEFAULT_CONCRETING_ORDER_TIME1.toString())))
+            .andExpect(jsonPath("$.[*].concretingArrivalTime1").value(hasItem(DEFAULT_CONCRETING_ARRIVAL_TIME1.toString())))
+            .andExpect(jsonPath("$.[*].concretingOrderTime2").value(hasItem(DEFAULT_CONCRETING_ORDER_TIME2.toString())))
+            .andExpect(jsonPath("$.[*].concretingArrivalTime2").value(hasItem(DEFAULT_CONCRETING_ARRIVAL_TIME2.toString())))
+            .andExpect(jsonPath("$.[*].concretingOrderTime3").value(hasItem(DEFAULT_CONCRETING_ORDER_TIME3.toString())))
+            .andExpect(jsonPath("$.[*].concretingArrivalTime3").value(hasItem(DEFAULT_CONCRETING_ARRIVAL_TIME3.toString())))
+            .andExpect(jsonPath("$.[*].concretingOrderTime4").value(hasItem(DEFAULT_CONCRETING_ORDER_TIME4.toString())))
+            .andExpect(jsonPath("$.[*].concretingArrivalTime4").value(hasItem(DEFAULT_CONCRETING_ARRIVAL_TIME4.toString())))
+            .andExpect(jsonPath("$.[*].concretingOrderTime5").value(hasItem(DEFAULT_CONCRETING_ORDER_TIME5.toString())))
+            .andExpect(jsonPath("$.[*].concretingArrivalTime5").value(hasItem(DEFAULT_CONCRETING_ARRIVAL_TIME5.toString())))
+            .andExpect(jsonPath("$.[*].calculatedCumulativeCls").value(hasItem(DEFAULT_CALCULATED_CUMULATIVE_CLS.toString())))
+            .andExpect(jsonPath("$.[*].calculatedTheoricCls").value(hasItem(DEFAULT_CALCULATED_THEORIC_CLS.toString())))
+            .andExpect(jsonPath("$.[*].calculatedDifference").value(hasItem(DEFAULT_CALCULATED_DIFFERENCE.toString())))
+            .andExpect(jsonPath("$.[*].calculatedProcent").value(hasItem(DEFAULT_CALCULATED_PROCENT.toString())))
+            .andExpect(jsonPath("$.[*].concreteSentBack").value(hasItem(DEFAULT_CONCRETE_SENT_BACK.intValue())));
     }
 
     @Test
@@ -348,7 +353,7 @@ public class PileConcretingResourceIntTest {
     public void getNonExistingPileConcreting() throws Exception {
         // Get the pileConcreting
         restPileConcretingMockMvc.perform(get("/api/pileConcretings/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -357,7 +362,7 @@ public class PileConcretingResourceIntTest {
         // Initialize the database
         pileConcretingRepository.saveAndFlush(pileConcreting);
 
-		int databaseSizeBeforeUpdate = pileConcretingRepository.findAll().size();
+        int databaseSizeBeforeUpdate = pileConcretingRepository.findAll().size();
 
         // Update the pileConcreting
         pileConcreting.setMixDesign(UPDATED_MIX_DESIGN);
@@ -396,9 +401,9 @@ public class PileConcretingResourceIntTest {
         pileConcreting.setConcreteSentBack(UPDATED_CONCRETE_SENT_BACK);
 
         restPileConcretingMockMvc.perform(put("/api/pileConcretings")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(pileConcreting)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(pileConcreting)))
+            .andExpect(status().isOk());
 
         // Validate the PileConcreting in the database
         List<PileConcreting> pileConcretings = pileConcretingRepository.findAll();
@@ -446,12 +451,12 @@ public class PileConcretingResourceIntTest {
         // Initialize the database
         pileConcretingRepository.saveAndFlush(pileConcreting);
 
-		int databaseSizeBeforeDelete = pileConcretingRepository.findAll().size();
+        int databaseSizeBeforeDelete = pileConcretingRepository.findAll().size();
 
         // Get the pileConcreting
         restPileConcretingMockMvc.perform(delete("/api/pileConcretings/{id}", pileConcreting.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<PileConcreting> pileConcretings = pileConcretingRepository.findAll();
