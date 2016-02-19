@@ -2,10 +2,12 @@ package dk.optimize.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import dk.optimize.domain.PileDrilling;
+import dk.optimize.domain.User;
 import dk.optimize.repository.PileDrillingRepository;
 import dk.optimize.repository.search.PileDrillingSearchRepository;
 import dk.optimize.security.AuthoritiesConstants;
 import dk.optimize.security.SecurityUtils;
+import dk.optimize.service.UserService;
 import dk.optimize.web.rest.util.HeaderUtil;
 import dk.optimize.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -27,7 +29,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * REST controller for managing PileDrilling.
@@ -44,6 +46,9 @@ public class PileDrillingResource {
     @Inject
     private PileDrillingSearchRepository pileDrillingSearchRepository;
 
+    @Inject
+    private UserService userService;
+
     /**
      * POST  /pileDrillings -> Create a new pileDrilling.
      */
@@ -56,12 +61,21 @@ public class PileDrillingResource {
         if (pileDrilling.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pileDrilling", "idexists", "A new pileDrilling cannot already have an ID")).body(null);
         }
+        if (!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+            log.debug("No user passed in, using current user: {}", SecurityUtils.getCurrentUserLogin());
+            pileDrilling.setUser(getUser(pileDrilling));
+        }
         PileDrilling result = pileDrillingRepository.save(pileDrilling);
         pileDrillingSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/pileDrillings/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("pileDrilling", result.getId().toString()))
             .body(result);
     }
+
+    private User getUser(PileDrilling pileDrilling) {
+        return userService != null ? userService.getUserWithAuthoritiesByLogin(SecurityUtils.getCurrentUserLogin()).get() : pileDrilling.getUser();
+    }
+
 
     /**
      * PUT  /pileDrillings -> Updates an existing pileDrilling.
@@ -93,11 +107,17 @@ public class PileDrillingResource {
         throws URISyntaxException {
         log.debug("REST request to get a page of PileDrillings");
         Page<PileDrilling> page;
-        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+        try {
+            log.info("Currently logged in user: " + SecurityUtils.getCurrentUser());
+            if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+                page = pileDrillingRepository.findAll(pageable);
+            } else {
+                List<PileDrilling> pileDrillingList = pileDrillingRepository.findByUserIsCurrentUser();
+                page = new FacetedPageImpl<>(pileDrillingList);
+            }
+        } catch (Exception e) {
+            log.error("Error trying to get current user - returning all instead: " + e.getLocalizedMessage(), e);
             page = pileDrillingRepository.findAll(pageable);
-        } else {
-            List<PileDrilling> pileDrillingList = pileDrillingRepository.findByUserIsCurrentUser();
-            page = new FacetedPageImpl<>(pileDrillingList);
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/pileDrillings");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
