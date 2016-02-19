@@ -1,0 +1,51 @@
+{
+    "relationships" : [ {
+        "relationshipId" : 1,
+        "relationshipName" : "user",
+        "relationshipType" : "many-to-one",
+        "otherEntityName" : "user",
+        "otherEntityRelationshipName" : "pileDrilling",
+        "otherEntityField" : "id",
+        "ownerSide" : false
+    } ],
+    "fields" : [ {
+        "fieldId" : 1,
+        "fieldName" : "drillingMachine",
+        "fieldType" : "String",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 2,
+        "fieldName" : "projectDrillingDepth",
+        "fieldType" : "BigDecimal",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 3,
+        "fieldName" : "drillingEffectiveDepth",
+        "fieldType" : "BigDecimal",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 4,
+        "fieldName" : "drillingStartDate",
+        "fieldType" : "LocalDate",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 5,
+        "fieldName" : "drillingEndDate",
+        "fieldType" : "LocalDate",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 6,
+        "fieldName" : "drillingStartTime",
+        "fieldType" : "String",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 7,
+        "fieldName" : "drillingEndTime",
+        "fieldType" : "String",
+        "fieldValidateRules" : [ ]
+    } ],
+    "changelogDate" : "20160219011635",
+    "dto": "no",
+    "service": "no",
+    "pagination": "pager"
+}
