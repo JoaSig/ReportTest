@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle"/>
+
+    <!--
+        Added the entity PileConcreting.
+    -->
+    <changeSet id="2016021917340" author="jhipster">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="pile_concreting"/>
+            </not>
+        </preConditions>
+        <createTable tableName="pile_concreting">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="mix_design" type="varchar(255)"/>
+
+            <column name="slump1" type="integer"/>
+
+            <column name="slump2" type="integer"/>
+
+            <column name="slump3" type="integer"/>
+
+            <column name="slump4" type="integer"/>
+
+            <column name="slump5" type="integer"/>
+
+            <column name="truck_id1" type="integer"/>
+
+            <column name="truck_id2" type="integer"/>
+
+            <column name="truck_id3" type="integer"/>
+
+            <column name="truck_id4" type="integer"/>
+
+            <column name="truck_id5" type="integer"/>
+
+            <column name="casted1" type="decimal(10,2)"/>
+
+            <column name="casted2" type="decimal(10,2)"/>
+
+            <column name="casted3" type="decimal(10,2)"/>
+
+            <column name="casted4" type="decimal(10,2)"/>
+
+            <column name="casted5" type="decimal(10,2)"/>
+
+            <column name="concreting_date_start" type="date"/>
+
+            <column name="concreting_start_time" type="varchar(255)"/>
+
+            <column name="concreting_end_time" type="varchar(255)"/>
+
+            <column name="concreting_order_time1" type="varchar(255)"/>
+
+            <column name="concreting_arrival_time1" type="varchar(255)"/>
+
+            <column name="concreting_order_time2" type="varchar(255)"/>
+
+            <column name="concreting_arrival_time2" type="varchar(255)"/>
+
+            <column name="concreting_order_time3" type="varchar(255)"/>
+
+            <column name="concreting_arrival_time3" type="varchar(255)"/>
+
+            <column name="concreting_order_time4" type="varchar(255)"/>
+
+            <column name="concreting_arrival_time4" type="varchar(255)"/>
+
+            <column name="concreting_order_time5" type="varchar(255)"/>
+
+            <column name="concreting_arrival_time5" type="varchar(255)"/>
+
+            <column name="calculated_cumulative_cls" type="varchar(255)"/>
+
+            <column name="calculated_theoric_cls" type="varchar(255)"/>
+
+            <column name="calculated_difference" type="varchar(255)"/>
+
+            <column name="calculated_procent" type="varchar(255)"/>
+
+            <column name="concrete_sent_back" type="decimal(10,2)"/>
+
+            <column name="user_id" type="bigint"/>
+            <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="pile_concreting"
+                                 constraintName="fk_pileconcreting_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+    </changeSet>
+</databaseChangeLog>
