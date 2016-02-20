@@ -107,17 +107,17 @@ public class PileDrillingResource {
         throws URISyntaxException {
         log.debug("REST request to get a page of PileDrillings");
         Page<PileDrilling> page;
+        log.info("Currently logged in user: " + SecurityUtils.getCurrentUser());
         try {
-            log.info("Currently logged in user: " + SecurityUtils.getCurrentUser());
             if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
-                page = pileDrillingRepository.findAll(pageable);
+                page = pileDrillingRepository.findAllByOrderByDrillingStartDateDesc(pageable);
             } else {
                 List<PileDrilling> pileDrillingList = pileDrillingRepository.findByUserIsCurrentUser();
                 page = new FacetedPageImpl<>(pileDrillingList);
             }
         } catch (Exception e) {
             log.error("Error trying to get current user - returning all instead: " + e.getLocalizedMessage(), e);
-            page = pileDrillingRepository.findAll(pageable);
+            page = pileDrillingRepository.findAllByOrderByDrillingStartDateDesc(pageable);
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/pileDrillings");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
