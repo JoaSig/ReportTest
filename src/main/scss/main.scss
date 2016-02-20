@@ -8,6 +8,7 @@ body {
     background: #fafafa;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
+    font-size: 12px;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -71,6 +72,21 @@ body {
 
 .pad {
     padding: 10px;
+}
+
+.btn-cal {
+    padding: 4px 7px;
+    margin-bottom: 2px;
+}
+
+.modal-body {
+    position: relative;
+    padding: 25px;
+    width: auto;
+}
+
+.input-sm {
+    width: 400px;
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
@@ -225,7 +241,7 @@ ul#strength {
    flex-direction: row;
    -webkit-justify-content: flex-end;
    justify-content: flex-end;
-}  
+}
 
 /* Align text in td verifically (top aligned by Bootstrap) */
 .jh-table > tbody > tr > td {

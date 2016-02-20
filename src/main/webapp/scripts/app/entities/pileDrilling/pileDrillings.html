@@ -6,7 +6,7 @@
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="pileDrilling.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span 
+                    <span
 class="hidden-xs"                        translate="documentmanagementApp.pileDrilling.home.createLabel">Create new PileDrilling
                     </span>
                 </button>
@@ -38,7 +38,6 @@ class="hidden-xs"                        translate="documentmanagementApp.pileDr
                     <th jh-sort-by="drillingEndDate"><span translate="documentmanagementApp.pileDrilling.drillingEndDate">DrillingEndDate</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="drillingStartTime"><span translate="documentmanagementApp.pileDrilling.drillingStartTime">DrillingStartTime</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="drillingEndTime"><span translate="documentmanagementApp.pileDrilling.drillingEndTime">DrillingEndTime</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="user.id"><span translate="documentmanagementApp.pileDrilling.user">user</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -46,7 +45,7 @@ class="hidden-xs"                        translate="documentmanagementApp.pileDr
                 <tr ng-repeat="pileDrilling in pileDrillings track by pileDrilling.id">
                     <td><a ui-sref="pileDrilling.detail({id:pileDrilling.id})">{{pileDrilling.id}}</a></td>
                     <td>{{pileDrilling.drillingMachine}}</td>
-                    <td>{{pileDrilling.projectDrillingDepth}}</td>
+                    <td>{{pileDrilling.projectDrillingDepth}} <span ng-if="pileDrilling.projectDrillingDepth">mm</span></td>
                     <td>{{pileDrilling.drillingEffectiveDepth}}</td>
                         <td>{{pileDrilling.drillingStartDate | date:'mediumDate'}}</td>
                         <td>{{pileDrilling.drillingEndDate | date:'mediumDate'}}</td>
@@ -59,7 +58,7 @@ class="hidden-xs"                        translate="documentmanagementApp.pileDr
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="pileDrilling.detail({id:pileDrilling.id})"
-                                    class="btn btn-info btn-sm"> 
+                                    class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
                             </button>
@@ -71,7 +70,7 @@ class="hidden-xs"                        translate="documentmanagementApp.pileDr
                             </button>
                             <button type="submit"
                                     ui-sref="pileDrilling.delete({id:pileDrilling.id})"
-                                    class="btn btn-danger btn-sm">                                    
+                                    class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
                             </button>
