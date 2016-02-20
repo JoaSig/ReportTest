@@ -17,28 +17,33 @@
         Added the entity PileDrilling.
     -->
     <changeSet id="20160219011635" author="jhipster">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="pile_concreting"/>
+            </not>
+        </preConditions>
         <createTable tableName="pile_drilling">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="drilling_machine" type="varchar(255)"/>
-            
+
             <column name="project_drilling_depth" type="decimal(10,2)"/>
-            
+
             <column name="drilling_effective_depth" type="decimal(10,2)"/>
-            
+
             <column name="drilling_start_date" type="date"/>
-            
+
             <column name="drilling_end_date" type="date"/>
-            
+
             <column name="drilling_start_time" type="varchar(255)"/>
-            
+
             <column name="drilling_end_time" type="varchar(255)"/>
-            
+
             <column name="user_id" type="bigint"/>
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-        
+
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="pile_drilling"
                                  constraintName="fk_piledrilling_user_id"
