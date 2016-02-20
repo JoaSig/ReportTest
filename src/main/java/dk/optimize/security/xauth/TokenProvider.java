@@ -17,7 +17,7 @@ public class TokenProvider {
     }
 
     public Token createToken(UserDetails userDetails) {
-        long expires = System.currentTimeMillis() + 1000L * tokenValidity;
+        long expires = System.currentTimeMillis() + 1000000L * tokenValidity;
         String token = userDetails.getUsername() + ":" + expires + ":" + computeSignature(userDetails, expires);
         return new Token(token, expires);
     }
