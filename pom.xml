@@ -357,7 +357,11 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-data</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <version>4.0.3.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <repositories>
