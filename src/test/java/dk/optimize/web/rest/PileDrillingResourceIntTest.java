@@ -4,32 +4,36 @@ import dk.optimize.Application;
 import dk.optimize.domain.PileDrilling;
 import dk.optimize.repository.PileDrillingRepository;
 import dk.optimize.repository.search.PileDrillingSearchRepository;
-
+import org.joda.time.DateTimeConstants;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.WebApplicationContext;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.math.BigDecimal;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -80,6 +84,9 @@ public class PileDrillingResourceIntTest {
 
     private PileDrilling pileDrilling;
 
+    @Autowired
+    public WebApplicationContext context;
+
     @PostConstruct
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -110,10 +117,17 @@ public class PileDrillingResourceIntTest {
 
         // Create the PileDrilling
 
+        restPileDrillingMockMvc = MockMvcBuilders
+            .webAppContextSetup(context)
+            .apply(springSecurity())
+            .build();
+
         restPileDrillingMockMvc.perform(post("/api/pileDrillings")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(pileDrilling)))
-                .andExpect(status().isCreated());
+            .with(user("user"))
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(pileDrilling)))
+            .andExpect(status().isCreated());
+
 
         // Validate the PileDrilling in the database
         List<PileDrilling> pileDrillings = pileDrillingRepository.findAll();
@@ -126,6 +140,7 @@ public class PileDrillingResourceIntTest {
         assertThat(testPileDrilling.getDrillingEndDate()).isEqualTo(DEFAULT_DRILLING_END_DATE);
         assertThat(testPileDrilling.getDrillingStartTime()).isEqualTo(DEFAULT_DRILLING_START_TIME);
         assertThat(testPileDrilling.getDrillingEndTime()).isEqualTo(DEFAULT_DRILLING_END_TIME);
+        assertThat(testPileDrilling.getUser().getLogin()).isEqualTo("user");
     }
 
     @Test
@@ -136,16 +151,16 @@ public class PileDrillingResourceIntTest {
 
         // Get all the pileDrillings
         restPileDrillingMockMvc.perform(get("/api/pileDrillings?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(pileDrilling.getId().intValue())))
-                .andExpect(jsonPath("$.[*].drillingMachine").value(hasItem(DEFAULT_DRILLING_MACHINE.toString())))
-                .andExpect(jsonPath("$.[*].projectDrillingDepth").value(hasItem(DEFAULT_PROJECT_DRILLING_DEPTH.intValue())))
-                .andExpect(jsonPath("$.[*].drillingEffectiveDepth").value(hasItem(DEFAULT_DRILLING_EFFECTIVE_DEPTH.intValue())))
-                .andExpect(jsonPath("$.[*].drillingStartDate").value(hasItem(DEFAULT_DRILLING_START_DATE.toString())))
-                .andExpect(jsonPath("$.[*].drillingEndDate").value(hasItem(DEFAULT_DRILLING_END_DATE.toString())))
-                .andExpect(jsonPath("$.[*].drillingStartTime").value(hasItem(DEFAULT_DRILLING_START_TIME.toString())))
-                .andExpect(jsonPath("$.[*].drillingEndTime").value(hasItem(DEFAULT_DRILLING_END_TIME.toString())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(pileDrilling.getId().intValue())))
+            .andExpect(jsonPath("$.[*].drillingMachine").value(hasItem(DEFAULT_DRILLING_MACHINE.toString())))
+            .andExpect(jsonPath("$.[*].projectDrillingDepth").value(hasItem(DEFAULT_PROJECT_DRILLING_DEPTH.intValue())))
+            .andExpect(jsonPath("$.[*].drillingEffectiveDepth").value(hasItem(DEFAULT_DRILLING_EFFECTIVE_DEPTH.intValue())))
+            .andExpect(jsonPath("$.[*].drillingStartDate").value(hasItem(DEFAULT_DRILLING_START_DATE.toString())))
+            .andExpect(jsonPath("$.[*].drillingEndDate").value(hasItem(DEFAULT_DRILLING_END_DATE.toString())))
+            .andExpect(jsonPath("$.[*].drillingStartTime").value(hasItem(DEFAULT_DRILLING_START_TIME.toString())))
+            .andExpect(jsonPath("$.[*].drillingEndTime").value(hasItem(DEFAULT_DRILLING_END_TIME.toString())));
     }
 
     @Test
@@ -170,10 +185,26 @@ public class PileDrillingResourceIntTest {
 
     @Test
     @Transactional
+    public void getPointsThisWeek() throws Exception {
+        LocalDate today = LocalDate.now();
+        LocalDate thisMonday = today.withDayOfMonth(DateTimeConstants.MONDAY);
+        LocalDate lastMonday = thisMonday.minusWeeks(1);
+        // create security-aware mockMvc
+        // Get all the points
+        restPileDrillingMockMvc.perform(get("/api/pileDrillings")
+            .with(user("user").roles("USER")))
+            .andExpect(status().isOk())
+            .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+//            .andExpect(jsonPath("$", hasSize(4))
+            ;
+    }
+
+    @Test
+    @Transactional
     public void getNonExistingPileDrilling() throws Exception {
         // Get the pileDrilling
         restPileDrillingMockMvc.perform(get("/api/pileDrillings/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -182,7 +213,7 @@ public class PileDrillingResourceIntTest {
         // Initialize the database
         pileDrillingRepository.saveAndFlush(pileDrilling);
 
-		int databaseSizeBeforeUpdate = pileDrillingRepository.findAll().size();
+        int databaseSizeBeforeUpdate = pileDrillingRepository.findAll().size();
 
         // Update the pileDrilling
         pileDrilling.setDrillingMachine(UPDATED_DRILLING_MACHINE);
@@ -194,9 +225,9 @@ public class PileDrillingResourceIntTest {
         pileDrilling.setDrillingEndTime(UPDATED_DRILLING_END_TIME);
 
         restPileDrillingMockMvc.perform(put("/api/pileDrillings")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(pileDrilling)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(pileDrilling)))
+            .andExpect(status().isOk());
 
         // Validate the PileDrilling in the database
         List<PileDrilling> pileDrillings = pileDrillingRepository.findAll();
@@ -217,12 +248,12 @@ public class PileDrillingResourceIntTest {
         // Initialize the database
         pileDrillingRepository.saveAndFlush(pileDrilling);
 
-		int databaseSizeBeforeDelete = pileDrillingRepository.findAll().size();
+        int databaseSizeBeforeDelete = pileDrillingRepository.findAll().size();
 
         // Get the pileDrilling
         restPileDrillingMockMvc.perform(delete("/api/pileDrillings/{id}", pileDrilling.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<PileDrilling> pileDrillings = pileDrillingRepository.findAll();
