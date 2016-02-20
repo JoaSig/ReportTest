@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface PileConcretingRepository extends JpaRepository<PileConcreting,Long> {
 
-    @Query("select pileConcreting from PileConcreting pileConcreting where pileConcreting.user.login = ?#{principal.username}")
+    @Query("select pileConcreting from PileConcreting pileConcreting where pileConcreting.user.login = ?#{principal.username} order by pileConcreting.concretingDateStart desc")
     List<PileConcreting> findByUserIsCurrentUser();
 
 }
