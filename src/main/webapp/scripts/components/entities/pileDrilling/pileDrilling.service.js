@@ -4,6 +4,7 @@ angular.module('documentmanagementApp')
     .factory('PileDrilling', function ($resource, DateUtils) {
         return $resource('api/pileDrillings/:id', {}, {
             'query': { method: 'GET', isArray: true},
+            'machine': { method: 'GET', isArray: true, url: '/api/pileDrillings/machine/:drillingMachine'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

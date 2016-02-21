@@ -1,11 +1,13 @@
 package dk.optimize.repository;
 
 import dk.optimize.domain.PileDrilling;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -17,5 +19,13 @@ public interface PileDrillingRepository extends JpaRepository<PileDrilling,Long>
     List<PileDrilling> findByUserIsCurrentUser();
 
     Page<PileDrilling> findAllByOrderByDrillingStartDateDesc(Pageable pageable);
+
+    List<PileDrilling> findAllByDrillingStartDateBetween(LocalDate firstDate, LocalDate secondDate);
+
+    List<PileDrilling> findAllByDrillingStartDate(LocalDate firstDate);
+
+    Page<PileDrilling> findAllByDrillingMachine(String drillingMachine, Pageable pageable);
+
+    List<PileDrilling> findAllByDrillingMachine(String drillingMachine);
 
 }

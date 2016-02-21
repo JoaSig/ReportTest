@@ -8,6 +8,7 @@ import dk.optimize.repository.search.PileDrillingSearchRepository;
 import dk.optimize.security.AuthoritiesConstants;
 import dk.optimize.security.SecurityUtils;
 import dk.optimize.service.UserService;
+import dk.optimize.web.rest.dto.PileDrillingsByMachine;
 import dk.optimize.web.rest.util.HeaderUtil;
 import dk.optimize.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -22,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -138,6 +140,73 @@ public class PileDrillingResource {
                 result,
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    /**
+     * GET  /pileDrillings -> get all the pileDrillings for the current week.
+     //     */
+//    @RequestMapping(value = "/pileDrillings-this-week")
+//    @Timed
+//    public ResponseEntity<PileDrillingsPerMonth> getPileDrillingsThisWeek() {
+//        // Get current date
+//        LocalDate now = new LocalDate();
+//// Get first day of week
+//        LocalDate startOfWeek = now
+//            .withYearOfCentury(13)
+//            .withMonthOfYear(DateTimeConstants.SEPTEMBER)
+//            .withDayOfMonth(2);
+//// Get last day of week
+//        LocalDate endOfWeek = now
+//            .withYearOfCentury(13)
+//            .withMonthOfYear(DateTimeConstants.SEPTEMBER)
+//            .withDayOfMonth(30);
+//        log.debug("Looking for pileDrillings between: {} and {}", startOfWeek, endOfWeek);
+//
+//        Instant instant = Instant.ofEpochMilli(startOfWeek.toDate().getTime());
+//        java.time.LocalDate start = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
+//
+//        Instant endInstant = Instant.ofEpochMilli(endOfWeek.toDate().getTime());
+//        java.time.LocalDate end = LocalDateTime.ofInstant(endInstant, ZoneId.systemDefault()).toLocalDate();
+//
+//        List<PileDrilling> pileDrillingsStartDate = pileDrillingRepository.findAllByDrillingStartDate(start);
+//        List<PileDrilling> pileDrillings = pileDrillingRepository.findAllByDrillingStartDateBetween(start, end);
+//        // filter by current user and sum the pileDrillings
+//        Integer numPoints = pileDrillings.stream()
+//            .filter(p -> p.getUser().getLogin().equals(SecurityUtils.getCurrentUserLogin()))
+//            .mapToInt(p -> p.getProjectDrillingDepth().intValue() + p.getDrillingEffectiveDepth().intValue())
+//            .sum();
+//        PileDrillingsPerMonth count = new PileDrillingsPerMonth(numPoints, start);
+//        return new ResponseEntity<>(count, HttpStatus.OK);
+//    }
+
+    /**
+     * GET  /pileDrillings -> get all the pileDrillings by machine.
+     */
+    @RequestMapping(value = "/pileDrillings/machine/{drillingMachine}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<PileDrillingsByMachine> getPileDrillingsByMachine(@PathVariable String drillingMachine, Pageable pageable) throws URISyntaxException {
+//        String machine = "SR-100 4075";
+//        Page<PileDrilling> page = pileDrillingRepository.findAllByDrillingMachine(drillingMachine, pageable);
+        List<PileDrilling> pileDrillings = pileDrillingRepository.findAllByDrillingMachine(drillingMachine);
+
+//        List<PileDrilling> pileDrillings = page.getContent();
+
+        // filter by current user and sum the pileDrillings
+//        BigDecimal numPoints = pileDrillings.stream()
+//            .filter(p -> p.getUser().getLogin().equals(SecurityUtils.getCurrentUserLogin()))
+//            .mapToDouble(p -> p.getProjectDrillingDepth().intValueExact())
+//            .sum();
+//        PileDrillingsByMachine sum = new PileDrillingsByMachine(numPoints, machine);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/pileDrillings/machine");
+
+        BigDecimal bigSum = BigDecimal.ZERO;
+        for (PileDrilling pileDrilling : pileDrillings) {
+            bigSum = bigSum.add(pileDrilling.getDrillingEffectiveDepth());
+        }
+        PileDrillingsByMachine sum = new PileDrillingsByMachine(bigSum, drillingMachine);
+        return new ResponseEntity<>(sum, HttpStatus.OK);
     }
 
     /**
