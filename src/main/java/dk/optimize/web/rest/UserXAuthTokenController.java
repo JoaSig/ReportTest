@@ -3,7 +3,6 @@ package dk.optimize.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import dk.optimize.security.xauth.Token;
 import dk.optimize.security.xauth.TokenProvider;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @RequestMapping("/api")
@@ -34,14 +30,10 @@ public class UserXAuthTokenController {
     private UserDetailsService userDetailsService;
 
     @RequestMapping(value = "/authenticate",
-            method = RequestMethod.POST)
+        method = RequestMethod.POST)
     @Timed
     public Token authorize(@RequestParam String username, @RequestParam String password) {
 
-        if (StringUtils.isBlank(username) || username.equals("undefined") || StringUtils.isBlank(password) || password.equals("undefined")) {
-            username = "user";
-            password = "user";
-        }
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
         Authentication authentication = this.authenticationManager.authenticate(token);
         SecurityContextHolder.getContext().setAuthentication(authentication);
