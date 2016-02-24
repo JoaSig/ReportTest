@@ -5,7 +5,7 @@
                 "title": "Pile Drilling Reports",
                 "createLabel": "Create a new Pile Drilling Report",
                 "createOrEditLabel": "Create or edit a Pile Drilling Report",
-                "search": "Search for Pile Drilling Report"
+                "search": "Search..."
             },
             "created": "A new Pile Drilling Report is created with identifier {{ param }}",
             "updated": "A Pile Drilling Report is updated with identifier {{ param }}",

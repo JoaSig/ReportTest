@@ -11,7 +11,8 @@
     <!-- build:css assets/styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
-    <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
+    <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.min.css" />
+    <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css assets/styles/main.css -->
@@ -25,7 +26,7 @@
 <![endif]-->
 <!--<div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>-->
 <div ui-view="navbar" ng-cloak=""></div>
-<div class="container">
+<div style="width: 80% !important; padding-top: 8px;" class="container">
     <div class="well" ui-view="content"></div>
 
     <div class="footer">
@@ -47,6 +48,10 @@
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/ng-table/dist/ng-table.js"></script>
+<script src="bower_components/d3/d3.min.js"></script>
+<script src="bower_components/nvd3/build/nv.d3.min.js"></script>
+<script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
 <script src="bower_components/angular-aria/angular-aria.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
@@ -157,6 +162,7 @@
 <script src="scripts/app/entities/pile/pile-detail.controller.js"></script>
 <script src="scripts/components/entities/pile/pile.service.js"></script>
 <script src="scripts/components/entities/pile/pile.search.service.js"></script>
+<script src="scripts/components/chart/chart.service.js"></script>
 <script src="scripts/app/entities/pileConcreting/pileConcreting.js"></script>
 <script src="scripts/app/entities/pileConcreting/pileConcreting.controller.js"></script>
 <script src="scripts/app/entities/pileConcreting/pileConcreting-dialog.controller.js"></script>

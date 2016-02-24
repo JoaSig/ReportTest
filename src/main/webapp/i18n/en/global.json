@@ -1,16 +1,15 @@
 {
     "global": {
-        "title": "Optimise Reportstyring",
+        "title": "Trevi",
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "menu": {
             "home": "Home",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "Reporter",
+                "main": "Reports",
                 "pile": "Pile",
                 "pileConcreting": "Pile Concreting Report",
-                "pileConcreting": "PileConcreting",
-                "pileDrilling": "PileDrilling",
+                "pileDrilling": "Pile Drilling Report",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -48,7 +47,7 @@
         },
         "messages": {
             "info": {
-                "authenticated": "If you want to <a class=\"alert-link\" href=\"#/login\">sign in</a>, you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\").",
+                "authenticated": "<a class=\"alert-link\" href=\"#/login\">sign in</a>",
                 "register": "You don't have an account yet? <a class=\"alert-link\" href=\"#/register\">Register a new account</a>"
             },
             "error": {
@@ -116,6 +115,5 @@
         "userexists": "Login name already used!",
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID"
-    },
-    "footer": "This is your footer"
+    }
 }
