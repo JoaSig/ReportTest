@@ -1,16 +1,23 @@
-<nav class="navbar navbar-default" role="navigation">
+<!--<div style="width: 100%; border: 0 solid transparent; padding-right: 70px;" class="form-control navbar-default pull-right">-->
+    <!--<a ng-if="!account.login" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>-->
+    <!--<a ng-if="!account.login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>-->
+    <!--<a ng-if="account.login" href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a>-->
+    <!--</div>-->
+    <!--<div class="col-sm-3">-->
+        <!--<div class="sidebar-nav">-->
+<nav class="navbar navbar-default navbar-fixed-side navbar-fixed-side-left" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">-->
-                <!--<span class="sr-only">Toggle navigation</span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-            <!--</button>-->
-            <a class="navbar-brand" href="#/"><span translate="global.title">jhipster</span> <span class="navbar-version">v{{VERSION}}</span></a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navbar" href="#/"><span translate="global.title">jhipster</span> <span class="navbar-version">v{{VERSION}}</span></a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-left">
                 <li ui-sref-active="active">
                     <a ui-sref="home" data-toggle="collapse" data-target=".navbar-collapse.in">
                         <span class="glyphicon glyphicon-home"></span>
@@ -23,13 +30,13 @@
                         <span>
                             <span class="glyphicon glyphicon-th-list"></span>
                             <span class="hidden-sm" translate="global.menu.entities.main">
-                                Reporter
+                                Reports
                             </span>
                             <b class="caret"></b>
                         </span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li ui-sref-active="active" ><a ui-sref="pile" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
+                        <li ui-sref-active="active" ><a ui-sref="pile" data-toggle="collapse" data-target=".navbar-collapse"><span class="glyphicon glyphicon-asterisk"></span>
                         &#xA0;<span translate="global.menu.entities.pile">Pile</span></a></li>
                         <li ui-sref-active="active" ><a ui-sref="pileConcreting" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
                         &#xA0;<span translate="global.menu.entities.pileConcreting">Pile concreting</span></a></li>
@@ -91,3 +98,68 @@
         </div>
     </div>
 </nav>
+<nav class="navbar navbar-default navbar-fixed-side navbar-fixed-side-right" role="navigation">
+    <div class="container">
+        <div style="text-align: center;" class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+                <a ng-if="!account.login" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                <a ng-if="!account.login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                <a ng-if="account.login" ng-click="logout()" href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+            <a ng-if="account.login" class="navbar-brand navbar" href="#/settings"><span style="font-size: 12px; font-style: italic">Logged in as </span><span style="font-weight: bolder">{{account.login}}</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-right-collapse" ng-switch="isAuthenticated()">
+            <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
+            <!--<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+                <!--</ul>-->
+                <!--&lt;!&ndash;<li ui-sref-active="active">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<a ui-sref="home" data-toggle="collapse" data-target=".navbar-collapse.in">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="glyphicon glyphicon-home"></span>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="hidden-sm" translate="global.menu.home">Home</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                <!--&lt;!&ndash; jhipster-needle-add-element-to-menu - JHipster will add new menu items here &ndash;&gt;-->
+                <!--<li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">-->
+                    <!--<a class="dropdown-toggle" data-toggle="dropdown" href="">-->
+                        <!--<span>-->
+                            <!--<span class="glyphicon glyphicon-th-list"></span>-->
+                            <!--<span class="hidden-sm" translate="global.menu.entities.main">-->
+                                <!--Reports-->
+                            <!--</span>-->
+                            <!--<b class="caret"></b>-->
+                        <!--</span>-->
+                    <!--</a>-->
+                    <!--<ul>-->
+                        <!--<li ui-sref-active="active">Logged in as {{$state.account.login}}</span></li>-->
+                        <!--<li ui-sref-active="active" ><a ui-sref="pileConcreting" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>-->
+                            <!--&#xA0;<span translate="global.menu.entities.pileConcreting">Pile concreting</span></a></li>-->
+                        <!--<li ui-sref-active="active" ><a ui-sref="pileDrilling" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>-->
+                            <!--&#xA0;<span translate="global.menu.entities.pileDrilling">Pile drilling</span></a></li>-->
+                        <!--&lt;!&ndash; jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here &ndash;&gt;-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li ng-class="{active: $state.includes('account')}" class="dropdown pointer">-->
+                    <!--<a class="dropdown-toggle" data-toggle="dropdown" href="" id="account-right-menu">-->
+                        <!--<span>-->
+                            <!--<span class="glyphicon glyphicon-user"></span>-->
+                            <!--<span class="hidden-sm" translate="global.menu.account.main">-->
+                                <!--Account-->
+                            <!--</span>-->
+                            <!--<b class="caret"></b>-->
+                        <!--</span>-->
+                    <!--</a>-->
+                    <!--<ul class="dropdown-menu">-->
+                    <!--</ul>-->
+                <!--</li>-->
+            <!--</ul>-->
+        </div>
+    </div>
+</nav>
+        <!--</div>-->
+    <!--</div><-->
+<!--</div>-->
