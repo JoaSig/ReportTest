@@ -24,10 +24,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -105,8 +108,7 @@ public class PileDrillingResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<PileDrilling>> getAllPileDrillings(Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<PileDrilling>> getAllPileDrillings(Pageable pageable) throws URISyntaxException {
         log.debug("REST request to get a page of PileDrillings");
         Page<PileDrilling> page;
         log.info("Currently logged in user: " + SecurityUtils.getCurrentUser());
@@ -182,6 +184,20 @@ public class PileDrillingResource {
     /**
      * GET  /pileDrillings -> get all the pileDrillings by machine.
      */
+    @RequestMapping(value = "/util/machine",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Set<String>> getAllDrillingMachines() throws URISyntaxException {
+        Set<String> drillingMachines = new HashSet<>();
+        List<PileDrilling> pileDrillings = pileDrillingRepository.findAll();
+        drillingMachines.addAll(pileDrillings.stream().map(PileDrilling::getDrillingMachine).collect(Collectors.toList()));
+        return new ResponseEntity<>(drillingMachines, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /pileDrillings -> get all the pileDrillings by machine.
+     */
     @RequestMapping(value = "/pileDrillings/machine/{drillingMachine}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
@@ -201,13 +217,70 @@ public class PileDrillingResource {
 //        PileDrillingsByMachine sum = new PileDrillingsByMachine(numPoints, machine);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/pileDrillings/machine");
 
-        BigDecimal bigSum = BigDecimal.ZERO;
+        Map<Long, Long> drillingMinutesMap = new HashMap<>();
+        BigDecimal depthSum = BigDecimal.ZERO;
+        long minuteSum = 0;
         for (PileDrilling pileDrilling : pileDrillings) {
-            bigSum = bigSum.add(pileDrilling.getDrillingEffectiveDepth());
+            depthSum = depthSum.add(pileDrilling.getDrillingEffectiveDepth());
+            minuteSum += getTotalDrillingMinutes(pileDrilling, drillingMinutesMap);
         }
-        PileDrillingsByMachine sum = new PileDrillingsByMachine(bigSum, drillingMachine);
+        BigDecimal minSumDec = new BigDecimal(minuteSum);
+        BigDecimal meterDrillPerHour = minSumDec.divide(depthSum, 3, RoundingMode.CEILING);
+        PileDrillingsByMachine sum = new PileDrillingsByMachine(depthSum, drillingMachine, minuteSum, meterDrillPerHour, getFormatedTotalTime(minuteSum), pileDrillings, drillingMinutesMap);
         return new ResponseEntity<>(sum, HttpStatus.OK);
     }
+
+    private long getTotalDrillingMinutes(PileDrilling pileDrilling, Map<Long, Long> drillingMinutesMap) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+//        try {
+//            Date startDate = dateFormat.parse(pileDrilling.getDrillingStartTime());
+//            Instant instant = Instant.ofEpochMilli(pileDrilling.getDrillingStartTime().);
+//            Calendar calendar = Calendar.getInstance();
+//            calendar.setTimeInMillis(instant.toEpochMilli());
+            Date startDate = pileDrilling.getDrillingStartTime();
+            Long startMs = startDate.getTime();
+
+            Date endDate = pileDrilling.getDrillingEndTime();
+//            Date endDate = dateFormat.parse(pileDrilling.getDrillingEndTime());
+            Long endMs = endDate.getTime();
+
+            long totalTime = endMs - startMs;
+            long minuteSum = totalTime / 1000 / 60;
+            drillingMinutesMap.put(pileDrilling.getId(), minuteSum);
+            //            long totalHr = totalTime / 1000 / 60 / 60;
+            return minuteSum;
+//        } catch (ParseException e) {
+//            log.error("Error while parsing start or end time for PileDrilling: " + pileDrilling.toString(), e);
+//        }
+//        return 0;
+    }
+
+    public static String getFormatedTotalTime(long runtimeInMinutes) {
+        long hrs = 0;
+        long mins;
+        if (runtimeInMinutes != 0) {
+            if (runtimeInMinutes / 60 >= 1) {
+                hrs = runtimeInMinutes / 60;
+                mins = runtimeInMinutes - (hrs * 60);
+            } else {
+                mins = runtimeInMinutes;
+            }
+        } else {
+            return "00:00:00";
+        }
+
+        String stringMins = String.valueOf(mins);
+        if (stringMins.length() < 2) {
+            stringMins = "0".concat(stringMins);
+        }
+
+        if (hrs >= 10) {
+            return String.format("%d:%s:00", hrs, stringMins);
+        } else {
+            return String.format("0%d:%s:00", hrs, stringMins);
+        }
+    }
+
 
     /**
      * DELETE  /pileDrillings/:id -> delete the "id" pileDrilling.

@@ -26,9 +26,15 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -63,10 +69,10 @@ public class PileDrillingResourceIntTest {
 
     private static final LocalDate DEFAULT_DRILLING_END_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DRILLING_END_DATE = LocalDate.now(ZoneId.systemDefault());
-    private static final String DEFAULT_DRILLING_START_TIME = "AAAAA";
-    private static final String UPDATED_DRILLING_START_TIME = "BBBBB";
-    private static final String DEFAULT_DRILLING_END_TIME = "AAAAA";
-    private static final String UPDATED_DRILLING_END_TIME = "BBBBB";
+    private static final Timestamp DEFAULT_DRILLING_START_TIME = Timestamp.from(Instant.EPOCH);
+    private static final Timestamp UPDATED_DRILLING_START_TIME = Timestamp.from(Instant.EPOCH);
+    private static final Timestamp DEFAULT_DRILLING_END_TIME = Timestamp.from(Instant.EPOCH);
+    private static final Timestamp UPDATED_DRILLING_END_TIME = Timestamp.from(Instant.EPOCH);
 
     @Inject
     private PileDrillingRepository pileDrillingRepository;
@@ -117,10 +123,10 @@ public class PileDrillingResourceIntTest {
 
         // Create the PileDrilling
 
-        restPileDrillingMockMvc = MockMvcBuilders
-            .webAppContextSetup(context)
-            .apply(springSecurity())
-            .build();
+//        restPileDrillingMockMvc = MockMvcBuilders
+//            .webAppContextSetup(context)
+//            .apply(springSecurity())
+//            .build();
 
         restPileDrillingMockMvc.perform(post("/api/pileDrillings")
             .with(user("user"))
@@ -185,11 +191,31 @@ public class PileDrillingResourceIntTest {
 
     @Test
     @Transactional
-    public void getPointsThisWeek() throws Exception {
-        LocalDate today = LocalDate.now();
-        LocalDate thisMonday = today.withDayOfMonth(DateTimeConstants.MONDAY);
-        LocalDate lastMonday = thisMonday.minusWeeks(1);
+    public void getDrillingsThisWeek() throws Exception {
+        org.joda.time.LocalDate now = new org.joda.time.LocalDate();
+// Get first day of week
+        org.joda.time.LocalDate startOfWeek = now
+            .withYearOfCentury(13)
+            .withMonthOfYear(DateTimeConstants.SEPTEMBER)
+            .withDayOfMonth(2);
+// Get last day of week
+        org.joda.time.LocalDate endOfWeek = now
+            .withYearOfCentury(13)
+            .withMonthOfYear(DateTimeConstants.SEPTEMBER)
+            .withDayOfMonth(30);
+
+        Instant instant = Instant.ofEpochMilli(startOfWeek.toDate().getTime());
+        java.time.LocalDate start = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
+
+        Instant endInstant = Instant.ofEpochMilli(endOfWeek.toDate().getTime());
+        java.time.LocalDate end = LocalDateTime.ofInstant(endInstant, ZoneId.systemDefault()).toLocalDate();
+
         // create security-aware mockMvc
+//        restPileDrillingMockMvc = MockMvcBuilders
+//            .webAppContextSetup(context)
+//            .apply(springSecurity())
+//            .build();
+
         // Get all the points
         restPileDrillingMockMvc.perform(get("/api/pileDrillings")
             .with(user("user").roles("USER")))
@@ -197,6 +223,71 @@ public class PileDrillingResourceIntTest {
             .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 //            .andExpect(jsonPath("$", hasSize(4))
             ;
+
+        // Get the points for this week only
+        restPileDrillingMockMvc.perform(get("/api/pileDrillings-this-week")
+            .with(user("user").roles("USER")))
+            .andExpect(status().isOk())
+            .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.month").value(start.getMonth().name()))
+            .andExpect(jsonPath("$.drillings").value(5));
+    }
+
+    @Test
+    public void testConvertingToTimeAndSubtract() throws Exception {
+        String startTime = "11:06:00";
+        String endTime = "13:30:00";
+
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+
+        Date startDate = df.parse(startTime);
+        Long startMs = startDate.getTime();
+
+        Date endDate = df.parse(endTime);
+        Long endMs = endDate.getTime();
+
+        long totalTime = endMs - startMs;
+
+        long totalMin = totalTime / 1000 / 60;
+        long totalHr = totalTime / 1000 / 60 / 60;
+
+    }
+
+    @Test
+    @Transactional
+    public void getDrillingsForMachine() throws Exception {
+        // create security-aware mockMvc
+
+//        restPileDrillingMockMvc.perform(get("/api/pileDrillings")
+//            .with(user("user").roles("USER")))
+//            .andExpect(status().isOk())
+//            .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+////            .andExpect(jsonPath("$", hasSize(4))
+//            ;
+
+        // Get the drillings for this machine
+        restPileDrillingMockMvc.perform(get("/api/pileDrillings/machine/{drillingMachine}", "SR-100 4075")
+            .with(user("admin").roles("ADMIN")))
+            .andExpect(status().isOk())
+            .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.machine").value("SR-100 4075"))
+            .andExpect(jsonPath("$.drillings").value(44));
+    }
+
+    @Test
+    @Transactional
+    public void getDAllDrillingMachines() throws Exception {
+        // create security-aware mockMvc
+        restPileDrillingMockMvc = MockMvcBuilders
+            .webAppContextSetup(context)
+            .apply(springSecurity())
+            .build();
+        // Get all drilling machines
+        restPileDrillingMockMvc.perform(get("/api/util/machine")
+            .with(user("admin").roles("ADMIN")))
+            .andExpect(status().isOk())
+            .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$").value("SR-100 4075"));
     }
 
     @Test

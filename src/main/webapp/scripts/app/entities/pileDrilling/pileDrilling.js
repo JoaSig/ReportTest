@@ -51,7 +51,7 @@ angular.module('documentmanagementApp')
                 parent: 'pileDrilling',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_USER']
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
@@ -83,7 +83,7 @@ angular.module('documentmanagementApp')
                 parent: 'pileDrilling',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_USER']
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
@@ -106,7 +106,7 @@ angular.module('documentmanagementApp')
                 parent: 'pileDrilling',
                 url: '/{id}/delete',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_USER']
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
