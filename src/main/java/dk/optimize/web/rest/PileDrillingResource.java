@@ -27,9 +27,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -237,18 +235,23 @@ public class PileDrillingResource {
 //            Instant instant = Instant.ofEpochMilli(pileDrilling.getDrillingStartTime().);
 //            Calendar calendar = Calendar.getInstance();
 //            calendar.setTimeInMillis(instant.toEpochMilli());
-            Date startDate = pileDrilling.getDrillingStartTime();
-            Long startMs = startDate.getTime();
+        Date startDate = pileDrilling.getDrillingStartTime();
+        Long startMs = startDate.getTime();
 
-            Date endDate = pileDrilling.getDrillingEndTime();
+        Date endDate = pileDrilling.getDrillingEndTime();
 //            Date endDate = dateFormat.parse(pileDrilling.getDrillingEndTime());
-            Long endMs = endDate.getTime();
+        Long endMs = endDate.getTime();
 
-            long totalTime = endMs - startMs;
-            long minuteSum = totalTime / 1000 / 60;
-            drillingMinutesMap.put(pileDrilling.getId(), minuteSum);
-            //            long totalHr = totalTime / 1000 / 60 / 60;
-            return minuteSum;
+        long totalTime;
+        if (endMs < startMs) {
+            totalTime = startMs - endMs;
+        } else {
+            totalTime = endMs - startMs;
+        }
+        long minuteSum = totalTime / 1000 / 60;
+        drillingMinutesMap.put(pileDrilling.getId(), minuteSum);
+        //            long totalHr = totalTime / 1000 / 60 / 60;
+        return minuteSum;
 //        } catch (ParseException e) {
 //            log.error("Error while parsing start or end time for PileDrilling: " + pileDrilling.toString(), e);
 //        }
