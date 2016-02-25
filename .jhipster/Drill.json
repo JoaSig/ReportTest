@@ -1,0 +1,98 @@
+{
+  "relationships" : [ {
+    "relationshipId" : 1,
+    "relationshipName" : "pile",
+    "relationshipType" : "one-to-one",
+    "otherEntityName" : "pile",
+    "otherEntityRelationshipName" : "drilling",
+    "otherEntityField" : null,
+    "ownerSide" : false
+  }, {
+    "relationshipId" : 2,
+    "relationshipName" : "user",
+    "relationshipType" : "one-to-one",
+    "otherEntityName" : "user",
+    "otherEntityRelationshipName" : "drilling",
+    "otherEntityField" : null,
+    "ownerSide" : false
+  } ],
+  "fields" : [ {
+    "fieldId" : 1,
+    "fieldName" : "pileType",
+    "fieldType" : "String",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 2,
+    "fieldName" : "pilingRigType",
+    "fieldType" : "String",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 3,
+    "fieldName" : "pileNr",
+    "fieldType" : "Integer",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 4,
+    "fieldName" : "pileLength",
+    "fieldType" : "BigDecimal",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 5,
+    "fieldName" : "diameter",
+    "fieldType" : "BigDecimal",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 6,
+    "fieldName" : "topGuideElevation",
+    "fieldType" : "BigDecimal",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 7,
+    "fieldName" : "pileTopLevel",
+    "fieldType" : "BigDecimal",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 8,
+    "fieldName" : "pileCutoffElevation",
+    "fieldType" : "BigDecimal",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 9,
+    "fieldName" : "pileToeLevel",
+    "fieldType" : "BigDecimal",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 10,
+    "fieldName" : "casingDeviation",
+    "fieldType" : "BigDecimal",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 11,
+    "fieldName" : "startDate",
+    "fieldType" : "LocalDate",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 12,
+    "fieldName" : "endDate",
+    "fieldType" : "LocalDate",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 13,
+    "fieldName" : "startTime",
+    "fieldType" : "Timestamp",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 14,
+    "fieldName" : "endTime",
+    "fieldType" : "Timestamp",
+    "fieldValidateRules" : [ ]
+  }, {
+    "fieldId" : 15,
+    "fieldName" : "comment",
+    "fieldType" : "String",
+    "fieldValidateRules" : [ ]
+  } ],
+  "changelogDate" : "20160224162652",
+  "dto" : "no",
+  "pagination" : "yes"
+}

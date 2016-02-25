@@ -1,0 +1,26 @@
+{
+    "documentmanagementApp": {
+        "generalInfo" : {
+            "home": {
+                "title": "GeneralInfos",
+                "createLabel": "Créer un nouveau GeneralInfo",
+                "createOrEditLabel": "Créer ou éditer un GeneralInfo",
+                "search": "Search for GeneralInfo"
+            },
+            "created": "Un nouveau GeneralInfo a été créé avec l'identifiant {{ param }}",
+            "updated": "Le GeneralInfo avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le GeneralInfo avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le GeneralInfo {{ id }} ?"
+            },
+            "detail": {
+                "title": "GeneralInfo"
+            },
+            "treviRefNr": "TreviRefNr",
+            "pilingRigType": "PilingRigType",
+            "machineSerialNr": "MachineSerialNr",
+            "date": "Date"
+        }
+    }
+}
+

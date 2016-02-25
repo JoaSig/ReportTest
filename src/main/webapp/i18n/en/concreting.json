@@ -1,0 +1,42 @@
+{
+    "documentmanagementApp": {
+        "concreting" : {
+            "home": {
+                "title": "Concretings",
+                "createLabel": "Create a new Concreting",
+                "createOrEditLabel": "Create or edit a Concreting",
+                "search": "Search for Concreting"
+            },
+            "created": "A new Concreting is created with identifier {{ param }}",
+            "updated": "A Concreting is updated with identifier {{ param }}",
+            "deleted": "A Concreting is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Concreting {{ id }}?"
+            },
+            "detail": {
+                "title": "Concreting"
+            },
+            "createdAt": "CreatedAt",
+            "lastUpdatedAt": "LastUpdatedAt",
+            "lastUpdatedBy": "LastUpdatedBy",
+            "mixDesign": "MixDesign",
+            "slumpFlowTest": "SlumpFlowTest",
+            "pouringRate": "PouringRate",
+            "totalCastedVolume": "TotalCastedVolume",
+            "overConsumption": "OverConsumption",
+            "comment": "Comment",
+            "startDate": "StartDate",
+            "endDate": "EndDate",
+            "startTime": "StartTime",
+            "endTime": "EndTime",
+            "calculatedCumulativeCls": "CalculatedCumulativeCls",
+            "calculatedTheoreticCls": "CalculatedTheoreticCls",
+            "calculatedDifference": "CalculatedDifference",
+            "calculatedPercent": "CalculatedPercent",
+            "sentBack": "SentBack",
+            "user": "User",
+            "pile": "Pile",
+            "items": "Items"
+        }
+    }
+}

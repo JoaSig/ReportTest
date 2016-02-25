@@ -10,6 +10,16 @@
                 "pile": "Pile",
                 "pileConcreting": "Pile Concreting Report",
                 "pileDrilling": "Pile Drilling Report",
+                "projectInfo": "ProjectInfo",
+                "raport": "Raport",
+                "immutableReport": "ImmutableReport",
+                "report": "Report",
+                "drilling": "Drilling",
+                "signature": "Signature",
+                "generalInfo": "GeneralInfo",
+                "concreting": "Concreting",
+                "item": "Item",
+                "steelCage": "SteelCage",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

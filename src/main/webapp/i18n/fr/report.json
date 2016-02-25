@@ -1,0 +1,34 @@
+{
+    "documentmanagementApp": {
+        "report" : {
+            "home": {
+                "title": "Reports",
+                "createLabel": "Créer un nouveau Report",
+                "createOrEditLabel": "Créer ou éditer un Report",
+                "search": "Search for Report"
+            },
+            "created": "Un nouveau Report a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Report avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Report avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Report {{ id }} ?"
+            },
+            "detail": {
+                "title": "Report"
+            },
+            "createdAt": "CreatedAt",
+            "lastUpdatedAt": "LastUpdatedAt",
+            "lastUpdatedBy": "LastUpdatedBy",
+            "sendAt": "SendAt",
+            "receivedAt": "ReceivedAt",
+            "description": "Description",
+            "comment": "Comment",
+            "emails": "Emails",
+            "user": "User",
+            "signature": "Signature",
+            "generalInfo": "GeneralInfo",
+            "projectInfo": "ProjectInfo"
+        }
+    }
+}
+

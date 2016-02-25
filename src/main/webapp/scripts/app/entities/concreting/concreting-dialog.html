@@ -1,0 +1,152 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myConcretingLabel" translate="documentmanagementApp.concreting.home.createOrEditLabel">Create or edit a Concreting</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="concreting.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.createdAt" for="field_createdAt">CreatedAt</label>
+            <input id="field_createdAt" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="concreting.createdAt" is-open="datePickerForCreatedAt.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForCreatedAtOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.lastUpdatedAt" for="field_lastUpdatedAt">LastUpdatedAt</label>
+            <input id="field_lastUpdatedAt" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="concreting.lastUpdatedAt" is-open="datePickerForLastUpdatedAt.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForLastUpdatedAtOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.lastUpdatedBy" for="field_lastUpdatedBy">LastUpdatedBy</label>
+            <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                    ng-model="concreting.lastUpdatedBy"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.mixDesign" for="field_mixDesign">MixDesign</label>
+            <input type="text" class="form-control" name="mixDesign" id="field_mixDesign"
+                    ng-model="concreting.mixDesign"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.slumpFlowTest" for="field_slumpFlowTest">SlumpFlowTest</label>
+            <input type="number" class="form-control" name="slumpFlowTest" id="field_slumpFlowTest"
+                    ng-model="concreting.slumpFlowTest"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.pouringRate" for="field_pouringRate">PouringRate</label>
+            <input type="number" class="form-control" name="pouringRate" id="field_pouringRate"
+                    ng-model="concreting.pouringRate"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.totalCastedVolume" for="field_totalCastedVolume">TotalCastedVolume</label>
+            <input type="number" class="form-control" name="totalCastedVolume" id="field_totalCastedVolume"
+                    ng-model="concreting.totalCastedVolume"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.overConsumption" for="field_overConsumption">OverConsumption</label>
+            <input type="number" class="form-control" name="overConsumption" id="field_overConsumption"
+                    ng-model="concreting.overConsumption"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.comment" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                    ng-model="concreting.comment"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.startDate" for="field_startDate">StartDate</label>
+            <input id="field_startDate" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="concreting.startDate" is-open="datePickerForStartDate.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForStartDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.endDate" for="field_endDate">EndDate</label>
+            <input id="field_endDate" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="concreting.endDate" is-open="datePickerForEndDate.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForEndDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.startTime" for="field_startTime">StartTime</label>
+            <input id="field_startTime" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="concreting.startTime" is-open="datePickerForStartTime.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForStartTimeOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.endTime" for="field_endTime">EndTime</label>
+            <input id="field_endTime" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="concreting.endTime" is-open="datePickerForEndTime.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForEndTimeOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.calculatedCumulativeCls" for="field_calculatedCumulativeCls">CalculatedCumulativeCls</label>
+            <input type="text" class="form-control" name="calculatedCumulativeCls" id="field_calculatedCumulativeCls"
+                    ng-model="concreting.calculatedCumulativeCls"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.calculatedTheoreticCls" for="field_calculatedTheoreticCls">CalculatedTheoreticCls</label>
+            <input type="text" class="form-control" name="calculatedTheoreticCls" id="field_calculatedTheoreticCls"
+                    ng-model="concreting.calculatedTheoreticCls"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.calculatedDifference" for="field_calculatedDifference">CalculatedDifference</label>
+            <input type="text" class="form-control" name="calculatedDifference" id="field_calculatedDifference"
+                    ng-model="concreting.calculatedDifference"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.calculatedPercent" for="field_calculatedPercent">CalculatedPercent</label>
+            <input type="text" class="form-control" name="calculatedPercent" id="field_calculatedPercent"
+                    ng-model="concreting.calculatedPercent"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.concreting.sentBack" for="field_sentBack">SentBack</label>
+            <input type="number" class="form-control" name="sentBack" id="field_sentBack"
+                    ng-model="concreting.sentBack"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="documentmanagementApp.concreting.user" for="field_user">user</label>
+            <select class="form-control" id="field_user" name="user" ng-model="concreting.user" ng-options="user as user.login for user in users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

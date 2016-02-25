@@ -2,12 +2,11 @@ package dk.optimize.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -25,42 +24,39 @@ public class Pile implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "mix_design")
-    private String mixDesign;
+    @Column(name = "created_at")
+    private LocalDate createdAt;
 
-    @Column(name = "slump_flow_test")
-    private Integer slumpFlowTest;
+    @Column(name = "last_updated_at")
+    private LocalDate lastUpdatedAt;
 
-    @Column(name = "pouring_rate", precision=10, scale=2)
-    private BigDecimal pouringRate;
+    @Column(name = "last_updated_by")
+    private String lastUpdatedBy;
 
-    @Column(name = "total_casted_volume", precision=10, scale=2)
-    private BigDecimal totalCastedVolume;
+    @Column(name = "next_pile")
+    private Long nextPile;
 
-    @Column(name = "theoretical_concrete_volume", precision=10, scale=2)
-    private BigDecimal theoreticalConcreteVolume;
-
-    @Column(name = "overconsumption_of_concrete")
-    private Integer overconsumptionOfConcrete;
+    @Column(name = "prev_pile")
+    private Long prevPile;
 
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "signature_date")
-    private ZonedDateTime signatureDate;
-
-    @Column(name = "sub_contractor")
-    private String subContractor;
-
-    @Column(name = "main_contractor")
-    private String mainContractor;
-
-    @Column(name = "client")
-    private String client;
+    @OneToOne
+    private User user;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "project_info_id")
+    private ProjectInfo projectInfo;
+
+    @OneToOne
+    private Concreting concreting;
+
+    @OneToOne
+    private Drilling drilling;
+
+    @OneToOne
+    private SteelCage steelCage;
 
     public Long getId() {
         return id;
@@ -70,52 +66,52 @@ public class Pile implements Serializable {
         this.id = id;
     }
 
-    public String getMixDesign() {
-        return mixDesign;
+    public ProjectInfo getProjectInfo() {
+        return projectInfo;
     }
 
-    public void setMixDesign(String mixDesign) {
-        this.mixDesign = mixDesign;
+    public void setProjectInfo(ProjectInfo projectInfo) {
+        this.projectInfo = projectInfo;
     }
 
-    public Integer getSlumpFlowTest() {
-        return slumpFlowTest;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public void setSlumpFlowTest(Integer slumpFlowTest) {
-        this.slumpFlowTest = slumpFlowTest;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public BigDecimal getPouringRate() {
-        return pouringRate;
+    public LocalDate getLastUpdatedAt() {
+        return lastUpdatedAt;
     }
 
-    public void setPouringRate(BigDecimal pouringRate) {
-        this.pouringRate = pouringRate;
+    public void setLastUpdatedAt(LocalDate lastUpdatedAt) {
+        this.lastUpdatedAt = lastUpdatedAt;
     }
 
-    public BigDecimal getTotalCastedVolume() {
-        return totalCastedVolume;
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
     }
 
-    public void setTotalCastedVolume(BigDecimal totalCastedVolume) {
-        this.totalCastedVolume = totalCastedVolume;
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
     }
 
-    public BigDecimal getTheoreticalConcreteVolume() {
-        return theoreticalConcreteVolume;
+    public Long getNextPile() {
+        return nextPile;
     }
 
-    public void setTheoreticalConcreteVolume(BigDecimal theoreticalConcreteVolume) {
-        this.theoreticalConcreteVolume = theoreticalConcreteVolume;
+    public void setNextPile(Long nextPile) {
+        this.nextPile = nextPile;
     }
 
-    public Integer getOverconsumptionOfConcrete() {
-        return overconsumptionOfConcrete;
+    public Long getPrevPile() {
+        return prevPile;
     }
 
-    public void setOverconsumptionOfConcrete(Integer overconsumptionOfConcrete) {
-        this.overconsumptionOfConcrete = overconsumptionOfConcrete;
+    public void setPrevPile(Long prevPile) {
+        this.prevPile = prevPile;
     }
 
     public String getComment() {
@@ -126,44 +122,36 @@ public class Pile implements Serializable {
         this.comment = comment;
     }
 
-    public ZonedDateTime getSignatureDate() {
-        return signatureDate;
-    }
-
-    public void setSignatureDate(ZonedDateTime signatureDate) {
-        this.signatureDate = signatureDate;
-    }
-
-    public String getSubContractor() {
-        return subContractor;
-    }
-
-    public void setSubContractor(String subContractor) {
-        this.subContractor = subContractor;
-    }
-
-    public String getMainContractor() {
-        return mainContractor;
-    }
-
-    public void setMainContractor(String mainContractor) {
-        this.mainContractor = mainContractor;
-    }
-
-    public String getClient() {
-        return client;
-    }
-
-    public void setClient(String client) {
-        this.client = client;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Concreting getConcreting() {
+        return concreting;
+    }
+
+    public void setConcreting(Concreting concreting) {
+        this.concreting = concreting;
+    }
+
+    public Drilling getDrilling() {
+        return drilling;
+    }
+
+    public void setDrilling(Drilling drilling) {
+        this.drilling = drilling;
+    }
+
+    public SteelCage getSteelCage() {
+        return steelCage;
+    }
+
+    public void setSteelCage(SteelCage steelCage) {
+        this.steelCage = steelCage;
     }
 
     @Override
@@ -190,17 +178,12 @@ public class Pile implements Serializable {
     public String toString() {
         return "Pile{" +
             "id=" + id +
-            ", mixDesign='" + mixDesign + "'" +
-            ", slumpFlowTest='" + slumpFlowTest + "'" +
-            ", pouringRate='" + pouringRate + "'" +
-            ", totalCastedVolume='" + totalCastedVolume + "'" +
-            ", theoreticalConcreteVolume='" + theoreticalConcreteVolume + "'" +
-            ", overconsumptionOfConcrete='" + overconsumptionOfConcrete + "'" +
+            ", createdAt='" + createdAt + "'" +
+            ", lastUpdatedAt='" + lastUpdatedAt + "'" +
+            ", lastUpdatedBy='" + lastUpdatedBy + "'" +
+            ", nextPile='" + nextPile + "'" +
+            ", prevPile='" + prevPile + "'" +
             ", comment='" + comment + "'" +
-            ", signatureDate='" + signatureDate + "'" +
-            ", subContractor='" + subContractor + "'" +
-            ", mainContractor='" + mainContractor + "'" +
-            ", client='" + client + "'" +
             '}';
     }
 }

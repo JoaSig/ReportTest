@@ -11,7 +11,4 @@ import java.util.List;
  */
 public interface PileRepository extends JpaRepository<Pile,Long> {
 
-    @Query("select pile from Pile pile where pile.user.login = ?#{principal.username}")
-    List<Pile> findByUserIsCurrentUser();
-
 }

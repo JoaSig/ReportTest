@@ -8,10 +8,26 @@ angular.module('documentmanagementApp')
                 method: 'GET',
                 transformResponse: function (data) {
                     data = angular.fromJson(data);
-                    data.signatureDate = DateUtils.convertDateTimeFromServer(data.signatureDate);
+                    data.createdAt = DateUtils.convertLocaleDateFromServer(data.createdAt);
+                    data.lastUpdatedAt = DateUtils.convertLocaleDateFromServer(data.lastUpdatedAt);
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {
+                method: 'PUT',
+                transformRequest: function (data) {
+                    data.createdAt = DateUtils.convertLocaleDateToServer(data.createdAt);
+                    data.lastUpdatedAt = DateUtils.convertLocaleDateToServer(data.lastUpdatedAt);
+                    return angular.toJson(data);
+                }
+            },
+            'save': {
+                method: 'POST',
+                transformRequest: function (data) {
+                    data.createdAt = DateUtils.convertLocaleDateToServer(data.createdAt);
+                    data.lastUpdatedAt = DateUtils.convertLocaleDateToServer(data.lastUpdatedAt);
+                    return angular.toJson(data);
+                }
+            }
         });
     });

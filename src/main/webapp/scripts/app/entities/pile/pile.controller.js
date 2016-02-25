@@ -6,14 +6,6 @@ angular.module('documentmanagementApp')
         $scope.piles = [];
         $scope.predicate = 'id';
         $scope.reverse = true;
-        $scope.page = 1;
-        $scope.loadAll = function() {
-            Pile.query({page: $scope.page - 1, size: 20, sort: [$scope.predicate + ',' + ($scope.reverse ? 'asc' : 'desc'), 'id']}, function(result, headers) {
-                $scope.links = ParseLinks.parse(headers('link'));
-                $scope.totalItems = headers('X-Total-Count');
-                $scope.piles = result;
-            });
-        };
         $scope.loadPage = function(page) {
             $scope.page = page;
             $scope.loadAll();
@@ -38,17 +30,12 @@ angular.module('documentmanagementApp')
 
         $scope.clear = function () {
             $scope.pile = {
-                mixDesign: null,
-                slumpFlowTest: null,
-                pouringRate: null,
-                totalCastedVolume: null,
-                theoreticalConcreteVolume: null,
-                overconsumptionOfConcrete: null,
+                createdAt: null,
+                lastUpdatedAt: null,
+                lastUpdatedBy: null,
+                nextPile: null,
+                prevPile: null,
                 comment: null,
-                signatureDate: null,
-                subContractor: null,
-                mainContractor: null,
-                client: null,
                 id: null
             };
         };

@@ -6,7 +6,6 @@ import dk.optimize.repository.PileRepository;
 import dk.optimize.repository.search.PileSearchRepository;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.hamcrest.Matchers.hasItem;
@@ -25,11 +24,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 import java.time.ZoneId;
-import java.math.BigDecimal;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,44 +38,28 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * @see PileResource
  */
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest
 public class PileResourceIntTest {
 
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME.withZone(ZoneId.of("Z"));
 
-    private static final String DEFAULT_MIX_DESIGN = "AAAAA";
-    private static final String UPDATED_MIX_DESIGN = "BBBBB";
+    private static final LocalDate DEFAULT_CREATED_AT = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_CREATED_AT = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Integer DEFAULT_SLUMP_FLOW_TEST = 1;
-    private static final Integer UPDATED_SLUMP_FLOW_TEST = 2;
+    private static final LocalDate DEFAULT_LAST_UPDATED_AT = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_LAST_UPDATED_AT = LocalDate.now(ZoneId.systemDefault());
+    private static final String DEFAULT_LAST_UPDATED_BY = "AAAAA";
+    private static final String UPDATED_LAST_UPDATED_BY = "BBBBB";
 
-    private static final BigDecimal DEFAULT_POURING_RATE = new BigDecimal(1);
-    private static final BigDecimal UPDATED_POURING_RATE = new BigDecimal(2);
+    private static final Long DEFAULT_NEXT_PILE = 1L;
+    private static final Long UPDATED_NEXT_PILE = 2L;
 
-    private static final BigDecimal DEFAULT_TOTAL_CASTED_VOLUME = new BigDecimal(1);
-    private static final BigDecimal UPDATED_TOTAL_CASTED_VOLUME = new BigDecimal(2);
-
-    private static final BigDecimal DEFAULT_THEORETICAL_CONCRETE_VOLUME = new BigDecimal(1);
-    private static final BigDecimal UPDATED_THEORETICAL_CONCRETE_VOLUME = new BigDecimal(2);
-
-    private static final Integer DEFAULT_OVERCONSUMPTION_OF_CONCRETE = 1;
-    private static final Integer UPDATED_OVERCONSUMPTION_OF_CONCRETE = 2;
+    private static final Long DEFAULT_PREV_PILE = 1L;
+    private static final Long UPDATED_PREV_PILE = 2L;
     private static final String DEFAULT_COMMENT = "AAAAA";
     private static final String UPDATED_COMMENT = "BBBBB";
-
-    private static final ZonedDateTime DEFAULT_SIGNATURE_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneId.systemDefault());
-    private static final ZonedDateTime UPDATED_SIGNATURE_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-    private static final String DEFAULT_SIGNATURE_DATE_STR = dateTimeFormatter.format(DEFAULT_SIGNATURE_DATE);
-    private static final String DEFAULT_SUB_CONTRACTOR = "AAAAA";
-    private static final String UPDATED_SUB_CONTRACTOR = "BBBBB";
-    private static final String DEFAULT_MAIN_CONTRACTOR = "AAAAA";
-    private static final String UPDATED_MAIN_CONTRACTOR = "BBBBB";
-    private static final String DEFAULT_CLIENT = "AAAAA";
-    private static final String UPDATED_CLIENT = "BBBBB";
 
     @Inject
     private PileRepository pileRepository;
@@ -100,28 +80,23 @@ public class PileResourceIntTest {
     @PostConstruct
     public void setup() {
         MockitoAnnotations.initMocks(this);
-//        PileResource pileResource = new PileResource();
-//        ReflectionTestUtils.setField(pileResource, "pileSearchRepository", pileSearchRepository);
-//        ReflectionTestUtils.setField(pileResource, "pileRepository", pileRepository);
-//        this.restPileMockMvc = MockMvcBuilders.standaloneSetup(pileResource)
-//            .setCustomArgumentResolvers(pageableArgumentResolver)
-//            .setMessageConverters(jacksonMessageConverter).build();
+        PileResource pileResource = new PileResource();
+        ReflectionTestUtils.setField(pileResource, "pileSearchRepository", pileSearchRepository);
+        ReflectionTestUtils.setField(pileResource, "pileRepository", pileRepository);
+        this.restPileMockMvc = MockMvcBuilders.standaloneSetup(pileResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setMessageConverters(jacksonMessageConverter).build();
     }
 
     @Before
     public void initTest() {
         pile = new Pile();
-        pile.setMixDesign(DEFAULT_MIX_DESIGN);
-        pile.setSlumpFlowTest(DEFAULT_SLUMP_FLOW_TEST);
-        pile.setPouringRate(DEFAULT_POURING_RATE);
-        pile.setTotalCastedVolume(DEFAULT_TOTAL_CASTED_VOLUME);
-        pile.setTheoreticalConcreteVolume(DEFAULT_THEORETICAL_CONCRETE_VOLUME);
-        pile.setOverconsumptionOfConcrete(DEFAULT_OVERCONSUMPTION_OF_CONCRETE);
+        pile.setCreatedAt(DEFAULT_CREATED_AT);
+        pile.setLastUpdatedAt(DEFAULT_LAST_UPDATED_AT);
+        pile.setLastUpdatedBy(DEFAULT_LAST_UPDATED_BY);
+        pile.setNextPile(DEFAULT_NEXT_PILE);
+        pile.setPrevPile(DEFAULT_PREV_PILE);
         pile.setComment(DEFAULT_COMMENT);
-        pile.setSignatureDate(DEFAULT_SIGNATURE_DATE);
-        pile.setSubContractor(DEFAULT_SUB_CONTRACTOR);
-        pile.setMainContractor(DEFAULT_MAIN_CONTRACTOR);
-        pile.setClient(DEFAULT_CLIENT);
     }
 
     @Test
@@ -140,17 +115,12 @@ public class PileResourceIntTest {
         List<Pile> piles = pileRepository.findAll();
         assertThat(piles).hasSize(databaseSizeBeforeCreate + 1);
         Pile testPile = piles.get(piles.size() - 1);
-        assertThat(testPile.getMixDesign()).isEqualTo(DEFAULT_MIX_DESIGN);
-        assertThat(testPile.getSlumpFlowTest()).isEqualTo(DEFAULT_SLUMP_FLOW_TEST);
-        assertThat(testPile.getPouringRate()).isEqualTo(DEFAULT_POURING_RATE);
-        assertThat(testPile.getTotalCastedVolume()).isEqualTo(DEFAULT_TOTAL_CASTED_VOLUME);
-        assertThat(testPile.getTheoreticalConcreteVolume()).isEqualTo(DEFAULT_THEORETICAL_CONCRETE_VOLUME);
-        assertThat(testPile.getOverconsumptionOfConcrete()).isEqualTo(DEFAULT_OVERCONSUMPTION_OF_CONCRETE);
+        assertThat(testPile.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
+        assertThat(testPile.getLastUpdatedAt()).isEqualTo(DEFAULT_LAST_UPDATED_AT);
+        assertThat(testPile.getLastUpdatedBy()).isEqualTo(DEFAULT_LAST_UPDATED_BY);
+        assertThat(testPile.getNextPile()).isEqualTo(DEFAULT_NEXT_PILE);
+        assertThat(testPile.getPrevPile()).isEqualTo(DEFAULT_PREV_PILE);
         assertThat(testPile.getComment()).isEqualTo(DEFAULT_COMMENT);
-        assertThat(testPile.getSignatureDate()).isEqualTo(DEFAULT_SIGNATURE_DATE);
-        assertThat(testPile.getSubContractor()).isEqualTo(DEFAULT_SUB_CONTRACTOR);
-        assertThat(testPile.getMainContractor()).isEqualTo(DEFAULT_MAIN_CONTRACTOR);
-        assertThat(testPile.getClient()).isEqualTo(DEFAULT_CLIENT);
     }
 
     @Test
@@ -164,17 +134,12 @@ public class PileResourceIntTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(pile.getId().intValue())))
-                .andExpect(jsonPath("$.[*].mixDesign").value(hasItem(DEFAULT_MIX_DESIGN.toString())))
-                .andExpect(jsonPath("$.[*].slumpFlowTest").value(hasItem(DEFAULT_SLUMP_FLOW_TEST)))
-                .andExpect(jsonPath("$.[*].pouringRate").value(hasItem(DEFAULT_POURING_RATE.intValue())))
-                .andExpect(jsonPath("$.[*].totalCastedVolume").value(hasItem(DEFAULT_TOTAL_CASTED_VOLUME.intValue())))
-                .andExpect(jsonPath("$.[*].theoreticalConcreteVolume").value(hasItem(DEFAULT_THEORETICAL_CONCRETE_VOLUME.intValue())))
-                .andExpect(jsonPath("$.[*].overconsumptionOfConcrete").value(hasItem(DEFAULT_OVERCONSUMPTION_OF_CONCRETE)))
-                .andExpect(jsonPath("$.[*].comment").value(hasItem(DEFAULT_COMMENT.toString())))
-                .andExpect(jsonPath("$.[*].signatureDate").value(hasItem(DEFAULT_SIGNATURE_DATE_STR)))
-                .andExpect(jsonPath("$.[*].subContractor").value(hasItem(DEFAULT_SUB_CONTRACTOR.toString())))
-                .andExpect(jsonPath("$.[*].mainContractor").value(hasItem(DEFAULT_MAIN_CONTRACTOR.toString())))
-                .andExpect(jsonPath("$.[*].client").value(hasItem(DEFAULT_CLIENT.toString())));
+                .andExpect(jsonPath("$.[*].createdAt").value(hasItem(DEFAULT_CREATED_AT.toString())))
+                .andExpect(jsonPath("$.[*].lastUpdatedAt").value(hasItem(DEFAULT_LAST_UPDATED_AT.toString())))
+                .andExpect(jsonPath("$.[*].lastUpdatedBy").value(hasItem(DEFAULT_LAST_UPDATED_BY.toString())))
+                .andExpect(jsonPath("$.[*].nextPile").value(hasItem(DEFAULT_NEXT_PILE.intValue())))
+                .andExpect(jsonPath("$.[*].prevPile").value(hasItem(DEFAULT_PREV_PILE.intValue())))
+                .andExpect(jsonPath("$.[*].comment").value(hasItem(DEFAULT_COMMENT.toString())));
     }
 
     @Test
@@ -188,17 +153,12 @@ public class PileResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(pile.getId().intValue()))
-            .andExpect(jsonPath("$.mixDesign").value(DEFAULT_MIX_DESIGN.toString()))
-            .andExpect(jsonPath("$.slumpFlowTest").value(DEFAULT_SLUMP_FLOW_TEST))
-            .andExpect(jsonPath("$.pouringRate").value(DEFAULT_POURING_RATE.intValue()))
-            .andExpect(jsonPath("$.totalCastedVolume").value(DEFAULT_TOTAL_CASTED_VOLUME.intValue()))
-            .andExpect(jsonPath("$.theoreticalConcreteVolume").value(DEFAULT_THEORETICAL_CONCRETE_VOLUME.intValue()))
-            .andExpect(jsonPath("$.overconsumptionOfConcrete").value(DEFAULT_OVERCONSUMPTION_OF_CONCRETE))
-            .andExpect(jsonPath("$.comment").value(DEFAULT_COMMENT.toString()))
-            .andExpect(jsonPath("$.signatureDate").value(DEFAULT_SIGNATURE_DATE_STR))
-            .andExpect(jsonPath("$.subContractor").value(DEFAULT_SUB_CONTRACTOR.toString()))
-            .andExpect(jsonPath("$.mainContractor").value(DEFAULT_MAIN_CONTRACTOR.toString()))
-            .andExpect(jsonPath("$.client").value(DEFAULT_CLIENT.toString()));
+            .andExpect(jsonPath("$.createdAt").value(DEFAULT_CREATED_AT.toString()))
+            .andExpect(jsonPath("$.lastUpdatedAt").value(DEFAULT_LAST_UPDATED_AT.toString()))
+            .andExpect(jsonPath("$.lastUpdatedBy").value(DEFAULT_LAST_UPDATED_BY.toString()))
+            .andExpect(jsonPath("$.nextPile").value(DEFAULT_NEXT_PILE.intValue()))
+            .andExpect(jsonPath("$.prevPile").value(DEFAULT_PREV_PILE.intValue()))
+            .andExpect(jsonPath("$.comment").value(DEFAULT_COMMENT.toString()));
     }
 
     @Test
@@ -218,17 +178,12 @@ public class PileResourceIntTest {
 		int databaseSizeBeforeUpdate = pileRepository.findAll().size();
 
         // Update the pile
-        pile.setMixDesign(UPDATED_MIX_DESIGN);
-        pile.setSlumpFlowTest(UPDATED_SLUMP_FLOW_TEST);
-        pile.setPouringRate(UPDATED_POURING_RATE);
-        pile.setTotalCastedVolume(UPDATED_TOTAL_CASTED_VOLUME);
-        pile.setTheoreticalConcreteVolume(UPDATED_THEORETICAL_CONCRETE_VOLUME);
-        pile.setOverconsumptionOfConcrete(UPDATED_OVERCONSUMPTION_OF_CONCRETE);
+        pile.setCreatedAt(UPDATED_CREATED_AT);
+        pile.setLastUpdatedAt(UPDATED_LAST_UPDATED_AT);
+        pile.setLastUpdatedBy(UPDATED_LAST_UPDATED_BY);
+        pile.setNextPile(UPDATED_NEXT_PILE);
+        pile.setPrevPile(UPDATED_PREV_PILE);
         pile.setComment(UPDATED_COMMENT);
-        pile.setSignatureDate(UPDATED_SIGNATURE_DATE);
-        pile.setSubContractor(UPDATED_SUB_CONTRACTOR);
-        pile.setMainContractor(UPDATED_MAIN_CONTRACTOR);
-        pile.setClient(UPDATED_CLIENT);
 
         restPileMockMvc.perform(put("/api/piles")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -239,17 +194,12 @@ public class PileResourceIntTest {
         List<Pile> piles = pileRepository.findAll();
         assertThat(piles).hasSize(databaseSizeBeforeUpdate);
         Pile testPile = piles.get(piles.size() - 1);
-        assertThat(testPile.getMixDesign()).isEqualTo(UPDATED_MIX_DESIGN);
-        assertThat(testPile.getSlumpFlowTest()).isEqualTo(UPDATED_SLUMP_FLOW_TEST);
-        assertThat(testPile.getPouringRate()).isEqualTo(UPDATED_POURING_RATE);
-        assertThat(testPile.getTotalCastedVolume()).isEqualTo(UPDATED_TOTAL_CASTED_VOLUME);
-        assertThat(testPile.getTheoreticalConcreteVolume()).isEqualTo(UPDATED_THEORETICAL_CONCRETE_VOLUME);
-        assertThat(testPile.getOverconsumptionOfConcrete()).isEqualTo(UPDATED_OVERCONSUMPTION_OF_CONCRETE);
+        assertThat(testPile.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
+        assertThat(testPile.getLastUpdatedAt()).isEqualTo(UPDATED_LAST_UPDATED_AT);
+        assertThat(testPile.getLastUpdatedBy()).isEqualTo(UPDATED_LAST_UPDATED_BY);
+        assertThat(testPile.getNextPile()).isEqualTo(UPDATED_NEXT_PILE);
+        assertThat(testPile.getPrevPile()).isEqualTo(UPDATED_PREV_PILE);
         assertThat(testPile.getComment()).isEqualTo(UPDATED_COMMENT);
-        assertThat(testPile.getSignatureDate()).isEqualTo(UPDATED_SIGNATURE_DATE);
-        assertThat(testPile.getSubContractor()).isEqualTo(UPDATED_SUB_CONTRACTOR);
-        assertThat(testPile.getMainContractor()).isEqualTo(UPDATED_MAIN_CONTRACTOR);
-        assertThat(testPile.getClient()).isEqualTo(UPDATED_CLIENT);
     }
 
     @Test

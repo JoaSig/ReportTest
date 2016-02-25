@@ -1,0 +1,58 @@
+{
+    "relationships" : [ {
+        "relationshipId" : 1,
+        "relationshipName" : "user",
+        "relationshipType" : "many-to-many",
+        "otherEntityName" : "user",
+        "otherEntityRelationshipName" : "projectInfo",
+        "otherEntityField" : "name",
+        "ownerSide" : false
+    }, {
+        "relationshipId" : 2,
+        "relationshipName" : "pile",
+        "relationshipType" : "one-to-many",
+        "otherEntityName" : "pile",
+        "otherEntityRelationshipName" : "projectInfo",
+        "otherEntityField" : "name",
+        "ownerSide" : true
+    } ],
+    "fields" : [ {
+        "fieldId" : 1,
+        "fieldName" : "name",
+        "fieldType" : "String",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 2,
+        "fieldName" : "wirCode",
+        "fieldType" : "String",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 3,
+        "fieldName" : "phase",
+        "fieldType" : "String",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 4,
+        "fieldName" : "site",
+        "fieldType" : "String",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 5,
+        "fieldName" : "subContractor",
+        "fieldType" : "String",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 6,
+        "fieldName" : "recordSN",
+        "fieldType" : "Integer",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 7,
+        "fieldName" : "contractNr",
+        "fieldType" : "String",
+        "fieldValidateRules" : [ ]
+    } ],
+    "changelogDate" : "20160224155945",
+    "dto" : "no",
+    "pagination" : "pager"
+}

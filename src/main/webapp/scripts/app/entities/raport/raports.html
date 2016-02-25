@@ -1,0 +1,91 @@
+<div>
+    <h2 translate="documentmanagementApp.raport.home.title">Raports</h2>
+    <jh-alert></jh-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="raport.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span 
+class="hidden-xs"                        translate="documentmanagementApp.raport.home.createLabel">Create new Raport
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="{{ 'documentmanagementApp.raport.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="search()">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="createdAt"><span translate="documentmanagementApp.raport.createdAt">CreatedAt</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastUpdatedAt"><span translate="documentmanagementApp.raport.lastUpdatedAt">LastUpdatedAt</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastUpdatedBy"><span translate="documentmanagementApp.raport.lastUpdatedBy">LastUpdatedBy</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="sendAt"><span translate="documentmanagementApp.raport.sendAt">SendAt</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="receivedAt"><span translate="documentmanagementApp.raport.receivedAt">ReceivedAt</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="description"><span translate="documentmanagementApp.raport.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="comment"><span translate="documentmanagementApp.raport.comment">Comment</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="emails"><span translate="documentmanagementApp.raport.emails">Emails</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="generalInfo.null"><span translate="documentmanagementApp.raport.generalInfo">generalInfo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="projectInfo.null"><span translate="documentmanagementApp.raport.projectInfo">projectInfo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="raport in raports track by raport.id">
+                    <td><a ui-sref="raport.detail({id:raport.id})">{{raport.id}}</a></td>
+                        <td>{{raport.createdAt | date:'mediumDate'}}</td>
+                        <td>{{raport.lastUpdatedAt | date:'mediumDate'}}</td>
+                    <td>{{raport.lastUpdatedBy}}</td>
+                        <td>{{raport.sendAt | date:'mediumDate'}}</td>
+                        <td>{{raport.receivedAt | date:'mediumDate'}}</td>
+                    <td>{{raport.description}}</td>
+                    <td>{{raport.comment}}</td>
+                    <td>{{raport.emails}}</td>
+                    <td>
+                        <a ui-sref="generalInfo.detail({id:raport.generalInfo.id})">{{raport.generalInfo.null}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="projectInfo.detail({id:raport.projectInfo.id})">{{raport.projectInfo.null}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="raport.detail({id:raport.id})"
+                                    class="btn btn-info btn-sm"> 
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="raport.edit({id:raport.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="raport.delete({id:raport.id})"
+                                    class="btn btn-danger btn-sm">                                    
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <uib-pager total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pager>
+</div>

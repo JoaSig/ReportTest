@@ -4,7 +4,7 @@ describe('Controller Tests', function() {
 
     describe('Pile Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPile, MockUser;
+        var MockEntity, MockPile, MockUser, MockConcreting, MockDrilling, MockSteelCage;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -13,6 +13,9 @@ describe('Controller Tests', function() {
             MockEntity = jasmine.createSpy('MockEntity');
             MockPile = jasmine.createSpy('MockPile');
             MockUser = jasmine.createSpy('MockUser');
+            MockConcreting = jasmine.createSpy('MockConcreting');
+            MockDrilling = jasmine.createSpy('MockDrilling');
+            MockSteelCage = jasmine.createSpy('MockSteelCage');
             
 
             var locals = {
@@ -20,7 +23,10 @@ describe('Controller Tests', function() {
                 '$rootScope': $rootScope,
                 'entity': MockEntity ,
                 'Pile': MockPile,
-                'User': MockUser
+                'User': MockUser,
+                'Concreting': MockConcreting,
+                'Drilling': MockDrilling,
+                'SteelCage': MockSteelCage
             };
             createController = function() {
                 $injector.get('$controller')("PileDetailController", locals);

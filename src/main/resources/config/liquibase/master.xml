@@ -5,8 +5,18 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20160217211946_added_entity_Pile.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20160219011635_added_entity_PileDrilling.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/2016021917340_added_entity_PileConcreting.xml" relativeToChangelogFile="false"/>
+    <!--<include file="classpath:config/liquibase/changelog/2016021917340_added_entity_PileConcreting.xml" relativeToChangelogFile="false"/>-->
+    <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_ProjectInfo.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_ImmutableReport.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_Report" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_Signature" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160224171821_added_entity_Concreting.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160224171905_added_entity_Item.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160224174828_added_entity_Drilling.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160224173020_added_entity_Pile.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_GeneralInfo.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_SteelCage.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_Signature.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_Report.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
 </databaseChangeLog>

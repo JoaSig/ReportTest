@@ -1,0 +1,102 @@
+
+<div>
+    <h2><span translate="documentmanagementApp.immutableReport.detail.title">ImmutableReport</span> {{immutableReport.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.immutableReport.createdAt">CreatedAt</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{immutableReport.createdAt | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.immutableReport.lastUpdatedAt">LastUpdatedAt</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{immutableReport.lastUpdatedAt | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.immutableReport.lastUpdatedBy">LastUpdatedBy</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{immutableReport.lastUpdatedBy}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.immutableReport.sendAt">SendAt</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{immutableReport.sendAt | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.immutableReport.receivedAt">ReceivedAt</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{immutableReport.receivedAt | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.immutableReport.description">Description</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{immutableReport.description}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.immutableReport.comment">Comment</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{immutableReport.comment}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.immutableReport.emails">Emails</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{immutableReport.emails}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.immutableReport.generalInfo">generalInfo</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="generalInfo.detail({id:immutableReport.generalInfo.id})">{{immutableReport.generalInfo.id}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.immutableReport.projectInfo">projectInfo</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="projectInfo.detail({id:immutableReport.projectInfo.id})">{{immutableReport.projectInfo.id}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

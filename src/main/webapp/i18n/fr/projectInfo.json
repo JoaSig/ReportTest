@@ -1,0 +1,31 @@
+{
+    "documentmanagementApp": {
+        "projectInfo" : {
+            "home": {
+                "title": "ProjectInfos",
+                "createLabel": "Créer un nouveau ProjectInfo",
+                "createOrEditLabel": "Créer ou éditer un ProjectInfo",
+                "search": "Search for ProjectInfo"
+            },
+            "created": "Un nouveau ProjectInfo a été créé avec l'identifiant {{ param }}",
+            "updated": "Le ProjectInfo avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le ProjectInfo avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le ProjectInfo {{ id }} ?"
+            },
+            "detail": {
+                "title": "ProjectInfo"
+            },
+            "name": "Name",
+            "wirCode": "WirCode",
+            "phase": "Phase",
+            "site": "Site",
+            "subContractor": "SubContractor",
+            "recordSN": "RecordSN",
+            "contractNr": "ContractNr",
+            "user": "User",
+            "pile": "Pile"
+        }
+    }
+}
+

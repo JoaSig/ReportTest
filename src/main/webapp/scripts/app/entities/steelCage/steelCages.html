@@ -1,0 +1,97 @@
+<div>
+    <h2 translate="documentmanagementApp.steelCage.home.title">SteelCages</h2>
+    <jh-alert></jh-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="steelCage.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span 
+class="hidden-xs"                        translate="documentmanagementApp.steelCage.home.createLabel">Create new SteelCage
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="{{ 'documentmanagementApp.steelCage.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="search()">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="createdAt"><span translate="documentmanagementApp.steelCage.createdAt">CreatedAt</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="idCage"><span translate="documentmanagementApp.steelCage.idCage">IdCage</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="sonicPipesCompliance"><span translate="documentmanagementApp.steelCage.sonicPipesCompliance">SonicPipesCompliance</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="waterAndCappingSonicPipeFilling"><span translate="documentmanagementApp.steelCage.waterAndCappingSonicPipeFilling">WaterAndCappingSonicPipeFilling</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="overlappingCompliance"><span translate="documentmanagementApp.steelCage.overlappingCompliance">OverlappingCompliance</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="spacerPositionCompliance"><span translate="documentmanagementApp.steelCage.spacerPositionCompliance">SpacerPositionCompliance</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="distanceBetweenCageTopAndGuideWallEdge"><span translate="documentmanagementApp.steelCage.distanceBetweenCageTopAndGuideWallEdge">DistanceBetweenCageTopAndGuideWallEdge</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="verticalityCompliance"><span translate="documentmanagementApp.steelCage.verticalityCompliance">VerticalityCompliance</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastUpdatedAt"><span translate="documentmanagementApp.steelCage.lastUpdatedAt">LastUpdatedAt</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastUpdatedBy"><span translate="documentmanagementApp.steelCage.lastUpdatedBy">LastUpdatedBy</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="startTime"><span translate="documentmanagementApp.steelCage.startTime">StartTime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="endTime"><span translate="documentmanagementApp.steelCage.endTime">EndTime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="comment"><span translate="documentmanagementApp.steelCage.comment">Comment</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.login"><span translate="documentmanagementApp.steelCage.user">user</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="steelCage in steelCages track by steelCage.id">
+                    <td><a ui-sref="steelCage.detail({id:steelCage.id})">{{steelCage.id}}</a></td>
+                        <td>{{steelCage.createdAt | date:'mediumDate'}}</td>
+                    <td>{{steelCage.idCage}}</td>
+                    <td>{{steelCage.sonicPipesCompliance}}</td>
+                    <td>{{steelCage.waterAndCappingSonicPipeFilling}}</td>
+                    <td>{{steelCage.overlappingCompliance}}</td>
+                    <td>{{steelCage.spacerPositionCompliance}}</td>
+                    <td>{{steelCage.distanceBetweenCageTopAndGuideWallEdge}}</td>
+                    <td>{{steelCage.verticalityCompliance}}</td>
+                        <td>{{steelCage.lastUpdatedAt | date:'mediumDate'}}</td>
+                    <td>{{steelCage.lastUpdatedBy}}</td>
+                        <td>{{steelCage.startTime | date:'mediumDate'}}</td>
+                        <td>{{steelCage.endTime | date:'mediumDate'}}</td>
+                    <td>{{steelCage.comment}}</td>
+                    <td>
+                        {{steelCage.user.login}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="steelCage.detail({id:steelCage.id})"
+                                    class="btn btn-info btn-sm"> 
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="steelCage.edit({id:steelCage.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="steelCage.delete({id:steelCage.id})"
+                                    class="btn btn-danger btn-sm">                                    
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <uib-pager total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pager>
+</div>

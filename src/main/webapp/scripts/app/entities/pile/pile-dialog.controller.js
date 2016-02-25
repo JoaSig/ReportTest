@@ -1,11 +1,38 @@
 'use strict';
 
 angular.module('documentmanagementApp').controller('PileDialogController',
-    ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'Pile', 'User',
-        function($scope, $stateParams, $uibModalInstance, entity, Pile, User) {
+    ['$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Pile', 'User', 'Concreting', 'Drilling', 'SteelCage',
+        function($scope, $stateParams, $uibModalInstance, $q, entity, Pile, User, Concreting, Drilling, SteelCage) {
 
         $scope.pile = entity;
         $scope.users = User.query();
+        $scope.concretings = Concreting.query({filter: 'pile-is-null'});
+        $q.all([$scope.pile.$promise, $scope.concretings.$promise]).then(function() {
+            if (!$scope.pile.concreting || !$scope.pile.concreting.id) {
+                return $q.reject();
+            }
+            return Concreting.get({id : $scope.pile.concreting.id}).$promise;
+        }).then(function(concreting) {
+            $scope.concretings.push(concreting);
+        });
+        $scope.drillings = Drilling.query({filter: 'pile-is-null'});
+        $q.all([$scope.pile.$promise, $scope.drillings.$promise]).then(function() {
+            if (!$scope.pile.drilling || !$scope.pile.drilling.id) {
+                return $q.reject();
+            }
+            return Drilling.get({id : $scope.pile.drilling.id}).$promise;
+        }).then(function(drilling) {
+            $scope.drillings.push(drilling);
+        });
+        $scope.steelcages = SteelCage.query({filter: 'pile-is-null'});
+        $q.all([$scope.pile.$promise, $scope.steelcages.$promise]).then(function() {
+            if (!$scope.pile.steelCage || !$scope.pile.steelCage.id) {
+                return $q.reject();
+            }
+            return SteelCage.get({id : $scope.pile.steelCage.id}).$promise;
+        }).then(function(steelCage) {
+            $scope.steelcages.push(steelCage);
+        });
         $scope.load = function(id) {
             Pile.get({id : id}, function(result) {
                 $scope.pile = result;
@@ -34,13 +61,22 @@ angular.module('documentmanagementApp').controller('PileDialogController',
         $scope.clear = function() {
             $uibModalInstance.dismiss('cancel');
         };
-        $scope.datePickerForSignatureDate = {};
+        $scope.datePickerForCreatedAt = {};
 
-        $scope.datePickerForSignatureDate.status = {
+        $scope.datePickerForCreatedAt.status = {
             opened: false
         };
 
-        $scope.datePickerForSignatureDateOpen = function($event) {
-            $scope.datePickerForSignatureDate.status.opened = true;
+        $scope.datePickerForCreatedAtOpen = function($event) {
+            $scope.datePickerForCreatedAt.status.opened = true;
+        };
+        $scope.datePickerForLastUpdatedAt = {};
+
+        $scope.datePickerForLastUpdatedAt.status = {
+            opened: false
+        };
+
+        $scope.datePickerForLastUpdatedAtOpen = function($event) {
+            $scope.datePickerForLastUpdatedAt.status.opened = true;
         };
 }]);

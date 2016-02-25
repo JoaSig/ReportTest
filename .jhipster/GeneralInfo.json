@@ -1,0 +1,27 @@
+{
+    "relationships" : [ ],
+    "fields" : [ {
+        "fieldId" : 1,
+        "fieldName" : "treviRefNr",
+        "fieldType" : "String",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 2,
+        "fieldName" : "pilingRigType",
+        "fieldType" : "String",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 3,
+        "fieldName" : "machineSerialNr",
+        "fieldType" : "Integer",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 4,
+        "fieldName" : "date",
+        "fieldType" : "LocalDate",
+        "fieldValidateRules" : [ ]
+    } ],
+    "changelogDate" : "20160224155945",
+    "dto" : "no",
+    "pagination" : "pager"
+}

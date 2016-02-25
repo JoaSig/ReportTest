@@ -16,18 +16,16 @@
             "detail": {
                 "title": "Pile"
             },
-            "mixDesign": "MixDesign",
-            "slumpFlowTest": "SlumpFlowTest",
-            "pouringRate": "PouringRate",
-            "totalCastedVolume": "TotalCastedVolume",
-            "theoreticalConcreteVolume": "TheoreticalConcreteVolume",
-            "overconsumptionOfConcrete": "OverconsumptionOfConcrete",
+            "createdAt": "CreatedAt",
+            "lastUpdatedAt": "LastUpdatedAt",
+            "lastUpdatedBy": "LastUpdatedBy",
+            "nextPile": "NextPile",
+            "prevPile": "PrevPile",
             "comment": "Comment",
-            "signatureDate": "SignatureDate",
-            "subContractor": "SubContractor",
-            "mainContractor": "MainContractor",
-            "client": "Client",
-            "user": "User"
+            "user": "User",
+            "concreting": "Concreting",
+            "drilling": "Drilling",
+            "steelCage": "SteelCage"
         }
     }
 }

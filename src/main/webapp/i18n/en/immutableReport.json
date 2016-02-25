@@ -1,0 +1,33 @@
+{
+    "documentmanagementApp": {
+        "immutableReport" : {
+            "home": {
+                "title": "ImmutableReports",
+                "createLabel": "Create a new ImmutableReport",
+                "createOrEditLabel": "Create or edit a ImmutableReport",
+                "search": "Search for ImmutableReport"
+            },
+            "created": "A new ImmutableReport is created with identifier {{ param }}",
+            "updated": "A ImmutableReport is updated with identifier {{ param }}",
+            "deleted": "A ImmutableReport is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete ImmutableReport {{ id }}?"
+            },
+            "detail": {
+                "title": "ImmutableReport"
+            },
+            "createdAt": "CreatedAt",
+            "lastUpdatedAt": "LastUpdatedAt",
+            "lastUpdatedBy": "LastUpdatedBy",
+            "sendAt": "SendAt",
+            "receivedAt": "ReceivedAt",
+            "description": "Description",
+            "comment": "Comment",
+            "emails": "Emails",
+            "user": "User",
+            "signature": "Signature",
+            "generalInfo": "GeneralInfo",
+            "projectInfo": "ProjectInfo"
+        }
+    }
+}

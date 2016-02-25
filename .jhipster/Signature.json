@@ -1,0 +1,28 @@
+{
+    "relationships" : [ {
+        "relationshipId" : 1,
+        "relationshipName" : "user",
+        "relationshipType" : "one-to-one",
+        "otherEntityName" : "user",
+        "otherEntityRelationshipName" : "owner_id",
+        "otherEntityField" : "id",
+        "ownerSide" : false
+    }, {
+        "relationshipId" : 2,
+        "relationshipName" : "report",
+        "relationshipType" : "many-to-one",
+        "otherEntityName" : "report",
+        "otherEntityRelationshipName" : "signature",
+        "otherEntityField" : "id",
+        "ownerSide" : true
+    } ],
+    "fields" : [ {
+        "fieldId" : 1,
+        "fieldName" : "signedAt",
+        "fieldType" : "LocalDate",
+        "fieldValidateRules" : [ ]
+    } ],
+    "changelogDate" : "20160224155945",
+    "dto" : "no",
+    "pagination" : "pager"
+}

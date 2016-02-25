@@ -12,50 +12,42 @@
             <tbody>
             <tr>
                 <td>
-                    <span translate="documentmanagementApp.pile.mixDesign">MixDesign</span>
+                    <span translate="documentmanagementApp.pile.createdAt">CreatedAt</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{pile.mixDesign}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="documentmanagementApp.pile.slumpFlowTest">SlumpFlowTest</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{pile.slumpFlowTest}}</span>
+                    <span class="form-control-static">{{pile.createdAt | date:'mediumDate'}}</span>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span translate="documentmanagementApp.pile.pouringRate">PouringRate</span>
+                    <span translate="documentmanagementApp.pile.lastUpdatedAt">LastUpdatedAt</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{pile.pouringRate}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="documentmanagementApp.pile.totalCastedVolume">TotalCastedVolume</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{pile.totalCastedVolume}}</span>
+                    <span class="form-control-static">{{pile.lastUpdatedAt | date:'mediumDate'}}</span>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span translate="documentmanagementApp.pile.theoreticalConcreteVolume">TheoreticalConcreteVolume</span>
+                    <span translate="documentmanagementApp.pile.lastUpdatedBy">LastUpdatedBy</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{pile.theoreticalConcreteVolume}}</span>
+                    <span class="form-control-static">{{pile.lastUpdatedBy}}</span>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span translate="documentmanagementApp.pile.overconsumptionOfConcrete">OverconsumptionOfConcrete</span>
+                    <span translate="documentmanagementApp.pile.nextPile">NextPile</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{pile.overconsumptionOfConcrete}}</span>
+                    <span class="form-control-static">{{pile.nextPile}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.prevPile">PrevPile</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pile.prevPile}}</span>
                 </td>
             </tr>
             <tr>
@@ -68,42 +60,34 @@
             </tr>
             <tr>
                 <td>
-                    <span translate="documentmanagementApp.pile.signatureDate">SignatureDate</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{pile.signatureDate | date:'medium'}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="documentmanagementApp.pile.subContractor">SubContractor</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{pile.subContractor}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="documentmanagementApp.pile.mainContractor">MainContractor</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{pile.mainContractor}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="documentmanagementApp.pile.client">Client</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{pile.client}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <span translate="documentmanagementApp.pile.user">user</span>
                 </td>
                 <td>
-                    {{pile.user.id}}
+                    {{pile.user.login}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.concreting">concreting</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="concreting.detail({id:pile.concreting.id})">{{pile.concreting.id}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.drilling">drilling</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="drilling.detail({id:pile.drilling.id})">{{pile.drilling.id}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.steelCage">steelCage</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="steelCage.detail({id:pile.steelCage.id})">{{pile.steelCage.id}}</a>
                 </td>
             </tr>
             </tbody>

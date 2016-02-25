@@ -1,0 +1,100 @@
+<div>
+    <h2 translate="documentmanagementApp.drilling.home.title">Drillings</h2>
+    <jh-alert></jh-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="drilling.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span 
+class="hidden-xs"                        translate="documentmanagementApp.drilling.home.createLabel">Create new Drilling
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="{{ 'documentmanagementApp.drilling.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="search()">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pileType"><span translate="documentmanagementApp.drilling.pileType">PileType</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pilingRigType"><span translate="documentmanagementApp.drilling.pilingRigType">PilingRigType</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pileNr"><span translate="documentmanagementApp.drilling.pileNr">PileNr</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pileLength"><span translate="documentmanagementApp.drilling.pileLength">PileLength</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="diameter"><span translate="documentmanagementApp.drilling.diameter">Diameter</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="topGuideElevation"><span translate="documentmanagementApp.drilling.topGuideElevation">TopGuideElevation</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pileTopLevel"><span translate="documentmanagementApp.drilling.pileTopLevel">PileTopLevel</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pileCutoffElevation"><span translate="documentmanagementApp.drilling.pileCutoffElevation">PileCutoffElevation</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pileToeLevel"><span translate="documentmanagementApp.drilling.pileToeLevel">PileToeLevel</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="casingDeviation"><span translate="documentmanagementApp.drilling.casingDeviation">CasingDeviation</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="startDate"><span translate="documentmanagementApp.drilling.startDate">StartDate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="endDate"><span translate="documentmanagementApp.drilling.endDate">EndDate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="startTime"><span translate="documentmanagementApp.drilling.startTime">StartTime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="endTime"><span translate="documentmanagementApp.drilling.endTime">EndTime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="comment"><span translate="documentmanagementApp.drilling.comment">Comment</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.login"><span translate="documentmanagementApp.drilling.user">user</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="drilling in drillings track by drilling.id">
+                    <td><a ui-sref="drilling.detail({id:drilling.id})">{{drilling.id}}</a></td>
+                    <td>{{drilling.pileType}}</td>
+                    <td>{{drilling.pilingRigType}}</td>
+                    <td>{{drilling.pileNr}}</td>
+                    <td>{{drilling.pileLength}}</td>
+                    <td>{{drilling.diameter}}</td>
+                    <td>{{drilling.topGuideElevation}}</td>
+                    <td>{{drilling.pileTopLevel}}</td>
+                    <td>{{drilling.pileCutoffElevation}}</td>
+                    <td>{{drilling.pileToeLevel}}</td>
+                    <td>{{drilling.casingDeviation}}</td>
+                        <td>{{drilling.startDate | date:'mediumDate'}}</td>
+                        <td>{{drilling.endDate | date:'mediumDate'}}</td>
+                        <td>{{drilling.startTime | date:'mediumDate'}}</td>
+                        <td>{{drilling.endTime | date:'mediumDate'}}</td>
+                    <td>{{drilling.comment}}</td>
+                    <td>
+                        {{drilling.user.login}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="drilling.detail({id:drilling.id})"
+                                    class="btn btn-info btn-sm"> 
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="drilling.edit({id:drilling.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="drilling.delete({id:drilling.id})"
+                                    class="btn btn-danger btn-sm">                                    
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

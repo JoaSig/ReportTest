@@ -1,0 +1,94 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myRaportLabel" translate="documentmanagementApp.raport.home.createOrEditLabel">Create or edit a Raport</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="raport.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.raport.createdAt" for="field_createdAt">CreatedAt</label>
+            <input id="field_createdAt" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="raport.createdAt" is-open="datePickerForCreatedAt.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForCreatedAtOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.raport.lastUpdatedAt" for="field_lastUpdatedAt">LastUpdatedAt</label>
+            <input id="field_lastUpdatedAt" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="raport.lastUpdatedAt" is-open="datePickerForLastUpdatedAt.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForLastUpdatedAtOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.raport.lastUpdatedBy" for="field_lastUpdatedBy">LastUpdatedBy</label>
+            <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                    ng-model="raport.lastUpdatedBy"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.raport.sendAt" for="field_sendAt">SendAt</label>
+            <input id="field_sendAt" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="raport.sendAt" is-open="datePickerForSendAt.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForSendAtOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.raport.receivedAt" for="field_receivedAt">ReceivedAt</label>
+            <input id="field_receivedAt" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="raport.receivedAt" is-open="datePickerForReceivedAt.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForReceivedAtOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.raport.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                    ng-model="raport.description"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.raport.comment" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                    ng-model="raport.comment"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.raport.emails" for="field_emails">Emails</label>
+            <input type="text" class="form-control" name="emails" id="field_emails"
+                    ng-model="raport.emails"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="documentmanagementApp.raport.generalInfo" for="field_generalInfo">generalInfo</label>
+            <select class="form-control" id="field_generalInfo" name="generalInfo" ng-model="raport.generalInfo" ng-options="generalInfo as generalInfo. for generalInfo in generalinfos | orderBy:'id' track by generalInfo.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="documentmanagementApp.raport.projectInfo" for="field_projectInfo">projectInfo</label>
+            <select class="form-control" id="field_projectInfo" name="projectInfo" ng-model="raport.projectInfo" ng-options="projectInfo as projectInfo. for projectInfo in projectinfos | orderBy:'id' track by projectInfo.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

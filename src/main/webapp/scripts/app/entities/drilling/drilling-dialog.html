@@ -1,0 +1,130 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myDrillingLabel" translate="documentmanagementApp.drilling.home.createOrEditLabel">Create or edit a Drilling</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="drilling.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.pileType" for="field_pileType">PileType</label>
+            <input type="text" class="form-control" name="pileType" id="field_pileType"
+                    ng-model="drilling.pileType"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.pilingRigType" for="field_pilingRigType">PilingRigType</label>
+            <input type="text" class="form-control" name="pilingRigType" id="field_pilingRigType"
+                    ng-model="drilling.pilingRigType"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.pileNr" for="field_pileNr">PileNr</label>
+            <input type="number" class="form-control" name="pileNr" id="field_pileNr"
+                    ng-model="drilling.pileNr"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.pileLength" for="field_pileLength">PileLength</label>
+            <input type="number" class="form-control" name="pileLength" id="field_pileLength"
+                    ng-model="drilling.pileLength"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.diameter" for="field_diameter">Diameter</label>
+            <input type="number" class="form-control" name="diameter" id="field_diameter"
+                    ng-model="drilling.diameter"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.topGuideElevation" for="field_topGuideElevation">TopGuideElevation</label>
+            <input type="number" class="form-control" name="topGuideElevation" id="field_topGuideElevation"
+                    ng-model="drilling.topGuideElevation"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.pileTopLevel" for="field_pileTopLevel">PileTopLevel</label>
+            <input type="number" class="form-control" name="pileTopLevel" id="field_pileTopLevel"
+                    ng-model="drilling.pileTopLevel"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.pileCutoffElevation" for="field_pileCutoffElevation">PileCutoffElevation</label>
+            <input type="number" class="form-control" name="pileCutoffElevation" id="field_pileCutoffElevation"
+                    ng-model="drilling.pileCutoffElevation"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.pileToeLevel" for="field_pileToeLevel">PileToeLevel</label>
+            <input type="number" class="form-control" name="pileToeLevel" id="field_pileToeLevel"
+                    ng-model="drilling.pileToeLevel"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.casingDeviation" for="field_casingDeviation">CasingDeviation</label>
+            <input type="number" class="form-control" name="casingDeviation" id="field_casingDeviation"
+                    ng-model="drilling.casingDeviation"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.startDate" for="field_startDate">StartDate</label>
+            <input id="field_startDate" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="drilling.startDate" is-open="datePickerForStartDate.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForStartDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.endDate" for="field_endDate">EndDate</label>
+            <input id="field_endDate" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="drilling.endDate" is-open="datePickerForEndDate.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForEndDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.startTime" for="field_startTime">StartTime</label>
+            <input id="field_startTime" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="drilling.startTime" is-open="datePickerForStartTime.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForStartTimeOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.endTime" for="field_endTime">EndTime</label>
+            <input id="field_endTime" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="drilling.endTime" is-open="datePickerForEndTime.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForEndTimeOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.drilling.comment" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                    ng-model="drilling.comment"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="documentmanagementApp.drilling.user" for="field_user">user</label>
+            <select class="form-control" id="field_user" name="user" ng-model="drilling.user" ng-options="user as user.login for user in users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

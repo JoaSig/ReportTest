@@ -61,17 +61,12 @@ angular.module('documentmanagementApp')
                         resolve: {
                             entity: function () {
                                 return {
-                                    mixDesign: null,
-                                    slumpFlowTest: null,
-                                    pouringRate: null,
-                                    totalCastedVolume: null,
-                                    theoreticalConcreteVolume: null,
-                                    overconsumptionOfConcrete: null,
+                                    createdAt: null,
+                                    lastUpdatedAt: null,
+                                    lastUpdatedBy: null,
+                                    nextPile: null,
+                                    prevPile: null,
                                     comment: null,
-                                    signatureDate: null,
-                                    subContractor: null,
-                                    mainContractor: null,
-                                    client: null,
                                     id: null
                                 };
                             }

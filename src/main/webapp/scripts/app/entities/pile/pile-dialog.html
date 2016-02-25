@@ -14,39 +14,37 @@
                     ng-model="pile.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" translate="documentmanagementApp.pile.mixDesign" for="field_mixDesign">MixDesign</label>
-            <input type="text" class="form-control" name="mixDesign" id="field_mixDesign"
-                    ng-model="pile.mixDesign"
+            <label class="control-label" translate="documentmanagementApp.pile.createdAt" for="field_createdAt">CreatedAt</label>
+            <input id="field_createdAt" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="pile.createdAt" is-open="datePickerForCreatedAt.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForCreatedAtOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.lastUpdatedAt" for="field_lastUpdatedAt">LastUpdatedAt</label>
+            <input id="field_lastUpdatedAt" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="pile.lastUpdatedAt" is-open="datePickerForLastUpdatedAt.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForLastUpdatedAtOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.lastUpdatedBy" for="field_lastUpdatedBy">LastUpdatedBy</label>
+            <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                    ng-model="pile.lastUpdatedBy"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" translate="documentmanagementApp.pile.slumpFlowTest" for="field_slumpFlowTest">SlumpFlowTest</label>
-            <input type="number" class="form-control" name="slumpFlowTest" id="field_slumpFlowTest"
-                    ng-model="pile.slumpFlowTest"
+            <label class="control-label" translate="documentmanagementApp.pile.nextPile" for="field_nextPile">NextPile</label>
+            <input type="number" class="form-control" name="nextPile" id="field_nextPile"
+                    ng-model="pile.nextPile"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" translate="documentmanagementApp.pile.pouringRate" for="field_pouringRate">PouringRate</label>
-            <input type="number" class="form-control" name="pouringRate" id="field_pouringRate"
-                    ng-model="pile.pouringRate"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" translate="documentmanagementApp.pile.totalCastedVolume" for="field_totalCastedVolume">TotalCastedVolume</label>
-            <input type="number" class="form-control" name="totalCastedVolume" id="field_totalCastedVolume"
-                    ng-model="pile.totalCastedVolume"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" translate="documentmanagementApp.pile.theoreticalConcreteVolume" for="field_theoreticalConcreteVolume">TheoreticalConcreteVolume</label>
-            <input type="number" class="form-control" name="theoreticalConcreteVolume" id="field_theoreticalConcreteVolume"
-                    ng-model="pile.theoreticalConcreteVolume"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" translate="documentmanagementApp.pile.overconsumptionOfConcrete" for="field_overconsumptionOfConcrete">OverconsumptionOfConcrete</label>
-            <input type="number" class="form-control" name="overconsumptionOfConcrete" id="field_overconsumptionOfConcrete"
-                    ng-model="pile.overconsumptionOfConcrete"
+            <label class="control-label" translate="documentmanagementApp.pile.prevPile" for="field_prevPile">PrevPile</label>
+            <input type="number" class="form-control" name="prevPile" id="field_prevPile"
+                    ng-model="pile.prevPile"
                      />
         </div>
         <div class="form-group">
@@ -55,36 +53,28 @@
                     ng-model="pile.comment"
                      />
         </div>
-        <div class="form-group">
-            <label class="control-label" translate="documentmanagementApp.pile.signatureDate" for="field_signatureDate">SignatureDate</label>
-            <input id="field_signatureDate" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="pile.signatureDate" is-open="datePickerForSignatureDate.status.opened"
-            />
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="datePickerForSignatureDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-        </div>
-        <div class="form-group">
-            <label class="control-label" translate="documentmanagementApp.pile.subContractor" for="field_subContractor">SubContractor</label>
-            <input type="text" class="form-control" name="subContractor" id="field_subContractor"
-                    ng-model="pile.subContractor"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" translate="documentmanagementApp.pile.mainContractor" for="field_mainContractor">MainContractor</label>
-            <input type="text" class="form-control" name="mainContractor" id="field_mainContractor"
-                    ng-model="pile.mainContractor"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" translate="documentmanagementApp.pile.client" for="field_client">Client</label>
-            <input type="text" class="form-control" name="client" id="field_client"
-                    ng-model="pile.client"
-                     />
-        </div>
 
         <div class="form-group">
             <label translate="documentmanagementApp.pile.user" for="field_user">user</label>
-            <select class="form-control" id="field_user" name="user" ng-model="pile.user" ng-options="user as user.id for user in users track by user.id">
+            <select class="form-control" id="field_user" name="user" ng-model="pile.user" ng-options="user as user.login for user in users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="documentmanagementApp.pile.concreting" for="field_concreting">concreting</label>
+            <select class="form-control" id="field_concreting" name="concreting" ng-model="pile.concreting" ng-options="concreting as concreting.id for concreting in concretings | orderBy:'id' track by concreting.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="documentmanagementApp.pile.drilling" for="field_drilling">drilling</label>
+            <select class="form-control" id="field_drilling" name="drilling" ng-model="pile.drilling" ng-options="drilling as drilling.id for drilling in drillings | orderBy:'id' track by drilling.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="documentmanagementApp.pile.steelCage" for="field_steelCage">steelCage</label>
+            <select class="form-control" id="field_steelCage" name="steelCage" ng-model="pile.steelCage" ng-options="steelCage as steelCage.id for steelCage in steelcages | orderBy:'id' track by steelCage.id">
                 <option value=""></option>
             </select>
         </div>

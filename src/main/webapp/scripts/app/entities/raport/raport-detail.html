@@ -1,0 +1,102 @@
+
+<div>
+    <h2><span translate="documentmanagementApp.raport.detail.title">Raport</span> {{raport.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.raport.createdAt">CreatedAt</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{raport.createdAt | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.raport.lastUpdatedAt">LastUpdatedAt</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{raport.lastUpdatedAt | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.raport.lastUpdatedBy">LastUpdatedBy</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{raport.lastUpdatedBy}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.raport.sendAt">SendAt</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{raport.sendAt | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.raport.receivedAt">ReceivedAt</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{raport.receivedAt | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.raport.description">Description</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{raport.description}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.raport.comment">Comment</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{raport.comment}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.raport.emails">Emails</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{raport.emails}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.raport.generalInfo">generalInfo</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="generalInfo.detail({id:raport.generalInfo.id})">{{raport.generalInfo.null}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.raport.projectInfo">projectInfo</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="projectInfo.detail({id:raport.projectInfo.id})">{{raport.projectInfo.null}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

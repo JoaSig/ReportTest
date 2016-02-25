@@ -1,73 +1,68 @@
 {
-    "relationships": [
-        {
-            "relationshipId": 1,
-            "relationshipName": "user",
-            "otherEntityName": "user",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        }
-    ],
-    "fields": [
-        {
-            "fieldId": 1,
-            "fieldName": "mixDesign",
-            "fieldType": "String"
-        },
-        {
-            "fieldId": 2,
-            "fieldName": "slumpFlowTest",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldId": 3,
-            "fieldName": "pouringRate",
-            "fieldType": "BigDecimal"
-        },
-        {
-            "fieldId": 4,
-            "fieldName": "totalCastedVolume",
-            "fieldType": "BigDecimal"
-        },
-        {
-            "fieldId": 5,
-            "fieldName": "theoreticalConcreteVolume",
-            "fieldType": "BigDecimal"
-        },
-        {
-            "fieldId": 6,
-            "fieldName": "overconsumptionOfConcrete",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldId": 7,
-            "fieldName": "comment",
-            "fieldType": "String",
-            "fieldValidateRules": []
-        },
-        {
-            "fieldId": 8,
-            "fieldName": "signatureDate",
-            "fieldType": "ZonedDateTime"
-        },
-        {
-            "fieldId": 9,
-            "fieldName": "subContractor",
-            "fieldType": "String"
-        },
-        {
-            "fieldId": 10,
-            "fieldName": "mainContractor",
-            "fieldType": "String"
-        },
-        {
-            "fieldId": 11,
-            "fieldName": "client",
-            "fieldType": "String"
-        }
-    ],
-    "changelogDate": "20160217211946",
-    "dto": "no",
-    "service": "no",
-    "pagination": "pager"
+    "relationships" : [ {
+        "relationshipId" : 1,
+        "relationshipName": "user",
+        "otherEntityName": "user",
+        "relationshipType": "one-to-one",
+        "otherEntityField": "login",
+        "ownerSide": true
+    }, {
+        "relationshipId" : 2,
+        "relationshipName" : "concreting",
+        "relationshipType" : "one-to-one",
+        "otherEntityName" : "concreting",
+        "otherEntityRelationshipName" : "pile",
+        "otherEntityField" : "id",
+        "ownerSide" : true
+    }, {
+        "relationshipId" : 3,
+        "relationshipName" : "drilling",
+        "relationshipType" : "one-to-one",
+        "otherEntityName" : "drilling",
+        "otherEntityRelationshipName" : "pile",
+        "otherEntityField" : "id",
+        "ownerSide" : true
+    }, {
+        "relationshipId" : 4,
+        "relationshipName" : "steelCage",
+        "relationshipType" : "one-to-one",
+        "otherEntityName" : "steelCage",
+        "otherEntityRelationshipName" : "pile",
+        "otherEntityField" : "id",
+        "ownerSide" : true
+    } ],
+    "fields" : [ {
+        "fieldId" : 1,
+        "fieldName" : "createdAt",
+        "fieldType" : "LocalDate",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 2,
+        "fieldName" : "lastUpdatedAt",
+        "fieldType" : "LocalDate",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 3,
+        "fieldName" : "lastUpdatedBy",
+        "fieldType" : "String",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 4,
+        "fieldName" : "nextPile",
+        "fieldType" : "Long",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 5,
+        "fieldName" : "prevPile",
+        "fieldType" : "Long",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 6,
+        "fieldName" : "comment",
+        "fieldType" : "String",
+        "fieldValidateRules" : [ ]
+    } ],
+    "changelogDate" : "20160224173020",
+    "dto" : "no",
+    "pagination" : "yes"
 }

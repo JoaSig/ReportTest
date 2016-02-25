@@ -51,6 +51,12 @@ public class CreateJHipsterJson {
     }
 
     @Test
+    public void testDB() throws Exception {
+
+
+    }
+
+    @Test
     public void createTheJSON() throws InstantiationException, IllegalAccessException, IOException {
         Map<String, JHipsterEntity> map = new LinkedHashMap<>();
 

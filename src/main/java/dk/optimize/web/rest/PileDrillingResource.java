@@ -175,7 +175,7 @@ public class PileDrillingResource {
 //        // filter by current user and sum the pileDrillings
 //        Integer numPoints = pileDrillings.stream()
 //            .filter(p -> p.getUser().getLogin().equals(SecurityUtils.getCurrentUserLogin()))
-//            .mapToInt(p -> p.getProjectDrillingDepth().intValue() + p.getDrillingEffectiveDepth().intValue())
+//            .mapToInt(p -> p.getProjectDepth().intValue() + p.getDrillingEffectiveDepth().intValue())
 //            .sum();
 //        PileDrillingsPerMonth count = new PileDrillingsPerMonth(numPoints, start);
 //        return new ResponseEntity<>(count, HttpStatus.OK);
@@ -212,7 +212,7 @@ public class PileDrillingResource {
         // filter by current user and sum the pileDrillings
 //        BigDecimal numPoints = pileDrillings.stream()
 //            .filter(p -> p.getUser().getLogin().equals(SecurityUtils.getCurrentUserLogin()))
-//            .mapToDouble(p -> p.getProjectDrillingDepth().intValueExact())
+//            .mapToDouble(p -> p.getProjectDepth().intValueExact())
 //            .sum();
 //        PileDrillingsByMachine sum = new PileDrillingsByMachine(numPoints, machine);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/pileDrillings/machine");

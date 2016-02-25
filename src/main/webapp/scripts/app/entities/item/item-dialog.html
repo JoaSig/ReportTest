@@ -1,0 +1,72 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myItemLabel" translate="documentmanagementApp.item.home.createOrEditLabel">Create or edit a Item</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="item.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.item.orderTime" for="field_orderTime">OrderTime</label>
+            <input id="field_orderTime" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="item.orderTime" is-open="datePickerForOrderTime.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForOrderTimeOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.item.arrivalTime" for="field_arrivalTime">ArrivalTime</label>
+            <input id="field_arrivalTime" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="item.arrivalTime" is-open="datePickerForArrivalTime.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForArrivalTimeOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.item.truck" for="field_truck">Truck</label>
+            <input type="number" class="form-control" name="truck" id="field_truck"
+                    ng-model="item.truck"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.item.casted" for="field_casted">Casted</label>
+            <input type="number" class="form-control" name="casted" id="field_casted"
+                    ng-model="item.casted"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.item.slump" for="field_slump">Slump</label>
+            <input type="number" class="form-control" name="slump" id="field_slump"
+                    ng-model="item.slump"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.item.theoreticalConcreteVolume" for="field_theoreticalConcreteVolume">TheoreticalConcreteVolume</label>
+            <input type="number" class="form-control" name="theoreticalConcreteVolume" id="field_theoreticalConcreteVolume"
+                    ng-model="item.theoreticalConcreteVolume"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="documentmanagementApp.item.concreting" for="field_concreting">concreting</label>
+            <select class="form-control" id="field_concreting" name="concreting" ng-model="item.concreting" ng-options="concreting as concreting.id for concreting in concretings track by concreting.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
