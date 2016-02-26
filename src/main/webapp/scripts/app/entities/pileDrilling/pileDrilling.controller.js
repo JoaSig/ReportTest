@@ -74,12 +74,13 @@ angular.module('documentmanagementApp')
         $scope.clear = function () {
             $scope.pileDrilling = {
                 drillingMachine: null,
-                projectDrillingDepth: null,
-                drillingEffectiveDepth: null,
-                drillingStartDate: null,
-                drillingEndDate: null,
-                drillingStartTime: null,
-                drillingEndTime: null,
+                projectDepth: null,
+                effectiveDepth: null,
+                StartDate: null,
+                EndDate: null,
+                StartTime: null,
+                EndTime: null,
+                drillingId: null,
                 id: null
             };
         };
