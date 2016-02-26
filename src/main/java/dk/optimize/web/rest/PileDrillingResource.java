@@ -229,7 +229,7 @@ public class PileDrillingResource {
     }
 
     private long getTotalDrillingMinutes(PileDrilling pileDrilling, Map<Long, Long> drillingMinutesMap) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 //        try {
 //            Date startDate = dateFormat.parse(pileDrilling.getDrillingStartTime());
 //            Instant instant = Instant.ofEpochMilli(pileDrilling.getDrillingStartTime().);

@@ -15,6 +15,10 @@ angular.module('documentmanagementApp')
             $state.go('home');
         };
 
+        $scope.$on('userLogIn', function(event, show) {
+            $scope.getLoggedInUser();
+        });
+
         $scope.getLoggedInUser = function () {
             Principal.identity().then(function (account) {
                 $scope.account = account;

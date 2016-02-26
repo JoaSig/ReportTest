@@ -3,23 +3,23 @@
     <jh-alert></jh-alert>
     <br/>
     <div class="container-fluid">
-        <div class="col-md-8">
-            <span ng-if="pileDrillingsByMachine.drillings.length">
-              <nvd3 options="pdOptions" data="pdData" class="with-3d-shadow with-transitions"></nvd3>
-          </span>
-          <span ng-if="!pileDrillingsByMachine.drillings.length">
-              <div class="alert" type="info">Choose a Drilling Machine from the dropdown.</div>
-          </span>
+        <!--<div class="col-md-8">-->
+            <!--<span ng-if="pileDrillingsByMachine.drillings.length">-->
+              <!--<nvd3 options="pdOptions" data="pdData" class="with-3d-shadow with-transitions"></nvd3>-->
+          <!--</span>-->
+          <!--<span ng-if="!pileDrillingsByMachine.drillings.length">-->
+              <!--<div class="alert" type="info">Choose a Drilling Machine from the dropdown.</div>-->
+          <!--</span>-->
 
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <select class="input-sm" ng-model="drillingMachine" ng-options="m as m for m in machines"
-                            ng-change="getMachineForGraph()">
-                        <option label="Select Drilling Machine.."></option>
-                    </select>
-                </div>
-            </div>
-        </div>
+            <!--<div class="form-horizontal">-->
+                <!--<div class="form-group">-->
+                    <!--<select class="input-sm" ng-model="drillingMachine" ng-options="m as m for m in machines"-->
+                            <!--ng-change="getMachineForGraph()">-->
+                        <!--<option label="Select Drilling Machine.."></option>-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
     <br/>
     <div class="container-fluid">

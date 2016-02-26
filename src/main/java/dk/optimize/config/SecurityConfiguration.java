@@ -83,6 +83,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/**").authenticated()
             .antMatchers("/metrics/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/health/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/dashboard/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/trace/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/dump/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/shutdown/**").hasAuthority(AuthoritiesConstants.ADMIN)
@@ -98,7 +99,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/configuration/security").permitAll()
             .antMatchers("/configuration/ui").permitAll()
             .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/protected/**").authenticated() 
+            .antMatchers("/protected/**").authenticated()
         .and()
             .apply(securityConfigurerAdapter());
 

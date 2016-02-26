@@ -14,6 +14,7 @@ angular.module('documentmanagementApp')
                 password: $scope.password,
                 rememberMe: $scope.rememberMe
             }).then(function () {
+                $rootScope.$broadcast('userLogIn', $scope.username);
                 $scope.authenticationError = false;
                 if ($rootScope.previousStateName === 'register') {
                     $state.go('home');

@@ -12,58 +12,22 @@ import java.util.Map;
  * Date: 20/02/16
  */
 public class PileDrillingsByMachine {
-    private final String totalDrillTime;
-    private String machine;
-    private BigDecimal totalDrillingDepth;
-    private long totalDrillingMinutes;
-    private BigDecimal meterDrillingPerHour;
-    private List<PileDrilling> drillings;
-    private Map<Long, Long> drillingMinutesMap = new HashMap<>();
+    public final String totalDrillTime;
+    public String machine;
+    public BigDecimal totalDrillingDepth;
+    public long totalDrillingMinutes;
+    public BigDecimal meterDrillingPerHour;
+    public List<PileDrilling> drillings;
+    public Map<Long, Long> drillingMinutesMap = new HashMap<>();
 
-    public PileDrillingsByMachine(BigDecimal totalDrillingDepth, String machine, long meterDrillPerHr, BigDecimal meterDrillingPerHour, String totalDrillTime, List<PileDrilling> pileDrillings, Map<Long, Long> drillingMinutesMap) {
+    public PileDrillingsByMachine(BigDecimal totalDrillingDepth, String machine, long meterDrillMin, BigDecimal meterDrillingPerHour, String totalDrillTime, List<PileDrilling> pileDrillings, Map<Long, Long> drillingMinutesMap) {
         this.totalDrillingDepth = totalDrillingDepth;
         this.machine = machine;
-        this.totalDrillingMinutes = meterDrillPerHr;
+        this.totalDrillingMinutes = meterDrillMin;
         this.totalDrillTime = totalDrillTime;
         this.meterDrillingPerHour = meterDrillingPerHour;
         this.drillings = pileDrillings;
         this.drillingMinutesMap = drillingMinutesMap;
-    }
-
-    public BigDecimal getTotalDrillingDepth() {
-        return totalDrillingDepth;
-    }
-
-    public long getTotalDrillingMinutes() {
-        return totalDrillingMinutes;
-    }
-
-    public void setTotalDrillingMinutes(long totalDrillingMinutes) {
-        this.totalDrillingMinutes = totalDrillingMinutes;
-    }
-
-    public void setTotalDrillingDepth(BigDecimal totalDrillingDepth) {
-        this.totalDrillingDepth = totalDrillingDepth;
-    }
-
-    public String getTotalDrillTime() {
-        return totalDrillTime;
-    }
-
-    public String getMachine() {
-        return machine;
-    }
-
-    public void setMachine(String machine) {
-        this.machine = machine;
-    }
-
-    public BigDecimal getMeterDrillingPerHour() {
-        return meterDrillingPerHour;
-    }
-
-    public void setMeterDrillingPerHour(BigDecimal meterDrillingPerHour) {
-        this.meterDrillingPerHour = meterDrillingPerHour;
     }
 
     public List<PileDrilling> getDrillings() {

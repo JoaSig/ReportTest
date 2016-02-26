@@ -66,64 +66,6 @@ angular.module('documentmanagementApp')
             });
         };
 
-        $scope.machine = function () {
-            PileDrilling.machine({drillingMachine: $scope.drillingMachine}, function (pileDrillingsByMachine) {
-                $scope.drilling = pileDrillingsByMachine.machine;
-                $scope.pileDrillingsByMachine = pileDrillingsByMachine;
-                function getHighestId(drillings) {
-                    var highest = 0;
-                    drillings.forEach(function (drilling) {
-                        if (drilling.id > highest) {
-                            highest = drilling.id;
-                        }
-                    });
-                    console.log('highest: ' + highest);
-                    return highest;
-                }
-
-                function getLowestId(drillings) {
-                    var lowest = 500;
-                    drillings.forEach(function (drilling) {
-                        if (drilling.id < lowest) {
-                            lowest = drilling.id;
-                        }
-                    });
-                    console.log('lowest: ' + lowest);
-                    return lowest;
-                }
-
-                if (pileDrillingsByMachine.drillings.length) {
-                    $scope.pdOptions = angular.copy(Chart.getPDChartConfig());
-                    $scope.pdOptions.title.text = pileDrillingsByMachine.machine;
-                    $scope.pdOptions.chart.yAxis.axisLabel = "Drilling Time (mm)";
-                    $scope.pdOptions.chart.xDomain = [getLowestId(pileDrillingsByMachine.drillings), getHighestId(pileDrillingsByMachine.drillings)];
-                    var drillingMinutes = [];
-                    pileDrillingsByMachine.drillings.forEach(function (drilling) {
-                        var totalDrillingMinutes = pileDrillingsByMachine.drillingMinutesMap[drilling.id];
-                        drillingMinutes.push({
-                            x: drilling.id,
-                            y: totalDrillingMinutes
-                        });
-                    });
-                    $scope.pdData = [{
-                        values: drillingMinutes,
-                        key: 'DrillingMinutes',
-                        color: '#673ab7'
-                    }];
-                }
-
-            }, function (response) {
-                if (response.status === 404) {
-                    $scope.loadAll();
-                }
-            })
-        };
-
-        $scope.getMachineForGraph = function () {
-            console.log('getMachineForGraph for: ' + $scope.drillingMachine);
-            $scope.machine($scope.drillingMachine);
-        };
-
         $scope.refresh = function () {
             $scope.loadAll();
             $scope.clear();
