@@ -34,22 +34,40 @@ angular.module('documentmanagementApp').controller('PileDrillingDialogController
         $scope.clear = function() {
             $uibModalInstance.dismiss('cancel');
         };
-        $scope.datePickerForDrillingStartDate = {};
+        $scope.datePickerForStartDate = {};
 
-        $scope.datePickerForDrillingStartDate.status = {
+        $scope.datePickerForStartDate.status = {
             opened: false
         };
 
-        $scope.datePickerForDrillingStartDateOpen = function($event) {
-            $scope.datePickerForDrillingStartDate.status.opened = true;
+        $scope.datePickerForStartDateOpen = function($event) {
+            $scope.datePickerForStartDate.status.opened = true;
         };
-        $scope.datePickerForDrillingEndDate = {};
+        $scope.datePickerForEndDate = {};
 
-        $scope.datePickerForDrillingEndDate.status = {
+        $scope.datePickerForEndDate.status = {
             opened: false
         };
 
-        $scope.datePickerForDrillingEndDateOpen = function($event) {
-            $scope.datePickerForDrillingEndDate.status.opened = true;
+        $scope.datePickerForEndDateOpen = function($event) {
+            $scope.datePickerForEndDate.status.opened = true;
+        };
+        $scope.datePickerForStartTime = {};
+
+        $scope.datePickerForStartTime.status = {
+            opened: false
+        };
+
+        $scope.datePickerForStartTimeOpen = function($event) {
+            $scope.datePickerForStartTime.status.opened = true;
+        };
+        $scope.datePickerForEndTime = {};
+
+        $scope.datePickerForEndTime.status = {
+            opened: false
+        };
+
+        $scope.datePickerForEndTimeOpen = function($event) {
+            $scope.datePickerForEndTime.status.opened = true;
         };
 }]);
