@@ -8,9 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <!--<span class="navbar-version">v{{VERSION}}</span>-->
-            <span style="margin-left: 80px;">
-                <a class="navbar-brand navbar" href="#/"><img src="/assets/images/trevi-litil.png" height="42" width="96" align="middle"></a>
-            </span>
+              <a class="navbar-brand navbar" href="#/"><img src="/assets/images/trevi-litil.png" height="42" width="96" align="middle"></a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
             <ul class="nav navbar-nav navbar-left">
@@ -32,8 +30,6 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li ui-sref-active="active"><a ui-sref="pile" data-toggle="collapse" data-target=".navbar-collapse"><span class="glyphicon glyphicon-asterisk"></span>
-                            &#xA0;<span translate="global.menu.entities.pile">Pile</span></a></li>
                         <li ui-sref-active="active"><a ui-sref="pileConcreting" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
                             &#xA0;<span translate="global.menu.entities.pileConcreting">Pile concreting</span></a></li>
                         <li ui-sref-active="active"><a ui-sref="pileDrilling" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
@@ -122,10 +118,11 @@
 <nav class="navbar navbar-default navbar-fixed-side navbar-fixed-side-right" role="navigation">
     <div class="container">
         <div style="text-align: center; min-height: 86px;" class="navbar-header">
-            <span style="font-size: 14px;">
-            <a ng-if="!account.login" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
-            <a ng-if="!account.login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
-            <a ng-if="account.login" ng-click="logout()" href="#"><span class="white glyphicon glyphicon-log-out"></span> Logout</a>
+            <span style="font-size: 12px;">
+            <a ng-if="!account.login" href="#" style="color: #c8d9f5 !important;"><span class="glyphicon glyphicon-user"></span> Sign Up  </a>
+                <br>
+            <a ng-if="!account.login" href="#" style="color: #c8d9f5 !important;"><span class="glyphicon glyphicon-log-in"></span> Login </a>
+            <a ng-if="account.login" ng-click="logout()" href="#" style="color: #c8d9f5 !important;"><span class="white glyphicon glyphicon-log-out"></span> Logout</a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -136,19 +133,13 @@
             <a ng-if="account.login" class="navbar-brand navbar" href="#/settings"><span style="font-size: 12px; font-style: italic">Logged in as </span><span style="font-weight: bolder">{{account.login}}</span></a>
         </div>
         <div style="text-align: center;" class="collapse navbar-collapse" id="right-lower-navbar-collapse" ng-switch="isAuthenticated()">
-            <ul class="nav navbar-nav navbar-left">
-                <li>
-                    <a data-toggle="collapse" data-target=".navbar-collapse.in" href="#/settings">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <span style="margin-left: 30px;" class="hidden-sm">{{account.firstName}} {{account.lastName}}</span>
-                        <br>
-                        <span style="margin-left: 50px;" class="hidden-sm">{{account.email}}</span>
-                        <br>
-                        <img src="/assets/images/hipster.png" height="80" width="60" align="middle">
-                    </a>
-                </li>
-                <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            </ul>
+            <a style="font-size: 10px;" data-toggle="collapse" data-target=".navbar-collapse.in" href="#/settings">
+                <span class="hidden-sm">{{account.firstName}} {{account.lastName}}</span>
+                <br>
+                <span class="hidden-sm">{{account.email}}</span>
+                <br>
+                <img src="/assets/images/hipster.png" height="80" width="60" align="middle">
+            </a>
         </div>
     </div>
 </nav>
