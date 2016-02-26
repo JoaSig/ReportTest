@@ -70,7 +70,7 @@ class PileDrillingGatlingTest extends Simulation {
             .exec(http("Create new pileDrilling")
             .post("/api/pileDrillings")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "drillingMachine":"SAMPLE_TEXT", "projectDrillingDepth":null, "drillingEffectiveDepth":null, "drillingStartDate":"2020-01-01T00:00:00.000Z", "drillingEndDate":"2020-01-01T00:00:00.000Z", "drillingStartTime":"SAMPLE_TEXT", "drillingEndTime":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "drillingMachine":"SAMPLE_TEXT", "projectDepth":null, "effectiveDepth":null, "StartDate":"2020-01-01T00:00:00.000Z", "EndDate":"2020-01-01T00:00:00.000Z", "StartTime":"2020-01-01T00:00:00.000Z", "EndTime":"2020-01-01T00:00:00.000Z", "drillingId":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_pileDrilling_url")))
             .pause(10)
