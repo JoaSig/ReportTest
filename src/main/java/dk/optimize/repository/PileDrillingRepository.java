@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface PileDrillingRepository extends JpaRepository<PileDrilling,Long> {
 
-    @Query("select pileDrilling from PileDrilling pileDrilling where pileDrilling.user.login = ?#{principal.username} order by pileDrilling.drillingStartDate desc")
+    @Query("select pileDrilling from PileDrilling pileDrilling where pileDrilling.user.login = ?#{principal.username} order by pileDrilling.drillingId desc")
     List<PileDrilling> findByUserIsCurrentUser();
 
     Page<PileDrilling> findAllByOrderByDrillingStartDateDesc(Pageable pageable);

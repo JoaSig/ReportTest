@@ -18,5 +18,6 @@
     <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_SteelCage.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_Signature.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_Report.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160226011635_added_entity_PileDrilling.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
 </databaseChangeLog>

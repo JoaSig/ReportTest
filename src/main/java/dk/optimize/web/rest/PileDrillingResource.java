@@ -27,6 +27,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -218,7 +219,7 @@ public class PileDrillingResource {
         BigDecimal depthSum = BigDecimal.ZERO;
         long minuteSum = 0;
         for (PileDrilling pileDrilling : pileDrillings) {
-            depthSum = depthSum.add(pileDrilling.getDrillingEffectiveDepth());
+            depthSum = depthSum.add(pileDrilling.getEffectiveDepth());
             minuteSum += getTotalDrillingMinutes(pileDrilling, drillingMinutesMap);
         }
         BigDecimal minSumDec = new BigDecimal(minuteSum);
@@ -234,12 +235,12 @@ public class PileDrillingResource {
 //            Instant instant = Instant.ofEpochMilli(pileDrilling.getDrillingStartTime().);
 //            Calendar calendar = Calendar.getInstance();
 //            calendar.setTimeInMillis(instant.toEpochMilli());
-        Date startDate = pileDrilling.getDrillingStartTime();
-        Long startMs = startDate.getTime();
+        LocalDate startDate = pileDrilling.getStartTime();
+        Long startMs = startDate.toEpochDay();
 
-        Date endDate = pileDrilling.getDrillingEndTime();
+        LocalDate endDate = pileDrilling.getEndTime();
 //            Date endDate = dateFormat.parse(pileDrilling.getDrillingEndTime());
-        Long endMs = endDate.getTime();
+        Long endMs = endDate.toEpochDay();
 
         long totalTime;
         if (endMs < startMs) {
