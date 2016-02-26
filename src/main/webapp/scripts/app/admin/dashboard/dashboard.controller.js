@@ -68,7 +68,7 @@ angular.module('documentmanagementApp')
         $scope.getMachineForGraph = function () {
             $scope.machine($scope.drillingMachine);
             $scope.machinePerMinute($scope.drillMachine);
-            //$scope.machinePerDepth($scope.drillPerDepthMachine);
+            //$scope.machinePerDepth();
         };
 
 
@@ -103,7 +103,7 @@ angular.module('documentmanagementApp')
                 if (drillingsByMachine.drillings.length) {
                     $scope.pdOptions = angular.copy(Chart.getPDChartConfig());
                     $scope.pdOptions.title.text = drillingsByMachine.machine;
-                    $scope.pdOptions.chart.yAxis.axisLabel = "Drilling Time (mm)";
+                    $scope.pdOptions.chart.yAxis.axisLabel = "Drilling Time (min)";
                     $scope.pdOptions.chart.xDomain = [getLowestId(drillingsByMachine.drillings), getHighestId(drillingsByMachine.drillings)];
                     var drillingMinutes = [];
                     drillingsByMachine.drillings.forEach(function (drilling) {
@@ -167,11 +167,11 @@ angular.module('documentmanagementApp')
         };
 
         //$scope.machinePerDepth = function () {
-        //    PileDrilling.machine({drillingMachine: $scope.drillPerDepthMachine}, function (drillingsByMachine) {
+        //    PileDrilling.machine({drillingMachine: $scope.drillDepthMachine}, function (drillingsByMachine) {
         //        $scope.drilling = drillingsByMachine.machine;
-        //        $scope.drillingsByMachine = drillingsByMachine;
+        //        $scope.drillingDepthMachine = drillingsByMachine;
         //        self.totalDepthMachine = drillingsByMachine.totalDrillingDepth;
-        //        self.totalMinMachine = drillingsByMachine.totalDrillTime;
+        //        self.totalDepthMinMachine = drillingsByMachine.totalDrillTime;
         //        function getHighestId(drillings) {
         //            var highest = 0;
         //            drillings.forEach(function (drilling) {
@@ -197,18 +197,27 @@ angular.module('documentmanagementApp')
         //        if (drillingsByMachine.drillings.length) {
         //            $scope.multiBarOptions = angular.copy(Chart.getMultiBarChartConfig());
         //            $scope.multiBarOptions.title.text = drillingsByMachine.machine;
-        //            $scope.multiBarOptions.chart.yAxis.axisLabel = "Drilling Time (mm)";
-        //            $scope.multiBarOptions.chart.xDomain = [getLowestId(drillingsByMachine.drillings), getHighestId(drillingsByMachine.drillings)];
-        //            var drillingMinutes = [];
+        //            $scope.multiBarOptions.chart.yAxis.axisLabel = "Start Date";
+        //            //$scope.multiBarOptions.chart.xDomain = [getLowestId(drillingsByMachine.drillings), getHighestId(drillingsByMachine.drillings)];
+        //            var plannedDepth = [];
+        //            var actualDepth = [];
         //            drillingsByMachine.drillings.forEach(function (drilling) {
-        //                drillingMinutes.push({
+        //                plannedDepth.push({
         //                    x: drilling.drillingStartTime,
         //                    y: drilling.projectDrillingDepth
         //                });
+        //                actualDepth.push({
+        //                    x: drilling.drillingStartTime,
+        //                    y: drilling.drillingEffectiveDepth
+        //                });
         //            });
-        //            $scope.pdData = [{
-        //                values: drillingMinutes,
-        //                key: 'DrillingMinutes',
+        //            $scope.multiBarData = [{
+        //                values: plannedDepth,
+        //                key: 'Expected Depth',
+        //                color: '#673ab7'
+        //            },{
+        //                values: actualDepth,
+        //                key: 'Actual Depth',
         //                color: '#673ab7'
         //            }];
         //        }
