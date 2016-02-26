@@ -7,50 +7,42 @@
     </div>
     <div class="modal-body">
         <jh-alert-error></jh-alert-error>
-        <div ng-if="pileDrilling.id" class="form-group">
-            <label for="id" translate="global.field.id">ID</label>
-            <input type="text" class="input-sm" id="id" name="id"
-                   ng-model="pileDrilling.id" readonly/>
+        <div class="form-group">
+            <div class="col-md-3"><label for="field_drillingId" translate="global.field.id">Drilling ID</label></div>
+            <input type="text" class="input-sm" id="field_drillingId" name="drillingId" ng-model="pileDrilling.drillingId"/>
         </div>
         <div class="form-group">
-            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.drillingMachine" for="field_drillingMachine">DrillingMachine</label></div>
-            <input type="text" class="input-sm" name="drillingMachine" id="field_drillingMachine"
-                   ng-model="pileDrilling.drillingMachine"/>
+            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.drillingMachine" for="field_drillingMachine">Drilling Machine</label></div>
+            <input type="text" class="input-sm" name="drillingMachine" id="field_drillingMachine" ng-model="pileDrilling.drillingMachine"/>
         </div>
         <div class="form-group">
-            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.projectDrillingDepth" for="field_projectDrillingDepth">ProjectDrillingDepth</label></div>
-            <input type="number" class="input-sm" name="projectDrillingDepth" id="field_projectDrillingDepth"
-                   ng-model="pileDrilling.projectDrillingDepth"/>
+            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.projectDepth" for="field_projectDepth">Project Depth</label></div>
+            <input type="number" class="input-sm" name="projectDepth" id="field_projectDepth"
+                   ng-model="pileDrilling.projectDepth"/>
         </div>
         <div class="form-group">
-            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.drillingEffectiveDepth" for="field_drillingEffectiveDepth">DrillingEffectiveDepth</label>
-            </div>
-            <input type="number" class="input-sm" name="drillingEffectiveDepth" id="field_drillingEffectiveDepth"
-                   ng-model="pileDrilling.drillingEffectiveDepth"/>
+            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.effectiveDepth" for="field_effectiveDepth">Effective Depth</label></div>
+            <input type="number" class="input-sm" name="effectiveDepth" id="field_effectiveDepth" ng-model="pileDrilling.effectiveDepth"/>
         </div>
-        <div class="form-horizontal">
             <div class="form-group">
-                <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.drillingStartDate" for="field_drillingStartDate">DrillingStartDate</label></div>
-                <input id="field_drillingStartDate" type="text" class="input-sm" uib-datepicker-popup="{{dateformat}}" ng-model="pileDrilling.drillingStartDate"
-                       is-open="datePickerForDrillingStartDate.status.opened"/>
-                <button type="button" class="btn btn-default btn-cal" ng-click="datePickerForDrillingStartDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.startDate" for="field_startDate">Start Date</label></div>
+                <input id="field_startDate" type="text" class="input-sm" uib-datepicker-popup="{{dateformat}}" ng-model="pileDrilling.startDate"
+                       is-open="datePickerForstartDate.status.opened"/>
+                <button type="button" class="btn btn-default btn-cal" ng-click="datePickerForStartDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
             </div>
+        <div class="form-group">
+            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.endDate" for="field_endDate">End Date</label></div>
+            <input id="field_endDate" type="text" class="input-sm" uib-datepicker-popup="{{dateformat}}" ng-model="pileDrilling.endDate"
+                   is-open="datePickerForEndDate.status.opened"/>
+            <button type="button" class="btn btn-default btn-cal" ng-click="datePickerForEndDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
         </div>
         <div class="form-group">
-            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.drillingEndDate" for="field_drillingEndDate">DrillingEndDate</label></div>
-            <input id="field_drillingEndDate" type="text" class="input-sm" uib-datepicker-popup="{{dateformat}}" ng-model="pileDrilling.drillingEndDate"
-                   is-open="datePickerForDrillingEndDate.status.opened"/>
-            <button type="button" class="btn btn-default btn-cal" ng-click="datePickerForDrillingEndDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.startTime" for="field_startTime">Start Time</label></div>
+            <input type="text" class="input-sm" name="startTime" id="field_startTime" ng-model="pileDrilling.startTime"/>
         </div>
         <div class="form-group">
-            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.drillingStartTime" for="field_drillingStartTime">DrillingStartTime</label></div>
-            <input type="text" class="input-sm" name="drillingStartTime" id="field_drillingStartTime"
-                   ng-model="pileDrilling.drillingStartTime"/>
-        </div>
-        <div class="form-group">
-            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.drillingEndTime" for="field_drillingEndTime">DrillingEndTime</label></div>
-            <input type="text" class="input-sm" name="drillingEndTime" id="field_drillingEndTime"
-                   ng-model="pileDrilling.drillingEndTime"/>
+            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.wndTime" for="field_endTime">End Time</label></div>
+            <input type="text" class="input-sm" name="endTime" id="field_endTime" ng-model="pileDrilling.endTime"/>
         </div>
     </div>
     <div class="modal-footer">
