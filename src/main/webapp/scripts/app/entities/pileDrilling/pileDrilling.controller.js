@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('documentmanagementApp')
-    .controller('PileDrillingController', function ($scope, $state, PileDrilling, PileDrillingSearch, ParseLinks, $filter, ngTableParams, Chart) {
+    .controller('PileDrillingController', function ($scope, $state, PileDrilling, PileDrillingSearch, ParseLinks, $filter, ngTableParams) {
 
         $scope.pileDrillings = [];
         $scope.machines = [];

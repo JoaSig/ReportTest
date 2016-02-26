@@ -4,12 +4,15 @@ import com.codahale.metrics.annotation.Timed;
 import dk.optimize.domain.ProjectInfo;
 import dk.optimize.repository.ProjectInfoRepository;
 import dk.optimize.repository.search.ProjectInfoSearchRepository;
+import dk.optimize.security.AuthoritiesConstants;
+import dk.optimize.security.SecurityUtils;
 import dk.optimize.web.rest.util.HeaderUtil;
 import dk.optimize.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.FacetedPageImpl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,13 +37,13 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class ProjectInfoResource {
 
     private final Logger log = LoggerFactory.getLogger(ProjectInfoResource.class);
-        
+
     @Inject
     private ProjectInfoRepository projectInfoRepository;
-    
+
     @Inject
     private ProjectInfoSearchRepository projectInfoSearchRepository;
-    
+
     /**
      * POST  /projectInfos -> Create a new projectInfo.
      */
@@ -86,10 +89,21 @@ public class ProjectInfoResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<ProjectInfo>> getAllProjectInfos(Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<ProjectInfo>> getAllProjectInfos(Pageable pageable) throws URISyntaxException {
         log.debug("REST request to get a page of ProjectInfos");
-        Page<ProjectInfo> page = projectInfoRepository.findAll(pageable); 
+        Page<ProjectInfo> page;
+        log.info("Currently logged in user: " + SecurityUtils.getCurrentUser());
+        try {
+            if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+                page = projectInfoRepository.findAll(pageable);
+            } else {
+                List<ProjectInfo> pileDrillingList = projectInfoRepository.findByUserIsCurrentUser();
+                page = new FacetedPageImpl<>(pileDrillingList);
+            }
+        } catch (Exception e) {
+            log.error("Error trying to get current user - returning all instead: " + e.getLocalizedMessage(), e);
+            page = projectInfoRepository.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/projectInfos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

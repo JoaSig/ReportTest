@@ -7,7 +7,7 @@
     <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <!--<include file="classpath:config/liquibase/changelog/2016021917340_added_entity_PileConcreting.xml" relativeToChangelogFile="false"/>-->
     <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_ProjectInfo.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_ImmutableReport.xml" relativeToChangelogFile="false"/>
+    <!--<include file="classpath:config/liquibase/changelog/20160224155945_added_entity_ImmutableReport.xml" relativeToChangelogFile="false"/>-->
     <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_Report" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160224155945_added_entity_Signature" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160224171821_added_entity_Concreting.xml" relativeToChangelogFile="false"/>
