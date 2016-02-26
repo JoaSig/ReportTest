@@ -13,7 +13,8 @@ angular.module('documentmanagementApp')
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/admin/dashboard/dashboard.html',
-                        controller: 'DashboardController'
+                        controller: 'DashboardController',
+                        controllerAs: 'vm'
                     }
                 },
                 resolve: {

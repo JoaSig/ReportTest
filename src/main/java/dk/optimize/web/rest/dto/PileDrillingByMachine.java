@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Date: 20/02/16
  */
-public class PileDrillingsByMachine {
+public class PileDrillingByMachine {
     public final String totalDrillTime;
     public String machine;
     public BigDecimal totalDrillingDepth;
@@ -20,7 +20,7 @@ public class PileDrillingsByMachine {
     public List<PileDrilling> drillings;
     public Map<Long, Long> drillingMinutesMap = new HashMap<>();
 
-    public PileDrillingsByMachine(BigDecimal totalDrillingDepth, String machine, long meterDrillMin, BigDecimal meterDrillingPerHour, String totalDrillTime, List<PileDrilling> pileDrillings, Map<Long, Long> drillingMinutesMap) {
+    public PileDrillingByMachine(BigDecimal totalDrillingDepth, String machine, long meterDrillMin, BigDecimal meterDrillingPerHour, String totalDrillTime, List<PileDrilling> pileDrillings, Map<Long, Long> drillingMinutesMap) {
         this.totalDrillingDepth = totalDrillingDepth;
         this.machine = machine;
         this.totalDrillingMinutes = meterDrillMin;

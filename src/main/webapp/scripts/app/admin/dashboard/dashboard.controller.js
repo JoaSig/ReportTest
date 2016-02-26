@@ -6,6 +6,8 @@ angular.module('documentmanagementApp')
 
         $scope.barChars = [];
         $scope.machines = [];
+        self.totalDepth = 0;
+        self.totalMin = 0;
         $scope.authorities = ["ROLE_ADMIN"];
         $scope.pileDrillingMachines = [{}];
 
@@ -26,6 +28,8 @@ angular.module('documentmanagementApp')
                 $scope.drilling = pileDrillingsByMachine.machine;
                 $scope.pileDrillingsByMachine = pileDrillingsByMachine;
                 $scope.pileDrillingMachines.push(pileDrillingsByMachine);
+                self.totalDepth = pileDrillingsByMachine.totalDrillingDepth;
+                self.totalMin = pileDrillingsByMachine.totalDrillTime;
                 var expected = [];
                 var actual = [];
                 var labels = [];
@@ -40,9 +44,15 @@ angular.module('documentmanagementApp')
                 $scope.series = ['Expected Drilling Depth', 'Actual Drilling Depth'];
 
                 $scope.data = [expected,actual];
+                var steps = 0.5;
                 $scope.barOptions = {
                     animation: false,
-                    scaleBeginAtZero : false
+                    scaleBeginAtZero : false,
+                    scaleOverride: true,
+                    scaleSteps: steps,
+                    scaleFontSize: 14,
+                    scaleStartValue: 27,
+                    scaleStepWidth: Math.ceil(2 / steps)
                 };
 
                 // doughnut
@@ -65,6 +75,8 @@ angular.module('documentmanagementApp')
             PileDrilling.machine({drillingMachine: $scope.drillMachine}, function (drillingsByMachine) {
                 $scope.drilling = drillingsByMachine.machine;
                 $scope.drillingsByMachine = drillingsByMachine;
+                self.totalDepth = drillingsByMachine.totalDrillingDepth;
+                self.totalMin = drillingsByMachine.totalDrillTime;
                 function getHighestId(drillings) {
                     var highest = 0;
                     drillings.forEach(function (drilling) {

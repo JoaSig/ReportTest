@@ -8,7 +8,7 @@ import dk.optimize.repository.search.PileDrillingSearchRepository;
 import dk.optimize.security.AuthoritiesConstants;
 import dk.optimize.security.SecurityUtils;
 import dk.optimize.service.UserService;
-import dk.optimize.web.rest.dto.PileDrillingsByMachine;
+import dk.optimize.web.rest.dto.PileDrillingByMachine;
 import dk.optimize.web.rest.util.HeaderUtil;
 import dk.optimize.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -27,7 +27,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -200,7 +199,7 @@ public class PileDrillingResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<PileDrillingsByMachine> getPileDrillingsByMachine(@PathVariable String drillingMachine, Pageable pageable) throws URISyntaxException {
+    public ResponseEntity<PileDrillingByMachine> getPileDrillingsByMachine(@PathVariable String drillingMachine, Pageable pageable) throws URISyntaxException {
 //        String machine = "SR-100 4075";
 //        Page<PileDrilling> page = pileDrillingRepository.findAllByDrillingMachine(drillingMachine, pageable);
         List<PileDrilling> pileDrillings = pileDrillingRepository.findAllByDrillingMachine(drillingMachine);
@@ -224,7 +223,7 @@ public class PileDrillingResource {
         }
         BigDecimal minSumDec = new BigDecimal(minuteSum);
         BigDecimal meterDrillPerHour = minSumDec.divide(depthSum, 3, RoundingMode.CEILING);
-        PileDrillingsByMachine sum = new PileDrillingsByMachine(depthSum, drillingMachine, minuteSum, meterDrillPerHour, getFormatedTotalTime(minuteSum), pileDrillings, drillingMinutesMap);
+        PileDrillingByMachine sum = new PileDrillingByMachine(depthSum, drillingMachine, minuteSum, meterDrillPerHour, getFormatedTotalTime(minuteSum), pileDrillings, drillingMinutesMap);
         return new ResponseEntity<>(sum, HttpStatus.OK);
     }
 
