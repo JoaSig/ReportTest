@@ -17,12 +17,13 @@
                 "title": "PileDrilling"
             },
             "drillingMachine": "DrillingMachine",
-            "projectDrillingDepth": "ProjectDrillingDepth",
-            "drillingEffectiveDepth": "DrillingEffectiveDepth",
-            "drillingStartDate": "DrillingStartDate",
-            "drillingEndDate": "DrillingEndDate",
-            "drillingStartTime": "DrillingStartTime",
-            "drillingEndTime": "DrillingEndTime",
+            "projectDepth": "ProjectDepth",
+            "effectiveDepth": "EffectiveDepth",
+            "StartDate": "StartDate",
+            "EndDate": "EndDate",
+            "StartTime": "StartTime",
+            "EndTime": "EndTime",
+            "drillingId": "DrillingId",
             "user": "User"
         }
     }
