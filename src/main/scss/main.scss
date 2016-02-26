@@ -28,6 +28,9 @@ body {
     background-repeat: no-repeat;
 }
 
+div.outer { overflow-x: auto; }
+div.outer .inner { width: 99%; }
+
 .center-header {
     margin-top    : 0;
     text-align    : center;
