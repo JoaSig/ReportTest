@@ -64,7 +64,7 @@ var pdChartConfig = {
             useFixedDomain: true,
             useNiceScale: false,
             horizontalOff: false,
-            verticalOff: false,
+            verticalOff: true,
             unzoomEventType: 'dblclick.zoom'
         }
         //transitionDuration: 250
@@ -86,7 +86,7 @@ var multiBarChartOptions = {
         },
         clipEdge: true,
         duration: 500,
-        stacked: true,
+        grouped: true,
         xAxis: {
             axisLabel: 'Time (ms)',
             showMaxMin: false,

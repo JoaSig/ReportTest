@@ -43,11 +43,11 @@ angular.module('documentmanagementApp')
                 $scope.labels = labels;
                 $scope.series = ['Expected Drilling Depth', 'Actual Drilling Depth'];
 
-                $scope.data = [expected,actual];
+                $scope.data = [expected, actual];
                 var steps = 0.5;
                 $scope.barOptions = {
                     animation: false,
-                    scaleBeginAtZero : false,
+                    scaleBeginAtZero: false,
                     scaleOverride: true,
                     scaleSteps: steps,
                     scaleFontSize: 14,
@@ -126,13 +126,21 @@ angular.module('documentmanagementApp')
                         type: 'pieChart',
                         height: 450,
                         donut: true,
-                        x: function(d){return d.key;},
-                        y: function(d){return d.y;},
+                        x: function (d) {
+                            return d.key;
+                        },
+                        y: function (d) {
+                            return d.y;
+                        },
                         showLabels: true,
 
                         pie: {
-                            startAngle: function(d) { return d.startAngle/2 -Math.PI/2 },
-                            endAngle: function(d) { return d.endAngle/2 -Math.PI/2 }
+                            startAngle: function (d) {
+                                return d.startAngle / 2 - Math.PI / 2
+                            },
+                            endAngle: function (d) {
+                                return d.endAngle / 2 - Math.PI / 2
+                            }
                         },
                         duration: 500,
                         legend: {
@@ -158,7 +166,6 @@ angular.module('documentmanagementApp')
                 ];
 
 
-
             }, function (response) {
                 if (response.status === 404) {
                     $scope.loadAll();
@@ -174,6 +181,17 @@ angular.module('documentmanagementApp')
                 self.totalDepthMinMachine = drillingsByMachine.totalDrillTime;
                 if (drillingsByMachine.drillings.length) {
                     $scope.multiBarOptions = angular.copy(Chart.getMultiBarChartConfig());
+                    //console.log('drillingsByMachine.drillings.length_ ' + drillingsByMachine.drillings.length);
+                    //if (drillingsByMachine.drillings.length < 100) {
+                    //    $scope.multiBarOptions.chart.width = 100;
+                    //}
+                    //if (drillingsByMachine.drillings.length < 200) {
+                    //    $scope.multiBarOptions.chart.width = 2000;
+                    //}
+                    //if (drillingsByMachine.drillings.length < 300) {
+                    //    $scope.multiBarOptions.chart.width = 3000;
+                    //}
+
                     $scope.multiBarOptions.title.text = drillingsByMachine.machine;
                     $scope.multiBarOptions.chart.yAxis.axisLabel = "Depth (m)";
                     $scope.multiBarOptions.chart.xAxis.axisLabel = "Start Date";
@@ -194,7 +212,7 @@ angular.module('documentmanagementApp')
                         values: plannedDepth,
                         key: 'Expected Depth',
                         color: '#686cf5'
-                    },{
+                    }, {
                         values: actualDepth,
                         key: 'Actual Depth',
                         color: '#c8d9f5'
@@ -207,13 +225,21 @@ angular.module('documentmanagementApp')
                         type: 'pieChart',
                         height: 450,
                         donut: true,
-                        x: function(d){return d.key;},
-                        y: function(d){return d.y;},
+                        x: function (d) {
+                            return d.key;
+                        },
+                        y: function (d) {
+                            return d.y;
+                        },
                         showLabels: true,
 
                         pie: {
-                            startAngle: function(d) { return d.startAngle/2 -Math.PI/2 },
-                            endAngle: function(d) { return d.endAngle/2 -Math.PI/2 }
+                            startAngle: function (d) {
+                                return d.startAngle / 2 - Math.PI / 2
+                            },
+                            endAngle: function (d) {
+                                return d.endAngle / 2 - Math.PI / 2
+                            }
                         },
                         duration: 500,
                         legend: {

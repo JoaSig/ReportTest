@@ -69,7 +69,11 @@
                 <div class="clearfix"></div>
 
                 <div class="col-md-10 col-sm-10 col-xs-12">
+                    <!--<div class="outer">-->
+                        <!--<div class="inner">-->
                     <nvd3 ng-if="drillingsByMachine.drillings.length" options="pdOptions" data="pdData" class="with-3d-shadow with-transitions"></nvd3>
+                        <!--</div>-->
+                    <!--</div>-->
                     <div class="col-md-8">
                         <select class="input-sm" ng-model="drillMachine" ng-options="m as m for m in machines" ng-change="getMachineForGraph()">
                             <option label="Select Drilling Machine.."></option>
@@ -102,7 +106,11 @@
                 <div class="clearfix"></div>
 
                 <div class="col-md-10 col-sm-10 col-xs-12">
+                    <!--<div class="outer">-->
+                        <!--<div class="inner">-->
                     <nvd3 ng-if="drillingDepthMachine.drillings.length" options="multiBarOptions" data="multiBarData" class="with-3d-shadow with-transitions"></nvd3>
+                            <!--</div>-->
+                            <!--</div>-->
                     <!--<div class="col-md-8">-->
                         <select class="input-sm" ng-model="drillDepthMachine" ng-options="m as m for m in machines" ng-change="getMachineForGraph()">
                             <option label="Select Drilling Machine.."></option>
