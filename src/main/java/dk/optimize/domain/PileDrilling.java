@@ -2,14 +2,14 @@ package dk.optimize.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -27,25 +27,28 @@ public class PileDrilling implements Serializable {
 
     @Column(name = "drilling_machine")
     private String drillingMachine;
-
-    @Column(name = "project_drilling_depth", precision = 10, scale = 2)
-    private BigDecimal projectDrillingDepth;
-
-    @Column(name = "drilling_effective_depth", precision = 10, scale = 2)
-    private BigDecimal drillingEffectiveDepth;
-
-    @Column(name = "drilling_start_date")
-    private LocalDate drillingStartDate;
-
-    @Column(name = "drilling_end_date")
-    private LocalDate drillingEndDate;
-
-    @Column(name = "drilling_start_time")
-    private Timestamp drillingStartTime;
-
-    @Column(name = "drilling_end_time")
-    private Timestamp drillingEndTime;
-
+    
+    @Column(name = "project_depth", precision=10, scale=2)
+    private BigDecimal projectDepth;
+    
+    @Column(name = "effective_depth", precision=10, scale=2)
+    private BigDecimal effectiveDepth;
+    
+    @Column(name = "start_date")
+    private LocalDate StartDate;
+    
+    @Column(name = "end_date")
+    private LocalDate EndDate;
+    
+    @Column(name = "start_time")
+    private LocalDate StartTime;
+    
+    @Column(name = "end_time")
+    private LocalDate EndTime;
+    
+    @Column(name = "drilling_id")
+    private Long drillingId;
+    
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -61,57 +64,65 @@ public class PileDrilling implements Serializable {
     public String getDrillingMachine() {
         return drillingMachine;
     }
-
+    
     public void setDrillingMachine(String drillingMachine) {
         this.drillingMachine = drillingMachine;
     }
 
-    public BigDecimal getProjectDrillingDepth() {
-        return projectDrillingDepth;
+    public BigDecimal getProjectDepth() {
+        return projectDepth;
+    }
+    
+    public void setProjectDepth(BigDecimal projectDepth) {
+        this.projectDepth = projectDepth;
     }
 
-    public void setProjectDrillingDepth(BigDecimal projectDrillingDepth) {
-        this.projectDrillingDepth = projectDrillingDepth;
+    public BigDecimal getEffectiveDepth() {
+        return effectiveDepth;
+    }
+    
+    public void setEffectiveDepth(BigDecimal effectiveDepth) {
+        this.effectiveDepth = effectiveDepth;
     }
 
-    public BigDecimal getDrillingEffectiveDepth() {
-        return drillingEffectiveDepth;
+    public LocalDate getStartDate() {
+        return StartDate;
+    }
+    
+    public void setStartDate(LocalDate StartDate) {
+        this.StartDate = StartDate;
     }
 
-    public void setDrillingEffectiveDepth(BigDecimal drillingEffectiveDepth) {
-        this.drillingEffectiveDepth = drillingEffectiveDepth;
+    public LocalDate getEndDate() {
+        return EndDate;
+    }
+    
+    public void setEndDate(LocalDate EndDate) {
+        this.EndDate = EndDate;
     }
 
-    public LocalDate getDrillingStartDate() {
-        return drillingStartDate;
+    public LocalDate getStartTime() {
+        return StartTime;
+    }
+    
+    public void setStartTime(LocalDate StartTime) {
+        this.StartTime = StartTime;
     }
 
-    public void setDrillingStartDate(LocalDate drillingStartDate) {
-        this.drillingStartDate = drillingStartDate;
+    public LocalDate getEndTime() {
+        return EndTime;
+    }
+    
+    public void setEndTime(LocalDate EndTime) {
+        this.EndTime = EndTime;
     }
 
-    public LocalDate getDrillingEndDate() {
-        return drillingEndDate;
+    public Long getDrillingId() {
+        return drillingId;
     }
-
-    public void setDrillingEndDate(LocalDate drillingEndDate) {
-        this.drillingEndDate = drillingEndDate;
-    }
-
-    public Timestamp getDrillingStartTime() {
-        return drillingStartTime;
-    }
-
-    public void setDrillingStartTime(Timestamp drillingStartTime) {
-        this.drillingStartTime = drillingStartTime;
-    }
-
-    public Timestamp getDrillingEndTime() {
-        return drillingEndTime;
-    }
-
-    public void setDrillingEndTime(Timestamp drillingEndTime) {
-        this.drillingEndTime = drillingEndTime;
+    
+    public void setDrillingId(Long drillingId) {
+        this.drillingId = drillingId;
     }
 
     public User getUser() {
@@ -131,7 +142,7 @@ public class PileDrilling implements Serializable {
             return false;
         }
         PileDrilling pileDrilling = (PileDrilling) o;
-        if (pileDrilling.id == null || id == null) {
+        if(pileDrilling.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, pileDrilling.id);
@@ -147,12 +158,13 @@ public class PileDrilling implements Serializable {
         return "PileDrilling{" +
             "id=" + id +
             ", drillingMachine='" + drillingMachine + "'" +
-            ", projectDrillingDepth='" + projectDrillingDepth + "'" +
-            ", drillingEffectiveDepth='" + drillingEffectiveDepth + "'" +
-            ", drillingStartDate='" + drillingStartDate + "'" +
-            ", drillingEndDate='" + drillingEndDate + "'" +
-            ", drillingStartTime='" + drillingStartTime + "'" +
-            ", drillingEndTime='" + drillingEndTime + "'" +
+            ", projectDepth='" + projectDepth + "'" +
+            ", effectiveDepth='" + effectiveDepth + "'" +
+            ", StartDate='" + StartDate + "'" +
+            ", EndDate='" + EndDate + "'" +
+            ", StartTime='" + StartTime + "'" +
+            ", EndTime='" + EndTime + "'" +
+            ", drillingId='" + drillingId + "'" +
             '}';
     }
 }
