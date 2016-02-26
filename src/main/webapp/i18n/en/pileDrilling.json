@@ -16,13 +16,14 @@
             "detail": {
                 "title": "Pile Drilling Report"
             },
-            "drillingMachine": "Machine",
-            "projectDrillingDepth": "Planned Depth",
-            "drillingEffectiveDepth": "Effective Depth",
-            "drillingStartDate": "Start Date",
-            "drillingEndDate": "End Date",
-            "drillingStartTime": "Start Time",
-            "drillingEndTime": "End Time"
+            "drillingMachine": "Drilling Machine",
+            "projectDepth": "Project Depth",
+            "effectiveDepth": "Effective Depth",
+            "StartDate": "Start Date",
+            "EndDate": "End Date",
+            "StartTime": "Start Time",
+            "EndTime": "End Time",
+            "drillingId": "DrillingID"
         }
     }
 }
