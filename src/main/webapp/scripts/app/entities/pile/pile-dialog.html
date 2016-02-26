@@ -48,6 +48,12 @@
                      />
         </div>
         <div class="form-group">
+            <label class="control-label" translate="documentmanagementApp.pile.number" for="field_number">Number</label>
+            <input type="number" class="form-control" name="number" id="field_number"
+                    ng-model="pile.number"
+                     />
+        </div>
+        <div class="form-group">
             <label class="control-label" translate="documentmanagementApp.pile.comment" for="field_comment">Comment</label>
             <input type="text" class="form-control" name="comment" id="field_comment"
                     ng-model="pile.comment"
@@ -75,6 +81,12 @@
         <div class="form-group">
             <label translate="documentmanagementApp.pile.steelCage" for="field_steelCage">steelCage</label>
             <select class="form-control" id="field_steelCage" name="steelCage" ng-model="pile.steelCage" ng-options="steelCage as steelCage.id for steelCage in steelcages | orderBy:'id' track by steelCage.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="documentmanagementApp.pile.projectInfo" for="field_projectInfo">projectInfo</label>
+            <select class="form-control" id="field_projectInfo" name="projectInfo" ng-model="pile.projectInfo" ng-options="projectInfo as projectInfo.id for projectInfo in projectinfos track by projectInfo.id">
                 <option value=""></option>
             </select>
         </div>

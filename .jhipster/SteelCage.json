@@ -13,7 +13,7 @@
             "otherEntityName": "pile",
             "relationshipType": "one-to-one",
             "ownerSide": false,
-            "otherEntityRelationshipName": "concreting"
+            "otherEntityRelationshipName": "steelCage"
     } ],
     "fields" : [ {
         "fieldId" : 1,

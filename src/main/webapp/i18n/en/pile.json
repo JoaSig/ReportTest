@@ -21,11 +21,13 @@
             "lastUpdatedBy": "LastUpdatedBy",
             "nextPile": "NextPile",
             "prevPile": "PrevPile",
+            "number": "Number",
             "comment": "Comment",
             "user": "User",
             "concreting": "Concreting",
             "drilling": "Drilling",
-            "steelCage": "SteelCage"
+            "steelCage": "SteelCage",
+            "projectInfo": "ProjectInfo"
         }
     }
 }

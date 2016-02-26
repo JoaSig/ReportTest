@@ -12,8 +12,8 @@
                "relationshipName": "pile",
                "otherEntityName": "pile",
                "relationshipType": "one-to-one",
-               "ownerSide": false,
-               "otherEntityRelationshipName": "drilling"
+               "otherEntityField": "drilling",
+               "ownerSide": false
   } ],
   "fields" : [ {
     "fieldId" : 1,

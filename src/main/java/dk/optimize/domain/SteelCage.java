@@ -67,7 +67,7 @@ public class SteelCage implements Serializable {
     @OneToOne
     private User user;
 
-    @OneToOne(mappedBy = "concreting")
+    @OneToOne(mappedBy = "steelCage")
     @JsonIgnore
     private Pile pile;
 

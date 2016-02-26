@@ -66,6 +66,7 @@ angular.module('documentmanagementApp')
                                     lastUpdatedBy: null,
                                     nextPile: null,
                                     prevPile: null,
+                                    number: null,
                                     comment: null,
                                     id: null
                                 };

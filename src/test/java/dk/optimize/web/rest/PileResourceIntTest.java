@@ -58,6 +58,9 @@ public class PileResourceIntTest {
 
     private static final Long DEFAULT_PREV_PILE = 1L;
     private static final Long UPDATED_PREV_PILE = 2L;
+
+    private static final Long DEFAULT_NUMBER = 1L;
+    private static final Long UPDATED_NUMBER = 2L;
     private static final String DEFAULT_COMMENT = "AAAAA";
     private static final String UPDATED_COMMENT = "BBBBB";
 
@@ -96,6 +99,7 @@ public class PileResourceIntTest {
         pile.setLastUpdatedBy(DEFAULT_LAST_UPDATED_BY);
         pile.setNextPile(DEFAULT_NEXT_PILE);
         pile.setPrevPile(DEFAULT_PREV_PILE);
+        pile.setNumber(DEFAULT_NUMBER);
         pile.setComment(DEFAULT_COMMENT);
     }
 
@@ -120,6 +124,7 @@ public class PileResourceIntTest {
         assertThat(testPile.getLastUpdatedBy()).isEqualTo(DEFAULT_LAST_UPDATED_BY);
         assertThat(testPile.getNextPile()).isEqualTo(DEFAULT_NEXT_PILE);
         assertThat(testPile.getPrevPile()).isEqualTo(DEFAULT_PREV_PILE);
+        assertThat(testPile.getNumber()).isEqualTo(DEFAULT_NUMBER);
         assertThat(testPile.getComment()).isEqualTo(DEFAULT_COMMENT);
     }
 
@@ -139,6 +144,7 @@ public class PileResourceIntTest {
                 .andExpect(jsonPath("$.[*].lastUpdatedBy").value(hasItem(DEFAULT_LAST_UPDATED_BY.toString())))
                 .andExpect(jsonPath("$.[*].nextPile").value(hasItem(DEFAULT_NEXT_PILE.intValue())))
                 .andExpect(jsonPath("$.[*].prevPile").value(hasItem(DEFAULT_PREV_PILE.intValue())))
+                .andExpect(jsonPath("$.[*].number").value(hasItem(DEFAULT_NUMBER.intValue())))
                 .andExpect(jsonPath("$.[*].comment").value(hasItem(DEFAULT_COMMENT.toString())));
     }
 
@@ -158,6 +164,7 @@ public class PileResourceIntTest {
             .andExpect(jsonPath("$.lastUpdatedBy").value(DEFAULT_LAST_UPDATED_BY.toString()))
             .andExpect(jsonPath("$.nextPile").value(DEFAULT_NEXT_PILE.intValue()))
             .andExpect(jsonPath("$.prevPile").value(DEFAULT_PREV_PILE.intValue()))
+            .andExpect(jsonPath("$.number").value(DEFAULT_NUMBER.intValue()))
             .andExpect(jsonPath("$.comment").value(DEFAULT_COMMENT.toString()));
     }
 
@@ -183,6 +190,7 @@ public class PileResourceIntTest {
         pile.setLastUpdatedBy(UPDATED_LAST_UPDATED_BY);
         pile.setNextPile(UPDATED_NEXT_PILE);
         pile.setPrevPile(UPDATED_PREV_PILE);
+        pile.setNumber(UPDATED_NUMBER);
         pile.setComment(UPDATED_COMMENT);
 
         restPileMockMvc.perform(put("/api/piles")
@@ -199,6 +207,7 @@ public class PileResourceIntTest {
         assertThat(testPile.getLastUpdatedBy()).isEqualTo(UPDATED_LAST_UPDATED_BY);
         assertThat(testPile.getNextPile()).isEqualTo(UPDATED_NEXT_PILE);
         assertThat(testPile.getPrevPile()).isEqualTo(UPDATED_PREV_PILE);
+        assertThat(testPile.getNumber()).isEqualTo(UPDATED_NUMBER);
         assertThat(testPile.getComment()).isEqualTo(UPDATED_COMMENT);
     }
 

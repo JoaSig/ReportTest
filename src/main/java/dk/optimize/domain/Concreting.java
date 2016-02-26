@@ -82,7 +82,7 @@ public class Concreting implements Serializable {
     private BigDecimal sentBack;
 
     @OneToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToOne(mappedBy = "concreting")

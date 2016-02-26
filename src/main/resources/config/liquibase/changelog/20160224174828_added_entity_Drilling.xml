@@ -17,51 +17,46 @@
         Added the entity Drilling.
     -->
     <changeSet id="20160224174828" author="jhipster">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <tableExists tableName="drilling"/>
-            </not>
-        </preConditions>
         <createTable tableName="drilling">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="pile_type" type="varchar(255)"/>
-
+            
             <column name="piling_rig_type" type="varchar(255)"/>
-
+            
             <column name="pile_nr" type="integer"/>
-
+            
             <column name="pile_length" type="decimal(10,2)"/>
-
+            
             <column name="diameter" type="decimal(10,2)"/>
-
+            
             <column name="top_guide_elevation" type="decimal(10,2)"/>
-
+            
             <column name="pile_top_level" type="decimal(10,2)"/>
-
+            
             <column name="pile_cutoff_elevation" type="decimal(10,2)"/>
-
+            
             <column name="pile_toe_level" type="decimal(10,2)"/>
-
+            
             <column name="casing_deviation" type="decimal(10,2)"/>
-
+            
             <column name="start_date" type="date"/>
-
+            
             <column name="end_date" type="date"/>
-
+            
             <column name="start_time" type="date"/>
-
+            
             <column name="end_time" type="date"/>
-
+            
             <column name="comment" type="varchar(255)"/>
-
+            
             <column name="user_id" type="bigint">
                 <constraints unique="true"/>
             </column>
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-
+        
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="drilling"
                                  constraintName="fk_drilling_user_id"

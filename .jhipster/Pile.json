@@ -30,6 +30,14 @@
         "otherEntityRelationshipName" : "pile",
         "otherEntityField" : "id",
         "ownerSide" : true
+    }, {
+        "relationshipId" : 5,
+        "relationshipName" : "projectInfo",
+        "relationshipType" : "many-to-one",
+        "otherEntityName" : "projectInfo",
+        "otherEntityRelationshipName" : "pile",
+        "otherEntityField" : "id",
+        "ownerSide" : false
     } ],
     "fields" : [ {
         "fieldId" : 1,
@@ -58,6 +66,11 @@
         "fieldValidateRules" : [ ]
     }, {
         "fieldId" : 6,
+        "fieldName" : "number",
+        "fieldType" : "Long",
+        "fieldValidateRules" : [ ]
+    }, {
+        "fieldId" : 7,
         "fieldName" : "comment",
         "fieldType" : "String",
         "fieldValidateRules" : [ ]

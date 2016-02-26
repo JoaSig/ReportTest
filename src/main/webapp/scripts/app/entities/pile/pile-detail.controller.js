@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('documentmanagementApp')
-    .controller('PileDetailController', function ($scope, $rootScope, $stateParams, entity, Pile, User, Concreting, Drilling, SteelCage) {
+    .controller('PileDetailController', function ($scope, $rootScope, $stateParams, entity, Pile, User, Concreting, Drilling, SteelCage, ProjectInfo) {
         $scope.pile = entity;
         $scope.load = function (id) {
             Pile.get({id: id}, function(result) {

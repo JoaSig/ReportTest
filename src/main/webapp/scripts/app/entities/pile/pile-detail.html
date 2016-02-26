@@ -52,6 +52,14 @@
             </tr>
             <tr>
                 <td>
+                    <span translate="documentmanagementApp.pile.number">Number</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pile.number}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <span translate="documentmanagementApp.pile.comment">Comment</span>
                 </td>
                 <td>
@@ -88,6 +96,14 @@
                 </td>
                 <td>
                     <a class="form-control-static" ui-sref="steelCage.detail({id:pile.steelCage.id})">{{pile.steelCage.id}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="documentmanagementApp.pile.projectInfo">projectInfo</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="projectInfo.detail({id:pile.projectInfo.id})">{{pile.projectInfo.id}}</a>
                 </td>
             </tr>
             </tbody>

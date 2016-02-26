@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('documentmanagementApp').controller('PileDialogController',
-    ['$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Pile', 'User', 'Concreting', 'Drilling', 'SteelCage',
-        function($scope, $stateParams, $uibModalInstance, $q, entity, Pile, User, Concreting, Drilling, SteelCage) {
+    ['$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Pile', 'User', 'Concreting', 'Drilling', 'SteelCage', 'ProjectInfo',
+        function($scope, $stateParams, $uibModalInstance, $q, entity, Pile, User, Concreting, Drilling, SteelCage, ProjectInfo) {
 
         $scope.pile = entity;
         $scope.users = User.query();
@@ -33,6 +33,7 @@ angular.module('documentmanagementApp').controller('PileDialogController',
         }).then(function(steelCage) {
             $scope.steelcages.push(steelCage);
         });
+        $scope.projectinfos = ProjectInfo.query();
         $scope.load = function(id) {
             Pile.get({id : id}, function(result) {
                 $scope.pile = result;

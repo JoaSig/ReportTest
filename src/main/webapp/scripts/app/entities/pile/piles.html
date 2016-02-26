@@ -36,11 +36,13 @@ class="hidden-xs"                        translate="documentmanagementApp.pile.h
                     <th jh-sort-by="lastUpdatedBy"><span translate="documentmanagementApp.pile.lastUpdatedBy">LastUpdatedBy</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="nextPile"><span translate="documentmanagementApp.pile.nextPile">NextPile</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="prevPile"><span translate="documentmanagementApp.pile.prevPile">PrevPile</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="number"><span translate="documentmanagementApp.pile.number">Number</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="comment"><span translate="documentmanagementApp.pile.comment">Comment</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="user.login"><span translate="documentmanagementApp.pile.user">user</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="concreting.id"><span translate="documentmanagementApp.pile.concreting">concreting</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="drilling.id"><span translate="documentmanagementApp.pile.drilling">drilling</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="steelCage.id"><span translate="documentmanagementApp.pile.steelCage">steelCage</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="projectInfo.id"><span translate="documentmanagementApp.pile.projectInfo">projectInfo</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -52,6 +54,7 @@ class="hidden-xs"                        translate="documentmanagementApp.pile.h
                     <td>{{pile.lastUpdatedBy}}</td>
                     <td>{{pile.nextPile}}</td>
                     <td>{{pile.prevPile}}</td>
+                    <td>{{pile.number}}</td>
                     <td>{{pile.comment}}</td>
                     <td>
                         {{pile.user.login}}
@@ -64,6 +67,9 @@ class="hidden-xs"                        translate="documentmanagementApp.pile.h
                     </td>
                     <td>
                         <a ui-sref="steelCage.detail({id:pile.steelCage.id})">{{pile.steelCage.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="projectInfo.detail({id:pile.projectInfo.id})">{{pile.projectInfo.id}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
