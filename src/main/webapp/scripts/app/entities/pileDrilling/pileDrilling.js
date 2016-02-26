@@ -51,7 +51,7 @@ angular.module('documentmanagementApp')
                 parent: 'pileDrilling',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_USER']
+                    authorities: ['ROLE_USER'],
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
@@ -62,12 +62,13 @@ angular.module('documentmanagementApp')
                             entity: function () {
                                 return {
                                     drillingMachine: null,
-                                    projectDrillingDepth: null,
-                                    drillingEffectiveDepth: null,
-                                    drillingStartDate: null,
-                                    drillingEndDate: null,
-                                    drillingStartTime: null,
-                                    drillingEndTime: null,
+                                    projectDepth: null,
+                                    effectiveDepth: null,
+                                    StartDate: null,
+                                    EndDate: null,
+                                    StartTime: null,
+                                    EndTime: null,
+                                    drillingId: null,
                                     id: null
                                 };
                             }
@@ -83,7 +84,7 @@ angular.module('documentmanagementApp')
                 parent: 'pileDrilling',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_USER']
+                    authorities: ['ROLE_USER'],
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
@@ -106,7 +107,7 @@ angular.module('documentmanagementApp')
                 parent: 'pileDrilling',
                 url: '/{id}/delete',
                 data: {
-                    authorities: ['ROLE_USER']
+                    authorities: ['ROLE_USER'],
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
