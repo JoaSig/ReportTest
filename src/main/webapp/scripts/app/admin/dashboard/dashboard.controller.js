@@ -68,7 +68,7 @@ angular.module('documentmanagementApp')
         $scope.getMachineForGraph = function () {
             $scope.machine($scope.drillingMachine);
             $scope.machinePerMinute($scope.drillMachine);
-            //$scope.machinePerDepth();
+            $scope.machinePerDepth();
         };
 
 
@@ -166,105 +166,81 @@ angular.module('documentmanagementApp')
             })
         };
 
-        //$scope.machinePerDepth = function () {
-        //    PileDrilling.machine({drillingMachine: $scope.drillDepthMachine}, function (drillingsByMachine) {
-        //        $scope.drilling = drillingsByMachine.machine;
-        //        $scope.drillingDepthMachine = drillingsByMachine;
-        //        self.totalDepthMachine = drillingsByMachine.totalDrillingDepth;
-        //        self.totalDepthMinMachine = drillingsByMachine.totalDrillTime;
-        //        function getHighestId(drillings) {
-        //            var highest = 0;
-        //            drillings.forEach(function (drilling) {
-        //                if (drilling.id > highest) {
-        //                    highest = drilling.id;
-        //                }
-        //            });
-        //            console.log('highest: ' + highest);
-        //            return highest;
-        //        }
-        //
-        //        function getLowestId(drillings) {
-        //            var lowest = 500;
-        //            drillings.forEach(function (drilling) {
-        //                if (drilling.id < lowest) {
-        //                    lowest = drilling.id;
-        //                }
-        //            });
-        //            console.log('lowest: ' + lowest);
-        //            return lowest;
-        //        }
-        //
-        //        if (drillingsByMachine.drillings.length) {
-        //            $scope.multiBarOptions = angular.copy(Chart.getMultiBarChartConfig());
-        //            $scope.multiBarOptions.title.text = drillingsByMachine.machine;
-        //            $scope.multiBarOptions.chart.yAxis.axisLabel = "Start Date";
-        //            //$scope.multiBarOptions.chart.xDomain = [getLowestId(drillingsByMachine.drillings), getHighestId(drillingsByMachine.drillings)];
-        //            var plannedDepth = [];
-        //            var actualDepth = [];
-        //            drillingsByMachine.drillings.forEach(function (drilling) {
-        //                plannedDepth.push({
-        //                    x: drilling.drillingStartTime,
-        //                    y: drilling.projectDrillingDepth
-        //                });
-        //                actualDepth.push({
-        //                    x: drilling.drillingStartTime,
-        //                    y: drilling.drillingEffectiveDepth
-        //                });
-        //            });
-        //            $scope.multiBarData = [{
-        //                values: plannedDepth,
-        //                key: 'Expected Depth',
-        //                color: '#673ab7'
-        //            },{
-        //                values: actualDepth,
-        //                key: 'Actual Depth',
-        //                color: '#673ab7'
-        //            }];
-        //        }
-        //
-        //
-        //        $scope.pieOptions = {
-        //            chart: {
-        //                type: 'pieChart',
-        //                height: 450,
-        //                donut: true,
-        //                x: function(d){return d.key;},
-        //                y: function(d){return d.y;},
-        //                showLabels: true,
-        //
-        //                pie: {
-        //                    startAngle: function(d) { return d.startAngle/2 -Math.PI/2 },
-        //                    endAngle: function(d) { return d.endAngle/2 -Math.PI/2 }
-        //                },
-        //                duration: 500,
-        //                legend: {
-        //                    margin: {
-        //                        top: 5,
-        //                        right: 70,
-        //                        bottom: 5,
-        //                        left: 0
-        //                    }
-        //                }
-        //            }
-        //        };
-        //
-        //        $scope.pieData = [
-        //            {
-        //                key: "Meter per hour",
-        //                y: drillingsByMachine.meterDrillingPerHour
-        //            },
-        //            {
-        //                key: "",
-        //                y: 10 - drillingsByMachine.meterDrillingPerHour
-        //            }
-        //        ];
-        //
-        //
-        //
-        //    }, function (response) {
-        //        if (response.status === 404) {
-        //            $scope.loadAll();
-        //        }
-        //    })
-        //};
+        $scope.machinePerDepth = function () {
+            PileDrilling.machine({drillingMachine: $scope.drillDepthMachine}, function (drillingsByMachine) {
+                $scope.drilling = drillingsByMachine.machine;
+                $scope.drillingDepthMachine = drillingsByMachine;
+                self.totalDepthMachine = drillingsByMachine.totalDrillingDepth;
+                self.totalDepthMinMachine = drillingsByMachine.totalDrillTime;
+                if (drillingsByMachine.drillings.length) {
+                    $scope.multiBarOptions = angular.copy(Chart.getMultiBarChartConfig());
+                    $scope.multiBarOptions.title.text = drillingsByMachine.machine;
+                    $scope.multiBarOptions.chart.yAxis.axisLabel = "Depth (m)";
+                    $scope.multiBarOptions.chart.xAxis.axisLabel = "Start Date";
+                    //$scope.multiBarOptions.chart.xDomain = [getLowestId(drillingsByMachine.drillings), getHighestId(drillingsByMachine.drillings)];
+                    var plannedDepth = [];
+                    var actualDepth = [];
+                    drillingsByMachine.drillings.forEach(function (drilling) {
+                        plannedDepth.push({
+                            x: drilling.drillingStartDate,
+                            y: drilling.projectDrillingDepth
+                        });
+                        actualDepth.push({
+                            x: drilling.drillingStartDate,
+                            y: drilling.drillingEffectiveDepth
+                        });
+                    });
+                    $scope.multiBarData = [{
+                        values: plannedDepth,
+                        key: 'Expected Depth',
+                        color: '#686cf5'
+                    },{
+                        values: actualDepth,
+                        key: 'Actual Depth',
+                        color: '#c8d9f5'
+                    }];
+                }
+
+
+                $scope.pieDepthOptions = {
+                    chart: {
+                        type: 'pieChart',
+                        height: 450,
+                        donut: true,
+                        x: function(d){return d.key;},
+                        y: function(d){return d.y;},
+                        showLabels: true,
+
+                        pie: {
+                            startAngle: function(d) { return d.startAngle/2 -Math.PI/2 },
+                            endAngle: function(d) { return d.endAngle/2 -Math.PI/2 }
+                        },
+                        duration: 500,
+                        legend: {
+                            margin: {
+                                top: 5,
+                                right: 70,
+                                bottom: 5,
+                                left: 0
+                            }
+                        }
+                    }
+                };
+
+                $scope.pieDepthData = [
+                    {
+                        key: "Meter per hour: " + drillingsByMachine.meterDrillingPerHour,
+                        y: drillingsByMachine.meterDrillingPerHour
+                    },
+                    {
+                        key: "",
+                        y: 10 - drillingsByMachine.meterDrillingPerHour
+                    }
+                ];
+            }, function (response) {
+                if (response.status === 404) {
+                    $scope.loadAll();
+                }
+            })
+        };
     });

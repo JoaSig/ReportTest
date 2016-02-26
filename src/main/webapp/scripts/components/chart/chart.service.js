@@ -53,21 +53,18 @@ var pdChartConfig = {
                 return d3.format('1f')(d);
             }
         },
-        tooltip: {
-            keyFormatter: function(d) {
-                return 'Hello';
-            }
-        },
+        //tooltip: {
+        //    keyFormatter: function(d) {
+        //        return 'Hello';
+        //    }
+        //},
         zoom: {
             enabled: true,
             scaleExtent: [1, 10],
             useFixedDomain: true,
             useNiceScale: false,
             horizontalOff: false,
-            verticalOff: true,
-
-            //"verticalOff": false,
-
+            verticalOff: false,
             unzoomEventType: 'dblclick.zoom'
         }
         //transitionDuration: 250
@@ -81,7 +78,7 @@ var multiBarChartOptions = {
     chart: {
         type: 'multiBarChart',
         height: 450,
-        margin : {
+        margin: {
             top: 20,
             right: 20,
             bottom: 45,
@@ -93,16 +90,23 @@ var multiBarChartOptions = {
         xAxis: {
             axisLabel: 'Time (ms)',
             showMaxMin: false,
-            tickFormat: function(d){
-                return d3.format(',f')(d);
+            tickFormat: function (d) {
+                return d;
+                //console.log('x-d: ' + d)
+                //return d3.format('')(d);
             }
         },
         yAxis: {
             axisLabel: 'Y Axis',
             axisLabelDistance: -20,
-            tickFormat: function(d){
+            tickFormat: function (d) {
+                //console.log('y-d: ' + d)
                 return d3.format(',.1f')(d);
             }
         }
+        //transitionDuration: 250
+    },
+    title: {
+        enable: true
     }
 };

@@ -68,7 +68,7 @@
                 </div>
                 <div class="clearfix"></div>
 
-                <div class="col-md-9 col-sm-9 col-xs-12">
+                <div class="col-md-10 col-sm-10 col-xs-12">
                     <nvd3 ng-if="drillingsByMachine.drillings.length" options="pdOptions" data="pdData" class="with-3d-shadow with-transitions"></nvd3>
                     <div class="col-md-8">
                         <select class="input-sm" ng-model="drillMachine" ng-options="m as m for m in machines" ng-change="getMachineForGraph()">
@@ -76,7 +76,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
+                <div class="col-md-2 col-sm-2 col-xs-12 bg-white">
                     <div class="x_title">
                         <h2>Meter per hour</h2>
                         <div class="clearfix"></div>
@@ -89,8 +89,40 @@
             </div>
         </div>
     </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="dashboard_graph">
 
-    <!--<br/>-->
+                <div class="row x_title">
+                    <div class="col-md-6">
+                        <h3>Expected Drilling Depth vs. Actual drilling Depth</h3>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <nvd3 ng-if="drillingDepthMachine.drillings.length" options="multiBarOptions" data="multiBarData" class="with-3d-shadow with-transitions"></nvd3>
+                    <!--<div class="col-md-8">-->
+                        <select class="input-sm" ng-model="drillDepthMachine" ng-options="m as m for m in machines" ng-change="getMachineForGraph()">
+                            <option label="Select Drilling Machine.."></option>
+                        </select>
+                    <!--</div>-->
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12 bg-white pull-right">
+                    <div class="x_title">
+                        <h2>Meter per hour</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-6">
+                        <nvd3 options="pieDepthOptions" data="pieDepthData"></nvd3>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <br/>
 
     <!--<div class="row">-->
 
