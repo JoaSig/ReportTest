@@ -10,30 +10,30 @@ angular.module('documentmanagementApp')
                 method: 'GET',
                 transformResponse: function (data) {
                     data = angular.fromJson(data);
-                    data.StartDate = DateUtils.convertLocaleDateFromServer(data.StartDate);
-                    data.EndDate = DateUtils.convertLocaleDateFromServer(data.EndDate);
-                    data.StartTime = DateUtils.convertLocaleDateFromServer(data.StartTime);
-                    data.EndTime = DateUtils.convertLocaleDateFromServer(data.EndTime);
+                    data.startDate = DateUtils.convertLocaleDateFromServer(data.startDate);
+                    data.endDate = DateUtils.convertLocaleDateFromServer(data.endDate);
+                    data.endTime = DateUtils.convertTimeFromServer(data.endTime);
+                    data.startTime = DateUtils.convertTimeFromServer(data.startTime);
                     return data;
                 }
             },
             'update': {
                 method: 'PUT',
                 transformRequest: function (data) {
-                    data.StartDate = DateUtils.convertLocaleDateToServer(data.StartDate);
-                    data.EndDate = DateUtils.convertLocaleDateToServer(data.EndDate);
-                    data.StartTime = DateUtils.convertLocaleDateToServer(data.StartTime);
-                    data.EndTime = DateUtils.convertLocaleDateToServer(data.EndTime);
+                    data.startDate = DateUtils.convertLocaleDateToServer(data.startDate);
+                    data.endDate = DateUtils.convertLocaleDateToServer(data.endDate);
+                    data.startTime = DateUtils.convertTimeToServer(data.startTime);
+                    data.endTime = DateUtils.convertTimeToServer(data.endTime);
                     return angular.toJson(data);
                 }
             },
             'save': {
                 method: 'POST',
                 transformRequest: function (data) {
-                    data.StartDate = DateUtils.convertLocaleDateToServer(data.StartDate);
-                    data.EndDate = DateUtils.convertLocaleDateToServer(data.EndDate);
-                    data.StartTime = DateUtils.convertLocaleDateToServer(data.StartTime);
-                    data.EndTime = DateUtils.convertLocaleDateToServer(data.EndTime);
+                    data.startDate = DateUtils.convertLocaleDateToServer(data.startDate);
+                    data.endDate = DateUtils.convertLocaleDateToServer(data.endDate);
+                    data.startTime = DateUtils.convertTimeToServer(data.startTime);
+                    data.endTime = DateUtils.convertTimeToServer(data.endTime);
                     return angular.toJson(data);
                 }
             }

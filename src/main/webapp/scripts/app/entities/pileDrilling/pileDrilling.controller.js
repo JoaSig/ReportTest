@@ -6,7 +6,7 @@ angular.module('documentmanagementApp')
         $scope.pileDrillings = [];
         $scope.machines = [];
         $scope.pileDrillingsByMachine = null;
-        $scope.predicate = 'drillingMachine';
+        $scope.predicate = 'drillingId';
         $scope.reverse = true;
         $scope.page = 1;
         $scope.loadAll = function () {
@@ -38,7 +38,7 @@ angular.module('documentmanagementApp')
             page: 1,
             count: 20,
             sorting: {
-                drillingMachine: 'asc'     // initial sorting
+                drillingId: 'asc'     // initial sorting
             }
         }, {
             total: 0,
@@ -46,7 +46,6 @@ angular.module('documentmanagementApp')
                 var orderedData = params.sorting() ? $filter('orderBy')($scope.pileDrillings, params.orderBy()) : $scope.pileDrillings;
                 var filteredData = params.filter() ? $filter('filter')(orderedData, params.filter()) : orderedData;
                 params.total(filteredData.length);
-                console.log('$scope.pileDrillings: ' + $scope.pileDrillings.length);
 
                 self.pageCount = params.count;
 

@@ -8,7 +8,7 @@
     <div class="modal-body">
         <jh-alert-error></jh-alert-error>
         <div class="form-group">
-            <div class="col-md-3"><label for="field_drillingId" translate="global.field.id">Drilling ID</label></div>
+            <div class="col-md-3"><label class="control-label" for="field_drillingId" translate="documentmanagementApp.pileDrilling.drillingId">Drilling ID</label></div>
             <input type="text" class="input-sm" id="field_drillingId" name="drillingId" ng-model="pileDrilling.drillingId"/>
         </div>
         <div class="form-group">
@@ -27,7 +27,7 @@
             <div class="form-group">
                 <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.startDate" for="field_startDate">Start Date</label></div>
                 <input id="field_startDate" type="text" class="input-sm" uib-datepicker-popup="{{dateformat}}" ng-model="pileDrilling.startDate"
-                       is-open="datePickerForstartDate.status.opened"/>
+                       is-open="datePickerForStartDate.status.opened"/>
                 <button type="button" class="btn btn-default btn-cal" ng-click="datePickerForStartDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
             </div>
         <div class="form-group">
@@ -41,7 +41,7 @@
             <input type="text" class="input-sm" name="startTime" id="field_startTime" ng-model="pileDrilling.startTime"/>
         </div>
         <div class="form-group">
-            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.wndTime" for="field_endTime">End Time</label></div>
+            <div class="col-md-3"><label class="control-label" translate="documentmanagementApp.pileDrilling.endTime" for="field_endTime">End Time</label></div>
             <input type="text" class="input-sm" name="endTime" id="field_endTime" ng-model="pileDrilling.endTime"/>
         </div>
     </div>
@@ -49,7 +49,8 @@
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+        <!--<button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">-->
+        <button type="submit" ng-disabled="isSaving" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
         </button>
     </div>
