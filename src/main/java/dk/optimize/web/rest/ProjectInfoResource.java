@@ -92,18 +92,19 @@ public class ProjectInfoResource {
     public ResponseEntity<List<ProjectInfo>> getAllProjectInfos(Pageable pageable) throws URISyntaxException {
         log.debug("REST request to get a page of ProjectInfos");
         Page<ProjectInfo> page;
-        log.info("Currently logged in user: " + SecurityUtils.getCurrentUser());
-        try {
-            if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
-                page = projectInfoRepository.findAll(pageable);
-            } else {
-                List<ProjectInfo> pileDrillingList = projectInfoRepository.findByUserIsCurrentUser();
-                page = new FacetedPageImpl<>(pileDrillingList);
-            }
-        } catch (Exception e) {
-            log.error("Error trying to get current user - returning all instead: " + e.getLocalizedMessage(), e);
+//        log.info("Currently logged in user: " + SecurityUtils.getCurrentUser());
+//        try {
+//            if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+//                page = projectInfoRepository.findAll(pageable);
+//            } else {
+//                List<ProjectInfo> pileDrillingList = projectInfoRepository.findByUserIsCurrentUser();
+//                page = new FacetedPageImpl<>(pileDrillingList);
+//            }
+//        } catch (Exception e) {
+//            log.error("Error trying to get current user - returning all instead: " + e.getLocalizedMessage(), e);
+//            page = projectInfoRepository.findAll(pageable);
+//        }
             page = projectInfoRepository.findAll(pageable);
-        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/projectInfos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

@@ -11,5 +11,5 @@ import java.util.List;
  */
 public interface ProjectInfoRepository extends JpaRepository<ProjectInfo,Long> {
 
-    List<ProjectInfo> findByUserIsCurrentUser();
+//    List<ProjectInfo> findByUserIsCurrentUser();
 }
