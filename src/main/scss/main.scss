@@ -43,6 +43,12 @@ div.outer .inner { width: 99%; }
     font-weight   : bold;
 }
 
+.well {
+    padding: 7px;
+    background-color: #EEEEEE;
+    border: 1px solid #ccc;
+}
+
 .ng-table th.sortable.sort-desc, .ng-table th.sortable.sort-asc {
     background-color: #DDD;
 }
@@ -54,8 +60,8 @@ div.outer .inner { width: 99%; }
     border-radius: 6px;
 }
 
-.active {
-    border: 0 solid #dadada !important;
+.ng-scope.active {
+    border: 0px solid #dadada !important;
 }
 
 .btn-sm {
@@ -84,6 +90,7 @@ div.outer .inner { width: 99%; }
     //min-width: 5px;
     width: 10%;
     margin-bottom: 0;
+    background-color: #EEEEEE;
     border: 0 solid transparent;
 }
 .navbar-fixed-side .navbar-toggle {
