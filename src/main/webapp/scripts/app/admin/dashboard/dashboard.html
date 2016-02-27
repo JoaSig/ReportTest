@@ -68,7 +68,7 @@
                 </div>
                 <div class="clearfix"></div>
 
-                <div class="col-md-10 col-sm-10 col-xs-12">
+                <div class="col-md-9 col-sm-9 col-xs-12">
                     <!--<div class="outer">-->
                         <!--<div class="inner">-->
                     <nvd3 ng-if="drillingsByMachine.drillings.length" options="pdOptions" data="pdData" class="with-3d-shadow with-transitions"></nvd3>
@@ -80,7 +80,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-2 col-sm-2 col-xs-12 bg-white">
+                <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
                     <div class="x_title">
                         <h2>Meter per hour</h2>
                         <div class="clearfix"></div>
@@ -94,18 +94,34 @@
         </div>
     </div>
     <br/>
+    <div class="row tile_count">
+        <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+            <div class="left"></div>
+            <div class="right">
+                <span class="count_top"><i class="glyphicons glyphicons-arrow-down"></i> Total Depth (m)</span>
+                <div class="count">{{vm.totalDepthMachine}}</div>
+            </div>
+        </div>
+        <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+            <div class="left"></div>
+            <div class="right">
+                <span class="count_top"><i class="fa fa-clock-o"></i> Total Time (min)</span>
+                <div class="count">{{vm.totalDepthMinMachine}}</div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="dashboard_graph">
 
                 <div class="row x_title">
                     <div class="col-md-6">
-                        <h3>Expected Drilling Depth vs. Actual drilling Depth</h3>
+                        <h3>Project Drilling Depth vs. Effective drilling Depth</h3>
                     </div>
                 </div>
                 <div class="clearfix"></div>
 
-                <div class="col-md-10 col-sm-10 col-xs-12">
+                <div class="col-md-9 col-sm-9 col-xs-12">
                     <!--<div class="outer">-->
                         <!--<div class="inner">-->
                     <nvd3 ng-if="drillingDepthMachine.drillings.length" options="multiBarOptions" data="multiBarData" class="with-3d-shadow with-transitions"></nvd3>
@@ -117,7 +133,7 @@
                         </select>
                     <!--</div>-->
                 </div>
-                <div class="col-md-2 col-sm-2 col-xs-12 bg-white pull-right">
+                <div class="col-md-3 col-sm-3 col-xs-12 bg-white pull-right">
                     <div class="x_title">
                         <h2>Meter per hour</h2>
                         <div class="clearfix"></div>
