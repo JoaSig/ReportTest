@@ -14,7 +14,7 @@ angular.module('documentmanagementApp')
 var pdChartConfig = {
     chart: {
         "type": "historicalBarChart",
-        "height": 450,
+        "height": 250,
         "margin": {
             "top": 20,
             "right": 20,
@@ -77,7 +77,7 @@ var pdChartConfig = {
 var multiBarChartOptions = {
     chart: {
         type: 'multiBarChart',
-        height: 450,
+        height: 250,
         margin: {
             top: 20,
             right: 20,
