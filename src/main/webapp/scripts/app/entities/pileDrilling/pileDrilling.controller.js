@@ -13,8 +13,8 @@ angular.module('documentmanagementApp')
             console.log('loadAll: ' + $scope.predicate);
             PileDrilling.query({
                 page: $scope.page - 1,
-                size: 20,
-                sort: [$scope.predicate + ',' + ($scope.reverse ? 'asc' : 'desc'), 'id']
+                size: 400,
+                sort: [$scope.predicate + ',' + ($scope.reverse ? 'asc' : 'desc'), 'drillingId']
             }, function (result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
                 $scope.totalItems = headers('X-Total-Count');
@@ -25,18 +25,13 @@ angular.module('documentmanagementApp')
         $scope.loadPage = function (page) {
             $scope.page = page;
             $scope.loadAll();
+            $scope.tableParams.reload();
         };
         $scope.loadAll();
 
-        PileDrilling.machines(function (machines) {
-            if (!$scope.machines.length) {
-                $scope.machines = machines;
-            }
-        });
-
         $scope.tableParams = new ngTableParams({
             page: 1,
-            count: 20,
+            count: 40,
             sorting: {
                 drillingId: 'asc'     // initial sorting
             }
@@ -58,15 +53,18 @@ angular.module('documentmanagementApp')
         $scope.search = function () {
             PileDrillingSearch.query({query: $scope.searchQuery}, function (result) {
                 $scope.pileDrillings = result;
+                $scope.tableParams.reload();
             }, function (response) {
                 if (response.status === 404) {
                     $scope.loadAll();
+                    $scope.tableParams.reload();
                 }
             });
         };
 
         $scope.refresh = function () {
             $scope.loadAll();
+            $scope.tableParams.reload();
             $scope.clear();
         };
 
