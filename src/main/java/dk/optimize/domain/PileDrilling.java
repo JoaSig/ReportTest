@@ -2,14 +2,14 @@ package dk.optimize.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -27,28 +27,28 @@ public class PileDrilling implements Serializable {
 
     @Column(name = "drilling_machine")
     private String drillingMachine;
-    
+
     @Column(name = "project_depth", precision=10, scale=2)
     private BigDecimal projectDepth;
-    
+
     @Column(name = "effective_depth", precision=10, scale=2)
     private BigDecimal effectiveDepth;
-    
+
     @Column(name = "start_date")
     private LocalDate StartDate;
-    
+
     @Column(name = "end_date")
     private LocalDate EndDate;
-    
+
     @Column(name = "start_time")
-    private LocalDate StartTime;
-    
+    private Timestamp startTime;
+
     @Column(name = "end_time")
-    private LocalDate EndTime;
-    
+    private Timestamp endTime;
+
     @Column(name = "drilling_id")
     private Long drillingId;
-    
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -64,7 +64,7 @@ public class PileDrilling implements Serializable {
     public String getDrillingMachine() {
         return drillingMachine;
     }
-    
+
     public void setDrillingMachine(String drillingMachine) {
         this.drillingMachine = drillingMachine;
     }
@@ -72,7 +72,7 @@ public class PileDrilling implements Serializable {
     public BigDecimal getProjectDepth() {
         return projectDepth;
     }
-    
+
     public void setProjectDepth(BigDecimal projectDepth) {
         this.projectDepth = projectDepth;
     }
@@ -80,7 +80,7 @@ public class PileDrilling implements Serializable {
     public BigDecimal getEffectiveDepth() {
         return effectiveDepth;
     }
-    
+
     public void setEffectiveDepth(BigDecimal effectiveDepth) {
         this.effectiveDepth = effectiveDepth;
     }
@@ -88,7 +88,7 @@ public class PileDrilling implements Serializable {
     public LocalDate getStartDate() {
         return StartDate;
     }
-    
+
     public void setStartDate(LocalDate StartDate) {
         this.StartDate = StartDate;
     }
@@ -96,31 +96,31 @@ public class PileDrilling implements Serializable {
     public LocalDate getEndDate() {
         return EndDate;
     }
-    
+
     public void setEndDate(LocalDate EndDate) {
         this.EndDate = EndDate;
     }
 
-    public LocalDate getStartTime() {
-        return StartTime;
-    }
-    
-    public void setStartTime(LocalDate StartTime) {
-        this.StartTime = StartTime;
+    public Timestamp getStartTime() {
+        return startTime;
     }
 
-    public LocalDate getEndTime() {
-        return EndTime;
+    public void setStartTime(Timestamp StartTime) {
+        this.startTime = StartTime;
     }
-    
-    public void setEndTime(LocalDate EndTime) {
-        this.EndTime = EndTime;
+
+    public Timestamp getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Timestamp EndTime) {
+        this.endTime = EndTime;
     }
 
     public Long getDrillingId() {
         return drillingId;
     }
-    
+
     public void setDrillingId(Long drillingId) {
         this.drillingId = drillingId;
     }
@@ -162,8 +162,8 @@ public class PileDrilling implements Serializable {
             ", effectiveDepth='" + effectiveDepth + "'" +
             ", StartDate='" + StartDate + "'" +
             ", EndDate='" + EndDate + "'" +
-            ", StartTime='" + StartTime + "'" +
-            ", EndTime='" + EndTime + "'" +
+            ", startTime='" + startTime + "'" +
+            ", endTime='" + endTime + "'" +
             ", drillingId='" + drillingId + "'" +
             '}';
     }
