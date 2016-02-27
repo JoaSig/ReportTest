@@ -54,12 +54,12 @@
             <tr ng-repeat="pileDrilling in data" ng-click="pileDrilling.$selected = !pileDrilling.$selected" ng-class="{'active': pileDrilling.$selected}">
                 <td align="center" data-title="'DrillingID'" width="250" sortable="'drillingId'" filter="{ 'drillingId': 'text' }"><a ui-sref="pileDrilling.detail({id:pileDrilling.id})">{{pileDrilling.drillingId}}</a></td>
                 <td align="center" data-title="'Machine'" sortable="'drillingMachine'" filter="{ 'drillingMachine': 'text' }">{{pileDrilling.drillingMachine}}</td>
-                <td align="center" data-title="'Project Depth'" sortable="'projectDepth'">{{pileDrilling.projectDepth}} <span ng-if="pileDrilling.projectDepth">m</span></td>
-                <td align="center" data-title="'Effective Depth'" sortable="'effectiveDepth'">{{pileDrilling.effectiveDepth}} <span ng-if="pileDrilling.effectiveDepth">m</span></td>
-                <td align="center" data-title="'Start Date'" sortable="'startDate'">{{pileDrilling.startDate | date:'dd-MM-yyyy'}}</td>
-                <td align="center" data-title="'End Date'" sortable="'endDate'">{{pileDrilling.endDate | date:'dd-MM-yyyy'}}</td>
-                <td align="center" data-title="'Start Time'" sortable="'startTime'">{{pileDrilling.startTime | date:'HH:mm'}}</td>
-                <td align="center" data-title="'End Time'" sortable="'endTime'">{{pileDrilling.endTime | date:'HH:mm'}}</td>
+                <td align="center" data-title="'Project Depth'" sortable="'projectDepth'" filter="{ 'projectDepth': 'text' }">{{pileDrilling.projectDepth}} <span ng-if="pileDrilling.projectDepth">m</span></td>
+                <td align="center" data-title="'Effective Depth'" sortable="'effectiveDepth'" filter="{ 'effectiveDepth': 'text' }">{{pileDrilling.effectiveDepth}} <span ng-if="pileDrilling.effectiveDepth">m</span></td>
+                <td align="center" data-title="'Start Date'" sortable="'startDate'" filter="{ 'startDate': 'text' }">{{pileDrilling.startDate | date:'dd-MM-yyyy'}}</td>
+                <td align="center" data-title="'End Date'" sortable="'endDate'" filter="{ 'endDate': 'text' }">{{pileDrilling.endDate | date:'dd-MM-yyyy'}}</td>
+                <td align="center" data-title="'Start Time'" sortable="'startTime'" filter="{ 'startTime': 'text' }">{{pileDrilling.startTime | date:'HH:mm'}}</td>
+                <td align="center" data-title="'End Time'" sortable="'endTime'" filter="{ 'endTime': 'text' }">{{pileDrilling.endTime | date:'HH:mm'}}</td>
                 <td class="text-right">
                     <div ng-show="pileDrilling.$selected">
                         <button type="submit"
