@@ -43,48 +43,48 @@
             <column name="user_id" type="bigint">
                 <constraints unique="true"/>
             </column>
-            <column name="concreting_id" type="bigint">
-                <constraints unique="true"/>
-            </column>
-            <column name="drilling_id" type="bigint">
-                <constraints unique="true"/>
-            </column>
-            <column name="steel_cage_id" type="bigint">
-                <constraints unique="true"/>
-            </column>
-            <column name="project_info_id" type="bigint"/>
+            <!--<column name="concreting_id" type="bigint">-->
+                <!--<constraints unique="true"/>-->
+            <!--</column>-->
+            <!--<column name="drilling_id" type="bigint">-->
+                <!--<constraints unique="true"/>-->
+            <!--</column>-->
+            <!--<column name="steel_cage_id" type="bigint">-->
+                <!--<constraints unique="true"/>-->
+            <!--</column>-->
+            <!--<column name="projectinfo_id" type="bigint"/>-->
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
 
-        <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="pile"
-                                 constraintName="fk_pile_user_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
+        <!--<addForeignKeyConstraint baseColumnNames="user_id"-->
+                                 <!--baseTableName="pile"-->
+                                 <!--constraintName="fk_pile_user_id"-->
+                                 <!--referencedColumnNames="id"-->
+                                 <!--referencedTableName="jhi_user"/>-->
 
-        <addForeignKeyConstraint baseColumnNames="concreting_id"
-                                 baseTableName="pile"
-                                 constraintName="fk_pile_concreting_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="concreting"/>
+        <!--<addForeignKeyConstraint baseColumnNames="concreting_id"-->
+                                 <!--baseTableName="pile"-->
+                                 <!--constraintName="fk_pile_concreting_id"-->
+                                 <!--referencedColumnNames="id"-->
+                                 <!--referencedTableName="concreting"/>-->
 
-        <addForeignKeyConstraint baseColumnNames="drilling_id"
-                                 baseTableName="pile"
-                                 constraintName="fk_pile_drilling_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="drilling"/>
+        <!--<addForeignKeyConstraint baseColumnNames="drilling_id"-->
+                                 <!--baseTableName="pile"-->
+                                 <!--constraintName="fk_pile_drilling_id"-->
+                                 <!--referencedColumnNames="id"-->
+                                 <!--referencedTableName="drilling"/>-->
 
-        <addForeignKeyConstraint baseColumnNames="steel_cage_id"
-                                 baseTableName="pile"
-                                 constraintName="fk_pile_steelcage_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="steel_cage"/>
+        <!--<addForeignKeyConstraint baseColumnNames="steel_cage_id"-->
+                                 <!--baseTableName="pile"-->
+                                 <!--constraintName="fk_pile_steelcage_id"-->
+                                 <!--referencedColumnNames="id"-->
+                                 <!--referencedTableName="steel_cage"/>-->
 
-        <addForeignKeyConstraint baseColumnNames="project_info_id"
-                                 baseTableName="pile"
-                                 constraintName="fk_pile_projectinfo_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="project_info"/>
+        <!--<addForeignKeyConstraint baseColumnNames="project_info_id"-->
+                                 <!--baseTableName="pile"-->
+                                 <!--constraintName="fk_pile_projectinfo_id"-->
+                                 <!--referencedColumnNames="id"-->
+                                 <!--referencedTableName="project_info"/>-->
 
     </changeSet>
 </databaseChangeLog>

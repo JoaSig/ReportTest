@@ -26,40 +26,40 @@ public class Pile implements Serializable {
 
     @Column(name = "created_at")
     private LocalDate createdAt;
-    
+
     @Column(name = "last_updated_at")
     private LocalDate lastUpdatedAt;
-    
+
     @Column(name = "last_updated_by")
     private String lastUpdatedBy;
-    
+
     @Column(name = "next_pile")
     private Long nextPile;
-    
+
     @Column(name = "prev_pile")
     private Long prevPile;
-    
+
     @Column(name = "number")
     private Long number;
-    
+
     @Column(name = "comment")
     private String comment;
-    
+
     @OneToOne
     private User user;
 
-    @OneToOne
-    private Concreting concreting;
-
-    @OneToOne
-    private Drilling drilling;
-
-    @OneToOne
-    private SteelCage steelCage;
-
-    @ManyToOne
-    @JoinColumn(name = "project_info_id")
-    private ProjectInfo projectInfo;
+//    @OneToOne
+//    private Concreting concreting;
+//
+//    @OneToOne
+//    private Drilling drilling;
+//
+//    @OneToOne
+//    private SteelCage steelCage;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "projectinfo_id")
+//    private ProjectInfo projectInfo;
 
     public Long getId() {
         return id;
@@ -72,7 +72,7 @@ public class Pile implements Serializable {
     public LocalDate getCreatedAt() {
         return createdAt;
     }
-    
+
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
@@ -80,7 +80,7 @@ public class Pile implements Serializable {
     public LocalDate getLastUpdatedAt() {
         return lastUpdatedAt;
     }
-    
+
     public void setLastUpdatedAt(LocalDate lastUpdatedAt) {
         this.lastUpdatedAt = lastUpdatedAt;
     }
@@ -88,7 +88,7 @@ public class Pile implements Serializable {
     public String getLastUpdatedBy() {
         return lastUpdatedBy;
     }
-    
+
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
     }
@@ -96,7 +96,7 @@ public class Pile implements Serializable {
     public Long getNextPile() {
         return nextPile;
     }
-    
+
     public void setNextPile(Long nextPile) {
         this.nextPile = nextPile;
     }
@@ -104,7 +104,7 @@ public class Pile implements Serializable {
     public Long getPrevPile() {
         return prevPile;
     }
-    
+
     public void setPrevPile(Long prevPile) {
         this.prevPile = prevPile;
     }
@@ -112,7 +112,7 @@ public class Pile implements Serializable {
     public Long getNumber() {
         return number;
     }
-    
+
     public void setNumber(Long number) {
         this.number = number;
     }
@@ -120,7 +120,7 @@ public class Pile implements Serializable {
     public String getComment() {
         return comment;
     }
-    
+
     public void setComment(String comment) {
         this.comment = comment;
     }
@@ -133,37 +133,37 @@ public class Pile implements Serializable {
         this.user = user;
     }
 
-    public Concreting getConcreting() {
-        return concreting;
-    }
-
-    public void setConcreting(Concreting concreting) {
-        this.concreting = concreting;
-    }
-
-    public Drilling getDrilling() {
-        return drilling;
-    }
-
-    public void setDrilling(Drilling drilling) {
-        this.drilling = drilling;
-    }
-
-    public SteelCage getSteelCage() {
-        return steelCage;
-    }
-
-    public void setSteelCage(SteelCage steelCage) {
-        this.steelCage = steelCage;
-    }
-
-    public ProjectInfo getProjectInfo() {
-        return projectInfo;
-    }
-
-    public void setProjectInfo(ProjectInfo projectInfo) {
-        this.projectInfo = projectInfo;
-    }
+//    public Concreting getConcreting() {
+//        return concreting;
+//    }
+//
+//    public void setConcreting(Concreting concreting) {
+//        this.concreting = concreting;
+//    }
+//
+//    public Drilling getDrilling() {
+//        return drilling;
+//    }
+//
+//    public void setDrilling(Drilling drilling) {
+//        this.drilling = drilling;
+//    }
+//
+//    public SteelCage getSteelCage() {
+//        return steelCage;
+//    }
+//
+//    public void setSteelCage(SteelCage steelCage) {
+//        this.steelCage = steelCage;
+//    }
+//
+//    public ProjectInfo getProjectInfo() {
+//        return projectInfo;
+//    }
+//
+//    public void setProjectInfo(ProjectInfo projectInfo) {
+//        this.projectInfo = projectInfo;
+//    }
 
     @Override
     public boolean equals(Object o) {

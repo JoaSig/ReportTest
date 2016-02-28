@@ -12,6 +12,7 @@ angular.module('documentmanagementApp')
                     data = angular.fromJson(data);
                     data.startDate = DateUtils.convertLocaleDateFromServer(data.startDate);
                     data.endDate = DateUtils.convertLocaleDateFromServer(data.endDate);
+                    console.log('data.endTime: ' + data.endTime);
                     data.endTime = DateUtils.convertTimeFromServer(data.endTime);
                     data.startTime = DateUtils.convertTimeFromServer(data.startTime);
                     return data;

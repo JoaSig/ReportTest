@@ -65,7 +65,7 @@ public class PileDrillingResource {
         }
 //        if (!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
 //            log.debug("No user passed in, using current user: {}", SecurityUtils.getCurrentUserLogin());
-            pileDrilling.setUser(getUser(pileDrilling));
+        pileDrilling.setUser(getUser(pileDrilling));
 //        }
         PileDrilling result = pileDrillingRepository.save(pileDrilling);
         pileDrillingSearchRepository.save(result);
@@ -109,8 +109,8 @@ public class PileDrillingResource {
     public ResponseEntity<List<PileDrilling>> getAllPileDrillings(Pageable pageable) throws URISyntaxException {
         log.debug("REST request to get a page of PileDrillings");
         Page<PileDrilling> page;
-        log.info("Currently logged in user: " + SecurityUtils.getCurrentUser());
         try {
+            log.info("Currently logged in user: " + SecurityUtils.getCurrentUser());
             if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
                 page = pileDrillingRepository.findAllByOrderByDrillingIdAsc(pageable);
             } else {
@@ -236,11 +236,11 @@ public class PileDrillingResource {
 //            Calendar calendar = Calendar.getInstance();
 //            calendar.setTimeInMillis(instant.toEpochMilli());
 //        LocalDate startDate = pileDrilling.getStartTime();
-        Long startMs = pileDrilling.getStartTime().getTime();
+        Long startMs = pileDrilling.getStartTime().toEpochDay();
 
 //        LocalDate endDate = pileDrilling.getEndTime();
 //            Date endDate = dateFormat.parse(pileDrilling.getDrillingEndTime());
-        Long endMs = pileDrilling.getEndTime().getTime();
+        Long endMs = pileDrilling.getEndTime().toEpochDay();
 
         long totalTime;
         if (endMs < startMs) {

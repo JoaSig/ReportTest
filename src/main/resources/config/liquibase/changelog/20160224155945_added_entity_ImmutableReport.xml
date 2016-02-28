@@ -14,10 +14,15 @@
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
     <!--
-        Added the entity Report.
+        Added the entity ImmutableReport.
     -->
     <changeSet id="20160224155945" author="jhipster">
-        <createTable tableName="report">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="immutable_report"/>
+            </not>
+        </preConditions>
+        <createTable tableName="immutable_report">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -43,21 +48,21 @@
             <column name="user_id" type="bigint">
                 <constraints unique="true"/>
             </column>
-            <column name="project_info_id" type="bigint">
-                <constraints unique="true"/>
-            </column>
+            <!--<column name="project_info_id" type="bigint">-->
+                <!--<constraints unique="true"/>-->
+            <!--</column>-->
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
 
         <!--<addForeignKeyConstraint baseColumnNames="generalinfo_id"-->
-                                 <!--baseTableName="report"-->
-                                 <!--constraintName="fk_report_generalinfo_id"-->
+                                 <!--baseTableName="immutable_report"-->
+                                 <!--constraintName="fk_immutablereport_generalinfo_id"-->
                                  <!--referencedColumnNames="id"-->
                                  <!--referencedTableName="general_info"/>-->
 
         <!--<addForeignKeyConstraint baseColumnNames="projectinfo_id"-->
-                                 <!--baseTableName="report"-->
-                                 <!--constraintName="fk_report_projectinfo_id"-->
+                                 <!--baseTableName="immutable_report"-->
+                                 <!--constraintName="fk_immutablereport_projectinfo_id"-->
                                  <!--referencedColumnNames="id"-->
                                  <!--referencedTableName="project_info"/>-->
 

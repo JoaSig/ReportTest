@@ -72,13 +72,13 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "reset_date", nullable = true)
     private ZonedDateTime resetDate = null;
 
-    @ManyToMany
-    @JoinTable(name="user_project",
-        joinColumns=
-        @JoinColumn(name="user_id", referencedColumnName="id"),
-        inverseJoinColumns=
-        @JoinColumn(name="project_info_id", referencedColumnName="id"))
-    private Set<ProjectInfo> projects = new HashSet<>();
+//    @ManyToMany
+//    @JoinTable(name="user_project",
+//        joinColumns=
+//        @JoinColumn(name="user_id", referencedColumnName="id"),
+//        inverseJoinColumns=
+//        @JoinColumn(name="projectinfo_id", referencedColumnName="id"))
+//    private Set<ProjectInfo> projects = new HashSet<>();
 
     @JsonIgnore
     @ManyToMany
@@ -89,13 +89,13 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Authority> authorities = new HashSet<>();
 
-    public Set<ProjectInfo> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Set<ProjectInfo> projects) {
-        this.projects = projects;
-    }
+//    public Set<ProjectInfo> getProjects() {
+//        return projects;
+//    }
+//
+//    public void setProjects(Set<ProjectInfo> projects) {
+//        this.projects = projects;
+//    }
 
     public Long getId() {
         return id;
