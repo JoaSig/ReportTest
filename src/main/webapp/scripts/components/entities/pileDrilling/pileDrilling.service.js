@@ -6,6 +6,7 @@ angular.module('documentmanagementApp')
             'query': { method: 'GET', isArray: true},
             'machine': { method: 'GET', isArray: false, url: '/api/pileDrillings/machine/:drillingMachine'},
             'machines': { method: 'GET', isArray: true, url: '/api/util/machine'},
+            'getByDrillingId': { method: 'GET', isArray: false, url: '/api/pileDrillings/drillingId/:drillingId'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

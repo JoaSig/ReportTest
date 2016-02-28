@@ -142,6 +142,23 @@ public class PileDrillingResource {
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+     /**
+     * GET  /pileDrillings/drillingId/:drillingId -> get the "drillingId" pileDrilling.
+     */
+    @RequestMapping(value = "/pileDrillings/drillingId/{drillingId}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<PileDrilling> getPileDrillingByDrillingId(@PathVariable Long drillingId) {
+        log.debug("REST request to get PileDrilling : {}", drillingId);
+        PileDrilling pileDrilling = pileDrillingRepository.findOneByDrillingId(drillingId);
+        return Optional.ofNullable(pileDrilling)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
     /**
      * GET  /pileDrillings -> get all the pileDrillings for the current week.
      //     */
@@ -236,11 +253,11 @@ public class PileDrillingResource {
 //            Calendar calendar = Calendar.getInstance();
 //            calendar.setTimeInMillis(instant.toEpochMilli());
 //        LocalDate startDate = pileDrilling.getStartTime();
-        Long startMs = pileDrilling.getStartTime().toEpochDay();
+        Long startMs = pileDrilling.getStartTime().getTime();
 
 //        LocalDate endDate = pileDrilling.getEndTime();
 //            Date endDate = dateFormat.parse(pileDrilling.getDrillingEndTime());
-        Long endMs = pileDrilling.getEndTime().toEpochDay();
+        Long endMs = pileDrilling.getEndTime().getTime();
 
         long totalTime;
         if (endMs < startMs) {

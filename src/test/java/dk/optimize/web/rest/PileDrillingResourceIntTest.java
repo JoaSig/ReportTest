@@ -72,11 +72,11 @@ public class PileDrillingResourceIntTest {
     private static final LocalDate DEFAULT_END_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_END_DATE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final LocalDate DEFAULT_START_TIME = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_START_TIME = LocalDate.now(ZoneId.systemDefault());
+    private static final Timestamp DEFAULT_START_TIME = Timestamp.from(Instant.now());
+    private static final Timestamp UPDATED_START_TIME = Timestamp.from(Instant.now());
 
-    private static final LocalDate DEFAULT_END_TIME = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_END_TIME = LocalDate.now(ZoneId.systemDefault());
+    private static final Timestamp DEFAULT_END_TIME = Timestamp.from(Instant.now());
+    private static final Timestamp UPDATED_END_TIME = Timestamp.from(Instant.now());
 
     private static final Long DEFAULT_DRILLING_ID = 1L;
     private static final Long UPDATED_DRILLING_ID = 2L;

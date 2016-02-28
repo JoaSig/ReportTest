@@ -19,4 +19,6 @@ public interface PileDrillingRepository extends JpaRepository<PileDrilling, Long
     List<PileDrilling> findAllByDrillingMachine(String drillingMachine);
 
     Page<PileDrilling> findAllByOrderByDrillingIdAsc(Pageable pageable);
+
+    PileDrilling findOneByDrillingId(Long drillingId);
 }

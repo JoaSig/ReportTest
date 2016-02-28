@@ -52,7 +52,7 @@
     <div class="table-responsive">
         <table ng-table="tableParams" show-filter="true" class="table ng-table-rowselected table-condensed table-striped">
             <tr ng-repeat="pileDrilling in data" ng-click="pileDrilling.$selected = !pileDrilling.$selected" ng-class="{'active': pileDrilling.$selected}">
-                <td align="center" data-title="'DrillingID'" width="250" sortable="'drillingId'" filter="{ 'drillingId': 'text' }"><a ui-sref="pileDrilling.detail({id:pileDrilling.id})">{{pileDrilling.drillingId}}</a></td>
+                <td align="center" data-title="'DrillingID'" sortable="'drillingId'" filter="{ 'drillingId': 'text' }"><a ui-sref="pileDrilling.detail({id:pileDrilling.id})">{{pileDrilling.drillingId}}</a></td>
                 <td align="center" data-title="'Machine'" sortable="'drillingMachine'" filter="{ 'drillingMachine': 'text' }">{{pileDrilling.drillingMachine}}</td>
                 <td align="center" data-title="'Project Depth'" sortable="'projectDepth'" filter="{ 'projectDepth': 'text' }">{{pileDrilling.projectDepth}} <span ng-if="pileDrilling.projectDepth">m</span></td>
                 <td align="center" data-title="'Effective Depth'" sortable="'effectiveDepth'" filter="{ 'effectiveDepth': 'text' }">{{pileDrilling.effectiveDepth}} <span ng-if="pileDrilling.effectiveDepth">m</span></td>

@@ -3,6 +3,7 @@ package dk.optimize.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import org.springframework.data.elasticsearch.annotations.Document;
 
@@ -40,10 +41,10 @@ public class PileDrilling implements Serializable {
     private LocalDate endDate;
 
     @Column(name = "start_time")
-    private LocalDate startTime;
+    private Timestamp startTime;
 
     @Column(name = "end_time")
-    private LocalDate endTime;
+    private Timestamp endTime;
 
     @Column(name = "drilling_id")
     private Long drillingId;
@@ -100,19 +101,19 @@ public class PileDrilling implements Serializable {
         this.endDate = endDate;
     }
 
-    public LocalDate getStartTime() {
+    public Timestamp getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDate StartTime) {
-        this.startTime = StartTime;
+    public void setStartTime(Timestamp startTime) {
+        this.startTime = startTime;
     }
 
-    public LocalDate getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDate EndTime) {
+    public void setEndTime(Timestamp EndTime) {
         this.endTime = EndTime;
     }
 
